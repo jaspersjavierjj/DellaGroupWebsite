@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Della Group - Engagement</title>
+
+    <!-- Geologica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="\assets\css\engagement.css">
+</head>
+<body>
+    <div id="page-loader"></div>
+
+    <header class="navbar">
+
+        <a href="\index.html" class="nav-logo">
+            <img src="\assets/images/logo/DellaGroupDark.png" alt="Della Group Logo">
+        </a>
+
+        <nav class="nav-menu">
+
+            <div class="nav-item">
+                <a href="Industrial.html">Industrial</a>
+                <div class="nav-dropdown">
+                    <div class="dropdown-info">
+                        <h4>INDUSTRIAL SOLUTION</h4>
+                        <p>
+                            Provides engineered industrial equipment and systems tailored for construction,
+                            infrastructure, and facility environments. Our solutions from drilling systems
+                            to parking and facility infrastructure are designed for durability, operational
+                            efficiency, and long-term reliability.
+                        </p>
+                    </div>
+
+                    <div class="dropdown-categories">
+                        <h4>CATEGORIES</h4>
+                        <ul>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Construction Equipment & Site Solutions</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Drilling Tools & Machinery</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Water & Environmental Technologies</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Smart Utility Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="Healthcare.html">Healthcare</a>
+                <div class="nav-dropdown">
+                    <div class="dropdown-info">
+                        <h4>HEALTHCARE SOLUTION</h4>
+                        <p>
+                            Supports healthcare institutions and emergency response operations through reliable medical equipment,
+                            clinical training systems, and field deployment solutions.
+                        </p>
+                    </div>
+
+                    <div class="dropdown-categories">
+                        <h4>CATEGORIES</h4>
+                        <ul>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Medical Training & Simulations</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Patient Care & Mobility</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Emergency Medical Solutions</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Medical Instruments & Diagnosis</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Safety & Protective Equipment</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Water & Sanitation Systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="Infrastructure.html">Infrastructure</a>
+                <div class="nav-dropdown">
+                    <div class="dropdown-info">
+                        <h4>INFRASTRUCTURE SOLUTION</h4>
+                        <p>
+                            Products supporting transportation, public safety, facilities management, and field operations.
+                        </p>
+                    </div>
+
+                    <div class="dropdown-categories">
+                        <h4>CATEGORIES</h4>
+                        <ul>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Traffic & Parking Management Systems</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Uniforms & Professional Apparel</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Road Safety & Infrastructure Products</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Event & Deployment Solutions</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Facility & Workplace Solutions</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Mobility Equipment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="nav-item consumer-dropdown-item">
+                <a href="ConsumerProducts.html">Consumer Products</a>
+                    <div class="nav-dropdown consumer-dropdown">
+                        <!-- Column 1: Well Being -->
+                        <div class="consumer-col">
+                            <h4>WELL BEING</h4>
+                            <p>
+                                Power meets precision. Crafted carbon for speed and control. From the road to the court, TORO redefines performance.
+                            </p>
+                        </div>
+
+                        <!-- Column 2: Well Being Products -->
+                        <div class="consumer-col">
+                            <h4>PRODUCTS</h4>
+                                <ul>
+                                    <li>
+                                        <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
+                                        <span class="toro">TORO</span> Vector
+                                    </li>
+                                    <li>
+                                        <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
+                                        <span class="toro">TORO</span> Pulse
+                                    </li>
+                                    <li>
+                                        <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
+                                        <span class="toro">TORO</span> Phantom
+                                    </li>
+                                    <li>
+                                        <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
+                                        <span class="toro">TORO</span> Terra
+                                    </li>
+                                </ul>
+                        </div>
+
+                        <!-- Separator -->
+                        <div class="consumer-separator"></div>
+
+                        <!-- Column 3: Personal Care -->
+                        <div class="consumer-col">
+                            <h4>PERSONAL CARE</h4>
+                            <p>
+                                Products designed for personal care and everyday consumer use.
+                            </p>
+                        </div>
+
+                        <!-- Column 4: Personal Care Products -->
+                        <div class="consumer-col">
+                            <h4>PRODUCTS</h4>
+                            <ul>
+                                <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Azelane Facial Soap</li>
+                                <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Skincare Products</li>
+                                <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>Wellness Products</li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+
+
+            <span class="nav-separator"></span>
+
+            <div class="nav-item" id="defenseNav">
+                <a href="Defense.html" class="defense-link">DELLA <span>DEFENSE</span></a>
+
+                <div class="nav-dropdown defense-dropdown">
+                    <div class="dropdown-info">
+                        <h4>SYSTEM ARCHITECTURE</h4>
+                        <p>
+                            We develop survivable sustainment systems designed to address operational gaps exposed by modern warfare.
+                            Our focus is the integration of sustainment capability with survivability principles.
+                        </p>
+                    </div>
+
+                    <div class="dropdown-categories">
+                        <h4>LAYERS</h4>
+                        <ul>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>TIER 1</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>TIER 2</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>TIER 3</li>
+                            <li><span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>SUPPORT EQUIPMENT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+        <div class="nav-actions">
+            <a href="#" class="search-link">
+                Search
+                <span class="material-icons">search</span>
+            </a>
+
+            <div class="nav-item company-item">
+
+                <a href="About.html" class="company-link">
+                    Company
+                    <span class="company-icon">
+                        <span class="icon-plus">+</span>
+                        <span class="icon-minus">−</span>
+                    </span>
+                </a>
+
+                <!-- NOW USING SAME SYSTEM: nav-dropdown -->
+                <div class="nav-dropdown company-dropdown">
+
+                    <!-- LEFT INFO -->
+                <div class="dropdown-info">
+                    <h4>COMPANY</h4>
+                    <p>
+                        Learn more about Della Group, our operating divisions, leadership,
+                        projects, and long-term development direction.
+                    </p>
+
+                    <!-- NEW SOCIAL SECTION -->
+                    <div class="company-social">
+                        <h4>SOCIAL</h4>
+                        <p class="ig">IG</p>
+                    </div>
+                </div>
+
+                <!-- RIGHT GRID (2 COLUMNS) -->
+                <div class="dropdown-categories company-grid">
+
+                    <!-- COLUMN 1 -->
+                <div class="company-col">
+                    <h4>LEARN MORE</h4>
+                    <ul>
+                        <li>
+                            <a href="Contact.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                Contact Us
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="About.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                About Us
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="About.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                Mission
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="About.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                Vision
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLUMN 2 -->
+                <div class="company-col">
+                    <h4>EXPLORE</h4>
+                    <ul>
+                        <li>
+                            <a href="Engagement.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                Strategic Engagement
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="FutureProjects.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                Future Projects
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="TrustedBy.html">
+                                <span class="list-icon">
+                                    <span class="icon-plus">+</span>
+                                    <span class="icon-minus">−</span>
+                                </span>
+                                Trusted By
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                </div>
+
+                </div>
+
+            </div>
+        </div>
+        
+    </header>
+
+    <div class="page-content">
+
+        <!-- HERO SECTION (Gray / Image Background) -->
+        <section class="industrial-hero">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <small class="hero-tag">DELLA INDUSTRIAL SOLUTIONS</small>
+
+                <h1>
+                    Engagement
+                </h1>
+
+                <p class="hero-description">
+                    PROVIDES ENGINEERED INDUSTRIAL EQUIPMENT AND SYSTEMS TAILORED FOR CONSTRUCTION, INFRASTRUCTURE, AND FACILITY ENVIRONMENTS. OUR SOLUTIONS FROM DRILLING SYSTEMS TO PARKING AND FACILITY INFRASTRUCTURE ARE DESIGNED FOR DURABILITY, OPERATIONAL EFFICIENCY, AND LONG-TERM RELIABILITY.
+                </p>
+            </div>
+        </section>        
+
+
+        <footer class="footer">
+
+            <div class="footer-left">
+                <img src="\assets/images/logo/DellaGroupLight.png" alt="Della Group Logo" class="footer-logo">
+
+                <div class="footer-addresses">
+                    <div class="footer-address">
+                        <h4>MAIN OFFICE</h4>
+                        <p>
+                            Aston Two, Serendra Bldg., 26th<br>
+                            Ave, Fort Bonifacio, Taguig City,<br>
+                            Philippines
+                        </p>
+                    </div>
+
+                    <div class="footer-line"></div>
+
+                    <div class="footer-address">
+                        <h4>BRANCH OFFICE</h4>
+                        <p>
+                            2/F Carolina Center Puting Kahoy,<br>
+                            Silang, Cavite, Philippines 4118
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-columns">
+
+                <div class="footer-col">
+                    <h4>COMPANY</h4>
+                    <a href="#">Mission</a>
+                    <a href="#">Vision</a>
+                    <a href="#">About us</a>
+                    <a href="#">Sectors</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>OUR SERVICES</h4>
+                    <a href="#">Defense</a>
+                    <a href="#">Industrial</a>
+                    <a href="#">Government</a>
+                    <a href="#">Medical</a>
+                    <a href="#">Supply Chain</a>
+                    <a href="#">Water Treatment</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>CONTACT US</h4>
+                    <a href="mailto:MRK@Della-group.com">MRK@Della-group.com</a>
+                    <a href="tel:+639260355668">(+63) 926 035 5668</a>
+                </div>
+
+            </div>
+
+        </footer>
+    </div>
+
+    <script src="\assets/js/index.js"></script>
+
+</body>
+</html>

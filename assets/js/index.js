@@ -1,0 +1,209 @@
+/* =========================
+   NAVBAR DROPDOWN PAGE BLUR
+========================= */
+
+// Select all nav items with dropdowns
+const navItems = document.querySelectorAll('.nav-item');
+
+// Select the page content wrapper
+const pageContent = document.querySelector('.page-content'); // make sure your page content has this class
+
+navItems.forEach(item => {
+    const dropdown = item.querySelector('.nav-dropdown');
+    if (dropdown) {
+        // Add blur when mouse enters the nav item
+        item.addEventListener('mouseenter', () => {
+            pageContent.classList.add('blur');
+        });
+
+        // Remove blur when mouse leaves
+        item.addEventListener('mouseleave', () => {
+            pageContent.classList.remove('blur');
+        });
+    }
+});
+
+/* =========================
+   NAVBAR SCROLL HIDE/SHOW
+========================= */
+
+
+const navbar = document.querySelector(".navbar");
+
+let lastScrollTop = 0;
+
+window.addEventListener("scroll", () => {
+    const currentScroll =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop && currentScroll > 100) {
+        navbar.classList.add("nav-hidden");
+    } else {
+        navbar.classList.remove("nav-hidden");
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
+
+
+/* =========================
+   SCRAMBLE TEXT EFFECT
+========================= */
+
+const scrambleTargets = document.querySelectorAll(".unit-card, .sector");
+
+scrambleTargets.forEach((item) => {
+    const paragraph = item.querySelector("p");
+
+    if (!paragraph) return;
+
+    const originalText = paragraph.dataset.text || paragraph.innerText.trim();
+    paragraph.dataset.text = originalText;
+
+    let scrambleInterval;
+
+    item.addEventListener("mouseenter", () => {
+        clearInterval(scrambleInterval);
+
+        const chars = "abcdefghijklmnopqrstuvwxyz     ";
+        const duration = 1500;
+        const speed = 24;
+        const startTime = Date.now();
+
+        scrambleInterval = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            paragraph.innerText = originalText
+                .split("")
+                .map((char, index) => {
+                    if (char === " ") return " ";
+
+                    const revealPoint = index / originalText.length;
+
+                    if (progress > revealPoint) {
+                        return originalText[index];
+                    }
+
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join("");
+
+            if (progress >= 1) {
+                clearInterval(scrambleInterval);
+                paragraph.innerText = originalText;
+            }
+        }, speed);
+    });
+
+    item.addEventListener("mouseleave", () => {
+        clearInterval(scrambleInterval);
+        paragraph.innerText = originalText;
+    });
+});
+
+/* =========================
+   DELLA DELIVERS SLIDER
+========================= */
+
+const slides = document.querySelectorAll(".delivers-slider .slide");
+const indicators = document.querySelectorAll(".delivers-slider .indicator");
+const progressBar = document.querySelector(".slide-progress-bar");
+
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach((slide) => {
+        slide.classList.remove("active");
+    });
+
+    indicators.forEach((indicator) => {
+        indicator.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+    indicators[index].classList.add("active");
+
+    progressBar.style.animation = "none";
+    progressBar.offsetHeight;
+    progressBar.style.animation = "progressLoad 5s linear infinite";
+}
+
+setInterval(() => {
+    currentSlide++;
+
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+
+    showSlide(currentSlide);
+}, 5000);
+
+
+
+/* =========================
+   PAGE LOADER
+========================= */
+
+const pageLoader = document.getElementById("page-loader");
+
+// All internal links
+document.querySelectorAll("a[href]").forEach(link => {
+
+    link.addEventListener("click", function (e) {
+
+        const href = this.getAttribute("href");
+
+        // Ignore anchors, external links, downloads
+        if (
+            href.startsWith("#") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("tel:") ||
+            this.target === "_blank"
+        ) {
+            return;
+        }
+
+        pageLoader.style.width = "0%";
+
+        let progress = 0;
+
+        const loading = setInterval(() => {
+
+            if (progress < 85) {
+                progress += Math.random() * 15;
+                pageLoader.style.width = progress + "%";
+            }
+
+        }, 80);
+
+        // Cleanup before page leaves
+        window.addEventListener("beforeunload", () => {
+            clearInterval(loading);
+            pageLoader.style.width = "90%";
+        });
+    });
+
+});
+
+// When page fully loads
+window.addEventListener("load", () => {
+
+    pageLoader.style.width = "100%";
+
+setTimeout(() => {
+    pageLoader.style.opacity = "0";
+}, 150);
+
+    setTimeout(() => {
+        pageLoader.style.transition = "none";
+        pageLoader.style.width = "0%";
+
+        requestAnimationFrame(() => {
+            pageLoader.style.transition =
+                "width 0.25s ease, opacity 0.3s ease";
+            pageLoader.style.opacity = "1";
+        });
+    }, 450);
+
+});
