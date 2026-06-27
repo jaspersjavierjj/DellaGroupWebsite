@@ -1301,7 +1301,7 @@ video {
     color: #fff;
     text-decoration: none;
     font-size: 22px;
-    font-weight: 100;
+    font-weight: 600;
     font-family: 'Geologica Thin', sans-serif;
 }
 
@@ -1415,7 +1415,8 @@ video {
     }
 
     .hero-placeholder {
-        height: 520px;
+        height: 730px;
+
     }
 
     .business-units {
