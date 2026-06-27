@@ -1240,7 +1240,6 @@ body {
     }
 
     .footer-col {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         padding: 0;
     }
 
@@ -1829,7 +1828,7 @@ video {
 
     .footer-address p,
     .footer-col a {
-        font-size: 14px;
+        font-size: 23px;
     }
 }
 
