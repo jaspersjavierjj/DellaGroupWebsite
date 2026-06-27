@@ -1309,18 +1309,18 @@ body {
     }
 
     @media (max-width: 768px) {
-    .footer-col a,
-    .footer-links a {
-        font-family: "Geologica", sans-serif;
-        font-size: 25px;
-        font-weight: 500;
-        line-height: 1.45;
-        color: #fff;
-        text-decoration: none;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: geometricPrecision;
+        .footer-col a,
+        .footer-links a {
+            font-family: "Geologica", sans-serif;
+            font-size: 25px;
+            font-weight: 500;
+            line-height: 1.45;
+            color: #fff;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: geometricPrecision;
+        }
     }
-}
 }
 
 
