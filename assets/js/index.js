@@ -281,4 +281,23 @@ if (mobileMenuBtn && mobileMenuPanel) {
     });
 }
 
-// Select the mobile navbar
+/* =========================
+   MOBILE FOOTER ACCORDION
+========================= */
+
+const footerToggles = document.querySelectorAll(".footer-toggle");
+
+footerToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+        const footerCol = toggle.closest(".footer-col");
+        const footerIcon = toggle.querySelector(".footer-icon");
+
+        footerCol.classList.toggle("active");
+
+        if (footerCol.classList.contains("active")) {
+            footerIcon.textContent = "−";
+        } else {
+            footerIcon.textContent = "+";
+        }
+    });
+});
