@@ -499,6 +499,18 @@ body {
     color: #ffffff;
 }
 
+/* Make li text and links white inside the defense dropdown */
+.defense-dropdown .dropdown-categories li,
+.defense-dropdown .dropdown-categories li a {
+    color: #ffffff;
+    text-decoration: none; /* optional, remove underline if desired */
+}
+
+/* Optional: keep hover effect subtle */
+.defense-dropdown .dropdown-categories li a:hover {
+    color: #dddddd; /* slightly lighter on hover */
+}
+
 /* DROPDOWN LIST PLUS / MINUS ICON */
 
 .dropdown-categories li {
