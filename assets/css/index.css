@@ -639,34 +639,6 @@ body {
     transition: flex 6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* =========================
-   DEFAULT STATE (NO HOVER)
-========================= */
-.business-units:not(:has(.unit-card:hover)) .unit-card {
-    flex: 1;
-}
-
-/* =========================
-   LEFT HOVER (SOLUTIONS ACTIVE)
-========================= */
-.business-units:has(.unit-solutions:hover) .unit-solutions {
-    flex: 1.8;
-}
-
-.business-units:has(.unit-solutions:hover) .unit-defense {
-    flex: 0.7;
-}
-
-/* =========================
-   RIGHT HOVER (DEFENSE ACTIVE)
-========================= */
-.business-units:has(.unit-defense:hover) .unit-defense {
-    flex: 1.8;
-}
-
-.business-units:has(.unit-defense:hover) .unit-solutions {
-    flex: 0.7;
-}
 
 /* =========================
    NUMBER (LOCKED)
@@ -680,24 +652,33 @@ body {
 }
 
 /* =========================
-   CONTENT (ABSOLUTE LOCK — NO MOVEMENT)
+   CONTENT
 ========================= */
 .unit-content {
     position: absolute;
     left: 40px;
     bottom: 40px;
-
     width: calc(100% - 80px);
+
+    /* Starts lower */
+    transform: translateY(45px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* TITLE ALWAYS FIXED */
+/* Move entire content upward */
+.business-units:has(.unit-solutions:hover) .unit-solutions .unit-content,
+.business-units:has(.unit-defense:hover) .unit-defense .unit-content {
+    transform: translateY(0);
+}
+
+/* TITLE */
 .unit-content h2 {
     font-size: 35px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-/* TEXT NEVER SHIFTS POSITION */
+/* PARAGRAPH */
 .unit-content p {
     font-size: 22px;
     line-height: 1.25;
@@ -706,17 +687,16 @@ body {
     transform: translateY(18px);
 
     transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity 0.8s ease 0.15s,
+        transform 0.8s ease 0.15s;
 }
 
-/* SHOW ONLY ON ACTIVE CARD */
+/* Show paragraph */
 .business-units:has(.unit-solutions:hover) .unit-solutions p,
 .business-units:has(.unit-defense:hover) .unit-defense p {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 /* =========================
    SECTOR GRID
@@ -1166,3 +1146,420 @@ body {
 .footer-col a:hover {
     color: #808080;
 }
+
+/* =========================================================
+   RESPONSIVE FIXES - DELLA GROUP HOME
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+.first-page,
+.business-units,
+.sector-grid {
+    padding-left: clamp(14px, 2vw, 28px);
+    padding-right: clamp(14px, 2vw, 28px);
+    padding-bottom: clamp(14px, 2vw, 28px);
+}
+
+.hero-placeholder {
+    height: clamp(420px, 72vh, 820px);
+}
+
+.unit-card,
+.sector {
+    height: clamp(360px, 42vw, 520px);
+}
+
+.unit-card {
+    transition: none;
+}
+
+.unit-number {
+    top: clamp(28px, 4vw, 60px);
+    left: clamp(22px, 3vw, 40px);
+    font-size: clamp(32px, 4vw, 50px);
+}
+
+.unit-content {
+    left: clamp(22px, 3vw, 40px);
+    bottom: clamp(24px, 3vw, 40px);
+    width: calc(100% - clamp(44px, 6vw, 80px));
+}
+
+.unit-content h2 {
+    font-size: clamp(26px, 3vw, 35px);
+}
+
+.unit-content p {
+    font-size: clamp(15px, 1.7vw, 22px);
+}
+
+.sector-content {
+    left: clamp(22px, 3vw, 38px);
+    right: clamp(22px, 3vw, 38px);
+    bottom: clamp(24px, 3vw, 38px);
+}
+
+.sector h3 {
+    font-size: clamp(24px, 3vw, 30px);
+}
+
+.sector p {
+    font-size: clamp(15px, 1.6vw, 20px);
+}
+
+.defense-section {
+    padding: clamp(16px, 2vw, 30px);
+}
+
+.defense-header h2 {
+    font-size: clamp(30px, 4vw, 42px);
+}
+
+.defense-media {
+    height: clamp(360px, 52vw, 650px);
+}
+
+.della-delivers {
+    padding: clamp(38px, 5vw, 70px) clamp(18px, 3vw, 38px);
+}
+
+.delivers-title h2 {
+    font-size: clamp(34px, 5vw, 62px);
+}
+
+.delivers-copy h3 {
+    font-size: clamp(28px, 4vw, 46px);
+}
+
+.delivers-copy p {
+    font-size: clamp(16px, 2vw, 24px);
+}
+
+.delivers-slider {
+    height: clamp(360px, 40vw, 500px);
+}
+
+.slide h3 {
+    font-size: clamp(34px, 6vw, 76px);
+}
+
+.indicator {
+    width: clamp(28px, 4vw, 55px);
+}
+
+/* =========================
+   MOBILE / COMPACT NAVBAR
+========================= */
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.mobile-menu-btn .material-icons {
+    font-size: 34px;
+}
+
+.mobile-menu-panel {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 76px);
+    background: #000;
+    z-index: 999;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    padding: 30px 24px;
+
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+}
+
+.mobile-menu-panel.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-panel a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 100;
+    font-family: 'Geologica Thin', sans-serif;
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+    .page-content {
+        max-width: 1920px;
+        margin: 0 auto;
+        background: #000;
+    }
+
+    .navbar {
+        padding-left: 42px;
+        padding-right: 42px;
+    }
+
+    .nav-menu {
+        gap: 42px;
+    }
+}
+
+/* When navbar no longer fits */
+@media (max-width: 1100px) {
+    .navbar {
+        height: 76px;
+        padding: 0 22px;
+        justify-content: space-between;
+    }
+
+    .nav-logo {
+        flex: unset;
+    }
+
+    .nav-logo img {
+        height: 32px;
+    }
+
+    .nav-menu,
+    .nav-actions {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-dropdown {
+        display: none;
+    }
+
+    .page-content.blur {
+        filter: none;
+        pointer-events: auto;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .business-units {
+        gap: 18px;
+    }
+
+    .sector-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .sector.infrastructure {
+        grid-column: span 2;
+    }
+
+    .delivers-content {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+
+    .footer-logo {
+        margin-bottom: 60px;
+    }
+
+    .footer-columns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .navbar {
+        height: 70px;
+        padding: 0 16px;
+    }
+
+    .mobile-menu-panel {
+        top: 70px;
+        height: calc(100vh - 70px);
+    }
+
+    .nav-logo img {
+        height: 30px;
+    }
+
+    .first-page {
+        padding-top: 0;
+    }
+
+    .hero-placeholder {
+        height: 520px;
+    }
+
+    .business-units {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .unit-card {
+        height: 390px;
+    }
+
+    .unit-content {
+        transform: translateY(0);
+    }
+
+    .unit-content p {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .sector-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .sector.infrastructure {
+        grid-column: auto;
+    }
+
+    .sector {
+        height: 390px;
+    }
+
+    .sector-content {
+        transform: translateY(0);
+    }
+
+    .sector p,
+    .sector-arrow {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+
+    .defense-media {
+        height: 420px;
+    }
+
+    .della-delivers {
+        padding-top: 46px;
+        padding-bottom: 46px;
+    }
+
+    .delivers-content {
+        padding: 24px 0;
+    }
+
+    .delivers-slider {
+        height: 390px;
+    }
+
+    .slide {
+        padding: 0 22px 52px;
+    }
+
+    .slide-indicators {
+        left: 22px;
+        bottom: 28px;
+        gap: 7px;
+    }
+
+    .indicator {
+        height: 6px;
+    }
+
+    .footer {
+        padding: 42px 22px;
+    }
+
+    .footer-columns {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .footer-col h4 {
+        margin-bottom: 16px;
+    }
+
+    .footer-line {
+        width: 100%;
+        max-width: 260px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .hero-placeholder {
+        height: 460px;
+    }
+
+    .unit-card,
+    .sector {
+        height: 360px;
+    }
+
+    .unit-number {
+        font-size: 30px;
+    }
+
+    .unit-content h2 {
+        font-size: 25px;
+    }
+
+    .unit-content p {
+        font-size: 14px;
+        line-height: 1.35;
+    }
+
+    .sector h3 {
+        font-size: 25px;
+    }
+
+    .sector p {
+        font-size: 14px;
+    }
+
+    .defense-media {
+        height: 340px;
+    }
+
+    .delivers-slider {
+        height: 340px;
+    }
+
+    .slide h3 {
+        font-size: 34px;
+        word-break: break-word;
+    }
+
+    .footer-address p,
+    .footer-col a {
+        font-size: 14px;
+    }
+}
+
+
+

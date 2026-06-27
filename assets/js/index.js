@@ -207,3 +207,54 @@ setTimeout(() => {
     }, 450);
 
 });
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+const mobileMenuPanel = document.querySelector(".mobile-menu-panel");
+
+if (mobileMenuBtn && mobileMenuPanel) {
+    mobileMenuBtn.addEventListener("click", () => {
+        mobileMenuPanel.classList.toggle("active");
+
+        const icon = mobileMenuBtn.querySelector(".material-icons");
+
+        if (mobileMenuPanel.classList.contains("active")) {
+            icon.textContent = "close";
+            document.body.style.overflow = "hidden";
+        } else {
+            icon.textContent = "menu";
+            document.body.style.overflow = "";
+        }
+    });
+
+    mobileMenuPanel.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenuPanel.classList.remove("active");
+            mobileMenuBtn.querySelector(".material-icons").textContent = "menu";
+            document.body.style.overflow = "";
+        });
+    });
+}
+
+// Select the mobile navbar
+const mobileNavbar = document.querySelector(".mobile-navbar"); // make sure your mobile nav has this class
+
+let lastScrollTopMobile = 0;
+
+window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTopMobile && currentScroll > 50) {
+        // Scrolling down → hide navbar
+        mobileNavbar.style.transform = "translateY(-100%)";
+    } else {
+        // Scrolling up → show navbar
+        mobileNavbar.style.transform = "translateY(0)";
+    }
+
+    lastScrollTopMobile = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+});
