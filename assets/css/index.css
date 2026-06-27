@@ -1348,7 +1348,7 @@ video {
 }
 
 .hero-placeholder {
-    height: clamp(420px, 72vh, 820px);
+    height: clamp(420px, 92vh, 820px);
 }
 
 .unit-card,
