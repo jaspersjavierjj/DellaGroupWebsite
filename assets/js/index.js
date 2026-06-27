@@ -48,9 +48,50 @@ window.addEventListener("scroll", () => {
 
 /* =========================
    SCRAMBLE TEXT EFFECT
+   Desktop: hover
+   Mobile: reveal when visible on screen
 ========================= */
 
 const scrambleTargets = document.querySelectorAll(".unit-card, .sector");
+
+function scrambleText(paragraph) {
+    if (!paragraph) return;
+
+    const originalText = paragraph.dataset.text || paragraph.innerText.trim();
+    paragraph.dataset.text = originalText;
+
+    clearInterval(paragraph.scrambleInterval);
+
+    const chars = "abcdefghijklmnopqrstuvwxyz     ";
+    const duration = 1500;
+    const speed = 24;
+    const startTime = Date.now();
+
+    paragraph.scrambleInterval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        paragraph.innerText = originalText
+            .split("")
+            .map((char, index) => {
+                if (char === " ") return " ";
+
+                const revealPoint = index / originalText.length;
+
+                if (progress > revealPoint) {
+                    return originalText[index];
+                }
+
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("");
+
+        if (progress >= 1) {
+            clearInterval(paragraph.scrambleInterval);
+            paragraph.innerText = originalText;
+        }
+    }, speed);
+}
 
 scrambleTargets.forEach((item) => {
     const paragraph = item.querySelector("p");
@@ -60,46 +101,46 @@ scrambleTargets.forEach((item) => {
     const originalText = paragraph.dataset.text || paragraph.innerText.trim();
     paragraph.dataset.text = originalText;
 
-    let scrambleInterval;
-
     item.addEventListener("mouseenter", () => {
-        clearInterval(scrambleInterval);
-
-        const chars = "abcdefghijklmnopqrstuvwxyz     ";
-        const duration = 1500;
-        const speed = 24;
-        const startTime = Date.now();
-
-        scrambleInterval = setInterval(() => {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-
-            paragraph.innerText = originalText
-                .split("")
-                .map((char, index) => {
-                    if (char === " ") return " ";
-
-                    const revealPoint = index / originalText.length;
-
-                    if (progress > revealPoint) {
-                        return originalText[index];
-                    }
-
-                    return chars[Math.floor(Math.random() * chars.length)];
-                })
-                .join("");
-
-            if (progress >= 1) {
-                clearInterval(scrambleInterval);
-                paragraph.innerText = originalText;
-            }
-        }, speed);
+        if (window.innerWidth > 768) {
+            item.classList.add("is-visible");
+            scrambleText(paragraph);
+        }
     });
 
     item.addEventListener("mouseleave", () => {
-        clearInterval(scrambleInterval);
-        paragraph.innerText = originalText;
+        if (window.innerWidth > 768) {
+            clearInterval(paragraph.scrambleInterval);
+            paragraph.innerText = originalText;
+            item.classList.remove("is-visible");
+        }
     });
+});
+
+/* Mobile reveal when section appears on screen */
+const revealObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const item = entry.target;
+                const paragraph = item.querySelector("p");
+
+                item.classList.add("is-visible");
+
+                if (!item.dataset.scrambledOnce) {
+                    scrambleText(paragraph);
+                    item.dataset.scrambledOnce = "true";
+                }
+            }
+        });
+    },
+    {
+        threshold: 0.35
+    }
+);
+
+scrambleTargets.forEach((item) => {
+    revealObserver.observe(item);
 });
 
 /* =========================
@@ -241,20 +282,3 @@ if (mobileMenuBtn && mobileMenuPanel) {
 }
 
 // Select the mobile navbar
-const mobileNavbar = document.querySelector(".mobile-navbar"); // make sure your mobile nav has this class
-
-let lastScrollTopMobile = 0;
-
-window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScroll > lastScrollTopMobile && currentScroll > 50) {
-        // Scrolling down → hide navbar
-        mobileNavbar.style.transform = "translateY(-100%)";
-    } else {
-        // Scrolling up → show navbar
-        mobileNavbar.style.transform = "translateY(0)";
-    }
-
-    lastScrollTopMobile = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-});

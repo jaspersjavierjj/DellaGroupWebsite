@@ -1291,6 +1291,8 @@ video {
 
     transform: translateX(100%);
     transition: transform 0.35s ease;
+
+    overflow-y: auto;
 }
 
 .mobile-menu-panel.active {
@@ -1301,8 +1303,8 @@ video {
     color: #fff;
     text-decoration: none;
     font-size: 22px;
-    font-weight: 600;
-    font-family: 'Geologica Thin', sans-serif;
+    font-weight: 500;
+    font-family: "Geologica", sans-serif;
 }
 
 /* Large desktop */
@@ -1323,7 +1325,7 @@ video {
     }
 }
 
-/* When navbar no longer fits */
+/* When desktop navbar no longer fits */
 @media (max-width: 1100px) {
     .navbar {
         height: 76px;
@@ -1416,26 +1418,90 @@ video {
 
     .hero-placeholder {
         height: 730px;
-
     }
 
+    /* Business Units stacked vertically: 01 then 02 */
+/* FORCE BUSINESS UNITS TO SHOW ON MOBILE */
+@media (max-width: 768px) {
     .business-units {
-        flex-direction: column;
-        gap: 16px;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 14px !important;
+        padding: 0 14px 14px !important;
+        background: #000 !important;
     }
 
     .unit-card {
-        height: 390px;
+        display: block !important;
+        width: 100% !important;
+        min-height: 300px !important;
+        height: 300px !important;
+        flex: none !important;
+        position: relative !important;
+        background: #b3b3b3 !important;
+        overflow: hidden !important;
+    }
+
+    .unit-number {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: absolute !important;
+        top: 24px !important;
+        left: 20px !important;
+        font-size: 30px !important;
+        color: #000 !important;
+        z-index: 5 !important;
     }
 
     .unit-content {
-        transform: translateY(0);
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: absolute !important;
+        left: 20px !important;
+        bottom: 24px !important;
+        width: calc(100% - 40px) !important;
+        transform: translateY(0) !important;
+        z-index: 5 !important;
+    }
+
+    .unit-content h2 {
+        display: block !important;
+        font-size: 24px !important;
+        color: #000 !important;
     }
 
     .unit-content p {
-        opacity: 1;
-        transform: translateY(0);
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        font-size: 14px !important;
+        line-height: 1.35 !important;
+        color: #000 !important;
     }
+}
+
+@media (max-width: 480px) {
+    .unit-card {
+        min-height: 280px !important;
+        height: 280px !important;
+    }
+
+    .unit-number {
+        font-size: 28px !important;
+    }
+
+    .unit-content h2 {
+        font-size: 22px !important;
+    }
+
+    .unit-content p {
+        font-size: 13px !important;
+    }
+}
 
     .sector-grid {
         grid-template-columns: 1fr;
@@ -1514,25 +1580,42 @@ video {
 /* Small mobile */
 @media (max-width: 480px) {
     .hero-placeholder {
-        height: 460px;
+        height: 730px;
     }
 
-    .unit-card,
-    .sector {
-        height: 360px;
+    .business-units {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .unit-card {
+        width: 100%;
+        height: 280px;
     }
 
     .unit-number {
-        font-size: 30px;
+        top: 20px;
+        left: 16px;
+        font-size: 28px;
+    }
+
+    .unit-content {
+        left: 16px;
+        bottom: 20px;
+        width: calc(100% - 32px);
     }
 
     .unit-content h2 {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .unit-content p {
-        font-size: 14px;
+        font-size: 13px;
         line-height: 1.35;
+    }
+
+    .sector {
+        height: 360px;
     }
 
     .sector h3 {
@@ -1562,5 +1645,39 @@ video {
     }
 }
 
+/* =========================
+   MOBILE SCROLL REVEAL TEXT
+========================= */
 
+@media (max-width: 768px) {
+    .unit-content {
+        transform: translateY(18px);
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
+    .unit-content p,
+    .sector p,
+    .sector-arrow {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+            opacity 0.8s ease,
+            transform 0.8s ease;
+    }
+
+    .unit-card.is-visible .unit-content {
+        transform: translateY(0);
+    }
+
+    .unit-card.is-visible .unit-content p,
+    .sector.is-visible p,
+    .sector.is-visible .sector-arrow {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+
+    .sector.is-visible .sector-content {
+        transform: translateY(0);
+    }
+}
