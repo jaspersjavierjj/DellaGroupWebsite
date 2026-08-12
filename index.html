@@ -210,7 +210,6 @@
                     </div>
                 </div>
             </div>
-
         </nav>
 
         <div class="nav-actions">
@@ -361,7 +360,17 @@
 
         <!-- FIRST PAGE -->
         <section id="FirstPage" class="first-page">
-            <div class="hero-placeholder"></div>
+            <div class="hero-placeholder">
+                <video
+                    class="hero-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto">
+                    <source src="assets/video/dellagroup-version1.mp4" type="video/mp4">
+                </video>
+            </div>
         </section>
 
         <section id="BusinessUnits" class="business-units">
@@ -379,7 +388,7 @@
                 </div>
             </div>
 
-            <div class="unit-card unit-defense">
+            <a class="unit-card unit-defense">
                 <div class="unit-number">02</div>
 
                 <div class="unit-content">
@@ -390,7 +399,7 @@
                             mission-ready field capability.
                         </p>
                 </div>
-            </div>
+            </a>
 
         </section>
 
@@ -440,19 +449,15 @@
         </section>
 
         <section class="defense-section">
-
             <div class="defense-header">
                 <h2>
                     DELLA <span>DEFENSE</span>
                 </h2>
             </div>
 
-            <div class="defense-media">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/video/defense-video.mp4" type="video/mp4">
-                </video>
-            </div>
-
+            <a href="pages/Defense.html" class="defense-media">
+                <img src="/assets/images/img/Defense1.png" alt="Della Defense" class="defense-img">
+            </a>
         </section>
 
         <section class="della-delivers">
@@ -477,7 +482,7 @@
                 <div class="delivers-slider">
 
                     <div class="slide active">
-                        <img src="assets/images/img/infra1.jpg" alt="Infrastructure" class="slide-img">
+                        <img src="assets/images/img/infrastructure9.png" alt="Infrastructure" class="slide-img">
                         <h3>INFRASTRUCTURE</h3>
                     </div>
 
@@ -487,17 +492,17 @@
                     </div>
 
                     <div class="slide">
-                        <img src="assets/images/img/operations-support.jpg" alt="Operations Support" class="slide-img">
+                        <img src="assets/images/img/operationsupport.png" alt="Operations Support" class="slide-img">
                         <h3>OPERATIONS SUPPORT</h3>
                     </div>
 
                     <div class="slide">
-                        <img src="assets/images/img/field-deployment.jpg" alt="Field Deployment" class="slide-img">
+                        <img src="/assets/images/img/Water1.png" alt="Field Deployment" class="slide-img">
                         <h3>FIELD DEPLOYMENT</h3>
                     </div>
 
                     <div class="slide">
-                        <img src="assets/images/img/defense-capability.jpg" alt="Defense Capability" class="slide-img">
+                        <img src="/assets/images/img/Defense2.png" alt="Defense Capability" class="slide-img">
                         <h3>DEFENSE CAPABILITY</h3>
                     </div>
 
@@ -604,6 +609,19 @@
         </footer>    
     </div>
 
+    <!-- SCROLL TO TOP BUTTON -->
+    <button
+        class="scroll-to-top"
+        type="button"
+        aria-label="Scroll back to the top"
+        title="Back to top"
+    >
+        <span class="material-icons" aria-hidden="true">
+            keyboard_arrow_up
+        </span>
+    </button>
+
+    <script src="assets/js/common.js"></script>
     <script src="assets/js/index.js"></script>
 
 </body>
