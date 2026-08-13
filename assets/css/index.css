@@ -636,13 +636,20 @@ body {
     background: #000;
 }
 
-.hero-image {
+.hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-picture .hero-image {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    display: block;
 }
+
 
 .business-units {
     width: 100%;
@@ -675,7 +682,7 @@ body {
 /* Individual backgrounds */
 .unit-solutions {
     background-color: #b3b3b3;
-    background-image: url("../assets/images/della-solutions.webp");
+    background-image: url("/assets/images/img/DELLASOLUTION.png");
 }
 
 .unit-defense {
@@ -2727,7 +2734,7 @@ video {
     }
 
     .unit-solutions {
-        background-image: url("../assets/images/della-solutions.webp") !important;
+        background-image: url("/assets/images/img/DELLASOLUTION.png") !important;
     }
 
     .unit-defense {

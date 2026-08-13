@@ -1857,3 +1857,56 @@ body.mobile-menu-open .scroll-to-top {
         transition: none;
     }
 }
+
+/* =========================================================
+   SUPPORT EQUIPMENT RESPONSIVE HERO IMAGE
+========================================================= */
+
+.industrial-video-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.industrial-video-picture .industrial-video-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =========================================================
+   LINKED NAVBAR DROPDOWN ITEMS
+========================================================= */
+
+.dropdown-categories li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.25;
+    transition: color .25s ease;
+}
+
+.dropdown-categories li a:hover {
+    color: #666666;
+}
+
+.defense-dropdown .dropdown-categories li a {
+    color: #ffffff;
+}
+
+.defense-dropdown .dropdown-categories li a:hover {
+    color: #dddddd;
+}
+
+@media (min-width: 1101px) {
+    .dropdown-categories li a {
+        font-size: 14px;
+    }
+}

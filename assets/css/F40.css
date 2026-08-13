@@ -953,6 +953,13 @@ body.mobile-menu-open .scroll-to-top {
     border: 1px solid #222222;
 }
 
+
+.f40-image__picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .f40-image__screen img {
     width: 100%;
     height: 100%;
@@ -1855,4 +1862,14 @@ body.mobile-menu-open .scroll-to-top {
     .f40-spec-row { grid-template-columns: minmax(0, 1fr) 78px; padding-right: 14px; padding-left: 14px; }
     .f40-training-visuals figure,
     .f40-training-visuals--single figure { min-height: 240px; }
+}
+
+/* F40 linked tier dropdown items */
+.dropdown-categories li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
 }

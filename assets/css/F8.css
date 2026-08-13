@@ -1856,3 +1856,63 @@ body.mobile-menu-open .scroll-to-top {
     .f8-training-visuals figure,
     .f8-training-visuals--single figure { min-height: 240px; }
 }
+
+/* =========================================================
+   F8 MAIN IMAGE — RESPONSIVE DESKTOP / MOBILE SOURCE
+========================================================= */
+
+.f8-image__picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.f8-image__picture img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =========================================================
+   F8 NAVBAR — LINKED PRODUCT DROPDOWNS
+========================================================= */
+
+.tier-product-dropdown li {
+    margin-bottom: 5px;
+}
+
+.tier-product-dropdown li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.25;
+    text-transform: none;
+    transition: color .25s ease;
+}
+
+.tier-product-dropdown li a:hover {
+    color: #a8a8a8;
+}
+
+.tier-product-dropdown li a:hover .icon-plus {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.tier-product-dropdown li a:hover .icon-minus {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+@media (min-width: 1101px) {
+    .tier-product-dropdown li a {
+        font-size: 12px;
+    }
+}
