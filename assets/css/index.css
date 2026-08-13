@@ -680,7 +680,7 @@ body {
 
 .unit-defense {
     background-color: #b3b3b3;
-    background-image: url("/assets/images/img/Defense2.png");
+    background-image: url("/assets/images/img/defense/DELLADEFENSE3.png");
 }
 
 .unit-card::before {
@@ -2731,7 +2731,7 @@ video {
     }
 
     .unit-defense {
-        background-image: url("/assets/images/img/Defense2.png") !important;
+        background-image: url("/assets/images/img/defense/DELLADEFENSE3.png") !important;
     }
 
     .sector-grid {
