@@ -636,10 +636,11 @@ body {
     background: #000;
 }
 
-.hero-video {
+.hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
 }
 
@@ -2489,7 +2490,7 @@ video {
     max-width: 100%;
 }
 
-.hero-video,
+.hero-image,
 .sector-img,
 .defense-media img,
 .slide-img {
