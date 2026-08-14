@@ -4,11 +4,6 @@
    - Refresh/reload always starts at top
    - Back/forward cache also returns to top
 ========================================================= */
-// Handles browser back/forward cache and refresh restoration.
-window.addEventListener("pageshow", () => {
-    forcePageToTop();
-});
-
 
 /* =========================================================
    NAVBAR DROPDOWN PAGE BLUR
