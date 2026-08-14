@@ -13,13 +13,21 @@ body {
     font-family: "Geologica", sans-serif;
 }
 
+
+/* =========================
+   PAGE LOADER
+========================= */
+
 #page-loader {
     position: fixed;
     top: 0;
     left: 0;
+
     width: 0%;
     height: 4px;
+
     background: #4B5320;
+
     z-index: 99999;
 
     transition:
@@ -29,144 +37,201 @@ body {
     pointer-events: none;
 }
 
-/* ___________________________ */
 
-/* Consumer Products Dropdown */
+/* =========================
+   CONSUMER PRODUCTS DROPDOWN
+========================= */
+
 .consumer-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
+
     width: 100%;
     min-height: 360px;
 
     display: flex;
+
     background: #f2f2f2;
+
     padding: 55px 40px;
+
     gap: 40px;
 
     opacity: 0;
     visibility: hidden;
+
     transform: translateY(-20px);
+
     transition:
         opacity 0.4s ease,
-        transform 0.5s cubic-bezier(0.16,1,0.3,1),
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
         visibility 0s linear 0.4s;
+
     pointer-events: none;
 }
 
+
 .consumer-dropdown-item:hover .consumer-dropdown {
     opacity: 1;
+
     visibility: visible;
+
     transform: translateY(0);
+
     pointer-events: auto;
 }
 
+
 .consumer-separator {
     width: 1px;
-    background: #000000; /* or olive drab if you want colored */
-    margin: 0 20px; /* spacing left/right */
+
+    background: #000000;
+
+    margin: 0 20px;
 }
 
-/* Each column */
+
 .consumer-col {
     flex: 1;
 }
 
-/* Headings */
+
 .consumer-col h4 {
     font-size: 16px;
+
     margin-bottom: 12px;
 }
 
-/* Paragraphs */
+
 .consumer-col p {
     font-size: 14px;
+
     margin-bottom: 25px;
+
     line-height: 1.5;
 }
 
-/* List */
+
 .consumer-col ul {
     list-style: none;
+
     padding: 0;
+
     margin: 0;
 }
 
+
 .consumer-col li {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
+
     font-size: 17px;
+
     font-weight: 400;
+
     margin-bottom: 6px;
+
     cursor: pointer;
 }
 
+
 .toro {
-    color: #FF0000; /* Bright Red */
-    font-weight: 700; /* optional bold */
+    color: #FF0000;
+
+    font-weight: 700;
 }
 
-/* Plus / Minus hover icon */
+
+/* =========================
+   PLUS / MINUS
+========================= */
+
 .list-icon {
     position: relative;
+
     width: 14px;
     height: 14px;
+
     display: inline-block;
+
     flex-shrink: 0;
 }
+
 
 .list-icon .icon-plus,
 .list-icon .icon-minus {
     position: absolute;
+
     inset: 0;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 18px;
+
     font-weight: 500;
+
     transition:
         opacity 0.55s ease,
         transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+
 .list-icon .icon-plus {
     opacity: 1;
+
     transform: rotate(0deg);
 }
+
 
 .list-icon .icon-minus {
     opacity: 0;
+
     transform: rotate(-90deg);
 }
 
+
 .consumer-col li:hover .icon-plus {
     opacity: 0;
+
     transform: rotate(180deg);
 }
 
+
 .consumer-col li:hover .icon-minus {
     opacity: 1;
+
     transform: rotate(0deg);
 }
+
 
 /* =========================
    NAVBAR
 ========================= */
 
-/* Normal navbar */
 .navbar {
     width: 100%;
     height: 86px;
+
     background: #ffffff;
 
     display: flex;
+
     align-items: center;
 
     padding: 0 28px;
 
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
 
     transition:
@@ -174,155 +239,214 @@ body {
         transform 0.35s ease;
 }
 
+
 .nav-logo {
     flex: 1;
+
     display: flex;
+
     align-items: center;
+
     text-decoration: none;
+
     cursor: pointer;
 }
 
+
 .nav-logo img {
     height: 36px;
+
     width: auto;
+
     display: block;
 }
 
+
 .nav-link-active {
     color: #808080 !important;
+
     position: relative;
 }
 
+
 .nav-link-active::after {
     content: "";
+
     position: absolute;
+
     left: 0;
+
     bottom: -1px;
 
     width: 100%;
+
     height: 2px;
 
     background: #808080;
 }
 
-/* Olive drab navbar */
+
 .navbar.defense-active {
     background: #3d4519;
 }
 
+
 .navbar.nav-hidden {
     transform: translateY(-100%);
+
     pointer-events: none;
 }
+
 
 .navbar.nav-hidden .nav-dropdown {
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 }
 
-.nav-logo {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.nav-logo img {
-    height: 36px;
-}
 
 .nav-menu {
     flex: 2;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 34px;
 }
 
+
 .nav-actions {
     flex: 1;
+
     display: flex;
+
     justify-content: flex-end;
+
     align-items: center;
+
     gap: 45px;
 }
 
+
 .nav-item {
     position: relative;
+
     height: 86px;
+
     display: flex;
+
     align-items: center;
 }
+
 
 .nav-item::after {
     content: "";
+
     position: absolute;
+
     top: 100%;
+
     left: -20px;
+
     width: calc(100% + 40px);
+
     height: 30px;
 }
 
+
 .nav-item > a {
     display: inline-flex;
+
     align-items: center;
+
     height: auto;
+
     padding: 8px 0;
 }
+
 
 .nav-menu a,
 .nav-actions a {
     color: #000000;
+
     text-decoration: none;
+
     font-size: 15px;
+
     white-space: nowrap;
 }
+
 
 .nav-menu a:hover,
 .nav-actions a:hover {
     color: #808080;
 }
 
+
 .nav-separator {
     width: 2px;
+
     height: 24px;
+
     background: #a8a8a7;
 }
 
+
 .defense-link span {
     color: #3d4519;
+
     font-weight: 700;
 }
 
+
 .search-link {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 }
+
 
 .search-link .material-icons {
     font-size: 20px;
 }
 
-/* DROPDOWN */
+
+/* =========================
+   DROPDOWN
+========================= */
 
 .nav-dropdown {
     position: fixed;
+
     top: 86px;
+
     left: 0;
 
     width: 100%;
+
     height: 360px;
 
     background: #7a7a7a;
+
     color: #000000;
 
     display: flex;
+
     gap: 220px;
+
     padding: 55px 70px;
 
     opacity: 0;
+
     visibility: hidden;
+
     transform: translateY(-35px);
 
     transition:
@@ -331,9 +455,12 @@ body {
         visibility 0s linear 0.4s;
 }
 
+
 .nav-item:hover .nav-dropdown {
     opacity: 1;
+
     visibility: visible;
+
     transform: translateY(0);
 
     transition:
@@ -342,69 +469,85 @@ body {
         visibility 0s linear 0s;
 }
 
+
 .dropdown-info {
     width: 420px;
 }
 
+
 .dropdown-info h4,
 .dropdown-categories h4 {
     font-size: 16px;
+
     margin-bottom: 35px;
 }
 
+
 .dropdown-info p {
     font-size: 16px;
+
     line-height: 1.45;
+
     font-weight: 400;
 }
+
 
 .dropdown-categories ul {
     list-style: none;
 }
 
+
 .dropdown-categories li {
     font-size: 17px;
+
     font-weight: 400;
+
     margin-bottom: 3px;
 }
 
-.search-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
 
-.search-link .material-icons {
-    font-size: 20px;
-}
-
-/* COMPANY PLUS / MINUS ICON */
+/* =========================
+   COMPANY
+========================= */
 
 .company-link {
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
+
     font-weight: 600;
 }
 
+
 .company-icon {
     position: relative;
+
     width: 14px;
+
     height: 14px;
+
     display: inline-block;
 }
+
 
 .icon-plus,
 .icon-minus {
     position: absolute;
+
     inset: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     font-size: 18px;
+
     line-height: 1;
+
     font-weight: 500;
 
     transition:
@@ -412,85 +555,97 @@ body {
         transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+
 .icon-plus {
     opacity: 1;
+
     transform: rotate(0deg);
 }
 
+
 .icon-minus {
     opacity: 0;
+
     transform: rotate(-90deg);
 }
 
-/* keep company aligned with nav-item system */
+
 .company-item {
     position: relative;
 }
 
-/* reuse your existing nav-dropdown BUT adjust layout only for company */
+
 .company-dropdown {
-    gap: 120px; /* same spacing system */
+    gap: 120px;
 }
 
-/* override categories into 2-column grid */
+
 .company-grid {
     display: flex;
+
     gap: 80px;
 }
 
-/* container stays normal flex */
-.company-grid {
-    display: flex;
-    gap: 80px;
-}
 
-/* FIRST COLUMN (LEARN MORE) */
 .company-grid .company-col:nth-child(1) {
-    margin-left: 120px; /* keep default */
+    margin-left: 120px;
 }
 
-/* SECOND COLUMN (EXPLORE) */
+
 .company-grid .company-col:nth-child(2) {
-    margin-left: 50px; /* adjust this value freely */
+    margin-left: 50px;
 }
 
-/* columns inside company only */
+
 .company-col h4 {
     font-size: 16px;
+
     margin-bottom: 35px;
+
     color: #000000;
 }
 
+
 .company-col ul {
     list-style: none;
+
     padding: 0;
+
     margin: 0;
 }
 
-/* COMPANY LIST ITEMS WITH ICON */
+
 .company-col li {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     font-size: 17px;
+
     font-weight: 400;
 
     margin-bottom: 6px;
+
     cursor: pointer;
 }
 
 
-/* DELLA DEFENSE MEGA MENU */
+/* =========================
+   DELLA DEFENSE
+========================= */
 
 .defense-dropdown {
-    background: linear-gradient(
-        180deg,
-        #3d4519 0%,
-        #3d4519 50%,
-        #3d4519 100%
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #3d4519 0%,
+            #3d4519 50%,
+            #3d4519 100%
+        );
 }
+
 
 .defense-dropdown .dropdown-info h4,
 .defense-dropdown .dropdown-categories h4,
@@ -499,337 +654,433 @@ body {
     color: #ffffff;
 }
 
-/* Make li text and links white inside the defense dropdown */
+
 .defense-dropdown .dropdown-categories li,
 .defense-dropdown .dropdown-categories li a {
     color: #ffffff;
-    text-decoration: none; /* optional, remove underline if desired */
+
+    text-decoration: none;
 }
 
-/* Optional: keep hover effect subtle */
+
 .defense-dropdown .dropdown-categories li a:hover {
-    color: #dddddd; /* slightly lighter on hover */
+    color: #dddddd;
 }
 
-/* DROPDOWN LIST PLUS / MINUS ICON */
+
+/* =========================
+   DROPDOWN LIST ICON
+========================= */
 
 .dropdown-categories li {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     font-size: 17px;
+
     font-weight: 400;
+
     margin-bottom: 6px;
 
     cursor: pointer;
 }
 
-.list-icon {
-    position: relative;
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    flex-shrink: 0;
-}
-
-.list-icon .icon-plus,
-.list-icon .icon-minus {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 18px;
-    line-height: 1;
-    font-weight: 500;
-
-    transition:
-        opacity 0.55s ease,
-        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.list-icon .icon-plus {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.list-icon .icon-minus {
-    opacity: 0;
-    transform: rotate(-90deg);
-}
 
 .dropdown-categories li:hover .icon-plus {
     opacity: 0;
+
     transform: rotate(180deg);
 }
 
+
 .dropdown-categories li:hover .icon-minus {
     opacity: 1;
+
     transform: rotate(0deg);
 }
 
 
-/* Blur effect applied to the page content */
+/* =========================
+   PAGE BLUR
+========================= */
+
 .page-content.blur {
-    filter: blur(6px); /* adjust blur intensity */
-    pointer-events: none; /* optional: prevent interaction while blurred */
+    filter: blur(6px);
+
+    pointer-events: none;
+
     transition: filter 0.3s ease;
 }
 
 
-
 /* =========================
-   Section Page 1 
+   HERO
 ========================= */
-/* HERO SECTION */
+
 .healthcare-hero {
     position: relative;
+
     width: 100%;
+
     height: 70vh;
+
     display: flex;
+
     align-items: center;
+
     padding: 0 30px;
+
     padding-top: 180px;
+
     overflow: hidden;
 }
 
-/* Background Image */
+
+/* Default hero image */
 .hero-bg {
     position: absolute;
+
     inset: 0;
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     z-index: 0;
 }
 
-/* Dark Overlay */
+
 .hero-overlay {
     position: absolute;
+
     inset: 0;
-    background: rgba(0, 0, 0, 0.35); /* Adjust darkness */
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
     z-index: 1;
 }
 
-/* Content */
+
 .hero-content {
     position: relative;
+
     z-index: 2;
 }
 
+
 .hero-tag {
     font-size: 12px;
+
     letter-spacing: 1px;
+
     text-transform: uppercase;
+
     color: #ffffff;
 }
 
+
 .hero-content h1 {
     font-size: 52px;
+
     font-weight: 700;
+
     line-height: 1.1;
+
     margin-bottom: 20px;
+
     color: #ffffff;
 }
 
 
 .hero-description {
     font-size: 14px;
+
     line-height: 1.6;
+
     color: #ffffff;
+
     max-width: 650px;
+
     margin-left: 200px;
+
     font-weight: 400;
-    font-family: 'Geologica', sans-serif;
+
+    font-family: "Geologica", sans-serif;
 }
+
+
+/* =========================
+   HEALTHCARE SECTION
+========================= */
 
 .healthcare-section {
     width: 100%;
+
     min-height: 100vh;
+
     display: flex;
+
     flex-direction: column;
-    font-family: 'Geologica', sans-serif;
+
+    font-family: "Geologica", sans-serif;
 }
 
-/* TOP WHITE SECTION */
+
 .top-content {
     background: #ffffff;
+
     padding: 80px 8%;
+
     display: flex;
+
     justify-content: flex-end;
 }
+
 
 .text-box {
     max-width: 520px;
+
     text-align: left;
 }
+
 
 .text-box h2 {
     font-size: 28px;
+
     font-weight: 600;
+
     margin-bottom: 15px;
-    color: #111;
+
+    color: #111111;
 }
+
 
 .text-box p {
     font-size: 16px;
+
     line-height: 1.6;
-    color: #444;
+
+    color: #444444;
 }
 
-/* BOTTOM IMAGE SECTION */
+
+/* =========================
+   BOTTOM MEDIA
+========================= */
+
 .bottom-media {
     width: 100%;
+
     min-height: 700px;
+
     overflow: hidden;
 }
 
+
 .bottom-media img {
     width: 100%;
-    height: 700px; /* or 100% if the parent has a fixed height */
-    object-fit: cover; /* fills the container while keeping aspect ratio */
+
+    height: 700px;
+
+    object-fit: cover;
+
     display: block;
 }
 
+
+/* =========================
+   CONSTRUCTION SECTION
+========================= */
+
 .construction-section {
     width: 100%;
+
     display: flex;
+
     flex-direction: column;
-    font-family: 'Geologica', sans-serif;
+
+    font-family: "Geologica", sans-serif;
+
     background: #000000;
 }
 
-/* TOP BLACK TEXT AREA */
-.construction-top {
-    background: #000;
-    color: #fff;
 
-    padding: 40px calc(10% + 20px) 60px 2%;
+.construction-top {
+    background: #000000;
+
+    color: #ffffff;
+
+    padding:
+        40px
+        calc(10% + 20px)
+        60px
+        2%;
 
     display: flex;
+
     justify-content: flex-end;
+
     flex-wrap: wrap;
 }
 
+
 .construction-label {
     flex-basis: 100%;
+
     font-size: 19px;
+
     color: #ffffff;
+
     margin-bottom: 15px;
 }
 
+
 .construction-text {
     max-width: 520px;
+
     text-align: left;
 }
 
+
 .construction-text h2 {
     font-size: 30px;
+
     font-weight: 600;
+
     margin-bottom: 12px;
 }
+
 
 .construction-text p {
     font-size: 18px;
+
     line-height: 1.6;
+
     margin-bottom: 12px;
 }
 
+
 .construction-text ul {
     list-style: none;
+
     padding-left: 0;
 }
 
+
 .construction-text ul li::before {
-    content: '› ';
-    color: #fff;
+    content: "› ";
+
+    color: #ffffff;
 }
+
 
 .construction-text ul li {
     font-size: 17px;
+
     line-height: 1.5;
+
     margin-bottom: 4px;
 }
+
 
 /* =========================
    DISCOVER BUTTON
 ========================= */
 
-.discover-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+.discover-btn {
+    display: inline-flex;
 
-    margin-top:20px;
+    align-items: center;
 
-    padding:10px 15px;
+    justify-content: center;
 
-    border:1px solid #ffffff;
-    background:transparent;
+    margin-top: 20px;
 
-    color:#ffffff;
-    text-decoration:none;
+    padding: 10px 15px;
 
-    font-family:'Geologica', sans-serif;
-    font-size:20px;
-    font-weight:500;
+    border: 1px solid #ffffff;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: "Geologica", sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 500;
 
     transition:
-        background-color .35s ease,
-        color .35s ease,
-        border-color .35s ease,
-        transform .35s ease;
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s ease;
 }
 
-.discover-btn:hover{
-    background:#ffffff;
-    color:#000000;
-    border-color:#ffffff;
+
+.discover-btn:hover {
+    background: #ffffff;
+
+    color: #000000;
+
+    border-color: #ffffff;
 }
 
-.discover-btn:active{
-    transform:scale(.97);
+
+.discover-btn:active {
+    transform: scale(0.97);
 }
+
+
+/* =========================
+   CONSTRUCTION IMAGE BOX
+========================= */
 
 .construction-box {
     width: calc(100% - 60px);
+
     margin: 0 30px;
+
     min-height: 700px;
 
     position: relative;
+
     overflow: hidden;
 
     background: #b9b9b9;
+
     border-radius: 4px;
 }
 
-.construction-image {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    display: block;
-}
 
 .construction-image {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
+
     display: block;
 
     transition: transform 0.8s ease;
 }
-
 
 
 /* =========================
@@ -838,118 +1089,188 @@ body {
 
 .footer {
     width: 100%;
+
     min-height: 420px;
-    background: #000;
+
+    background: #000000;
+
     color: #000000;
 
     display: grid;
+
     grid-template-columns: 1.3fr 1.4fr;
+
     gap: 80px;
 
-    padding: 46px 32px 36px;
+    padding:
+        46px
+        32px
+        36px;
 }
+
 
 .footer-left {
     display: flex;
+
     flex-direction: column;
+
     align-items: flex-start;
 }
 
+
 .footer-logo {
     height: 32px;
+
     width: auto;
+
     display: block;
+
     object-fit: contain;
 
     margin-bottom: 155px;
 }
 
+
 .footer-addresses {
     margin-top: 0;
 }
 
+
 .footer-address h4,
 .footer-col h4 {
     font-size: 15px;
+
     font-weight: 700;
-    color: #fff;
+
+    color: #ffffff;
+
     margin-bottom: 10px;
 }
 
+
 .footer-address p {
     font-size: 14px;
+
     font-weight: 400;
+
     line-height: 1.45;
-    color: #fff;
+
+    color: #ffffff;
 }
+
 
 .footer-line {
     width: 220px;
+
     height: 1px;
-    background: #999;
+
+    background: #999999;
+
     margin: 18px 0;
 }
 
+
 .footer-columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
     gap: 90px;
+
     padding-top: 12px;
 }
 
+
 .footer-col {
     display: flex;
+
     flex-direction: column;
 }
 
+
 .footer-col h4 {
     color: #9a9a9a;
+
     margin-bottom: 34px;
 }
 
+
 .footer-col a {
-    color: #fff;
+    color: #ffffff;
+
     text-decoration: none;
 
     font-size: 15px;
+
     font-weight: 600;
+
     line-height: 1.55;
 }
+
 
 .footer-col a:hover {
     color: #808080;
 }
 
+
 /* =========================
-   SCROLL TO TOP BUTTON
+   SCROLL TO TOP
 ========================= */
 
 .scroll-to-top {
     position: fixed;
+
     right: 24px;
+
     bottom: 24px;
 
     width: 48px;
+
     height: 48px;
 
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
     border-radius: 50%;
 
-    background: rgba(0, 0, 0, 0.88);
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.88
+        );
+
     color: #ffffff;
 
     cursor: pointer;
+
     z-index: 950;
 
-    /* Hidden before the user scrolls down */
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
+
     transform: translateY(14px);
 
     transition:
@@ -960,290 +1281,439 @@ body {
         border-color 0.25s ease;
 }
 
+
 .scroll-to-top .material-icons {
     font-size: 24px;
+
     line-height: 1;
 }
 
-/* Visible state added by common.js */
+
 .scroll-to-top.is-visible {
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
+
     transform: translateY(0);
 }
 
+
 .scroll-to-top:hover {
     background: #3d4519;
+
     border-color: #3d4519;
 }
+
 
 .scroll-to-top:active {
     transform: scale(0.94);
 }
 
+
 .scroll-to-top:focus-visible {
     outline: 2px solid #ffffff;
+
     outline-offset: 3px;
 }
 
-/* Hide it while the mobile menu is open */
+
 body.mobile-menu-open .scroll-to-top {
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 }
 
-/* Tablet */
-@media (max-width: 1100px) {
-    .scroll-to-top {
-        right: 20px;
-        bottom: 20px;
-
-        width: 46px;
-        height: 46px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .scroll-to-top {
-        right: 16px;
-        bottom: 16px;
-
-        width: 44px;
-        height: 44px;
-    }
-
-    .scroll-to-top .material-icons {
-        font-size: 22px;
-    }
-}
-
-/* Small mobile */
-@media (max-width: 480px) {
-    .scroll-to-top {
-        right: 14px;
-        bottom: 14px;
-
-        width: 42px;
-        height: 42px;
-    }
-
-    .scroll-to-top .material-icons {
-        font-size: 21px;
-    }
-}
-
-/* Reduce animation for users who prefer less motion */
-@media (prefers-reduced-motion: reduce) {
-    .scroll-to-top {
-        transition: none;
-    }
-}
 
 /* =========================================================
-   HEALTHCARE PAGE — DESKTOP 80% VISUAL SCALE + FULL WIDTH
+   DESKTOP 80% VISUAL SCALE
 ========================================================= */
 
 @media (min-width: 1101px) {
-    #page-loader { height: 3px; }
+
+    #page-loader {
+        height: 3px;
+    }
+
 
     .navbar {
         height: 69px;
+
         padding: 0 22px;
     }
 
-    .nav-logo img { height: 29px; }
-    .nav-menu { gap: 27px; }
-    .nav-actions { gap: 36px; }
-    .nav-item { height: 69px; }
+
+    .nav-logo img {
+        height: 29px;
+    }
+
+
+    .nav-menu {
+        gap: 27px;
+    }
+
+
+    .nav-actions {
+        gap: 36px;
+    }
+
+
+    .nav-item {
+        height: 69px;
+    }
+
 
     .nav-item::after {
         left: -16px;
+
         width: calc(100% + 32px);
+
         height: 24px;
     }
 
-    .nav-item > a { padding: 6px 0; }
+
+    .nav-item > a {
+        padding: 6px 0;
+    }
+
 
     .nav-menu a,
-    .nav-actions a { font-size: 12px; }
+    .nav-actions a {
+        font-size: 12px;
+    }
 
-    .nav-separator { height: 19px; }
+
+    .nav-separator {
+        height: 19px;
+    }
+
+
     .search-link,
-    .company-link { gap: 6px; }
+    .company-link {
+        gap: 6px;
+    }
 
-    .search-link .material-icons { font-size: 16px; }
+
+    .search-link .material-icons {
+        font-size: 16px;
+    }
+
 
     .company-icon,
     .list-icon {
         width: 11px;
+
         height: 11px;
     }
+
 
     .icon-plus,
     .icon-minus,
     .list-icon .icon-plus,
-    .list-icon .icon-minus { font-size: 14px; }
+    .list-icon .icon-minus {
+        font-size: 14px;
+    }
+
 
     .nav-dropdown {
         top: 69px;
+
         height: 288px;
+
         gap: 176px;
+
         padding: 44px 56px;
+
         transform: translateY(-28px);
     }
 
+
     .consumer-dropdown {
         min-height: 288px;
+
         padding: 44px 32px;
+
         gap: 32px;
+
         transform: translateY(-16px);
     }
 
-    .consumer-separator { margin: 0 16px; }
+
+    .consumer-separator {
+        margin: 0 16px;
+    }
+
 
     .consumer-col h4,
     .dropdown-info h4,
     .dropdown-categories h4,
-    .company-col h4 { font-size: 13px; }
+    .company-col h4 {
+        font-size: 13px;
+    }
 
-    .consumer-col h4 { margin-bottom: 10px; }
+
+    .consumer-col h4 {
+        margin-bottom: 10px;
+    }
+
 
     .dropdown-info h4,
     .dropdown-categories h4,
-    .company-col h4 { margin-bottom: 28px; }
+    .company-col h4 {
+        margin-bottom: 28px;
+    }
+
 
     .consumer-col p {
         font-size: 11px;
+
         margin-bottom: 20px;
     }
+
 
     .consumer-col li,
     .dropdown-categories li,
     .company-col li {
         gap: 8px;
+
         font-size: 14px;
+
         margin-bottom: 5px;
     }
 
-    .dropdown-info { width: 336px; }
-    .dropdown-info p { font-size: 13px; }
 
-    .company-dropdown { gap: 96px; }
-    .company-grid { gap: 64px; }
+    .dropdown-info {
+        width: 336px;
+    }
 
-    .company-grid .company-col:nth-child(1) { margin-left: 96px; }
-    .company-grid .company-col:nth-child(2) { margin-left: 40px; }
+
+    .dropdown-info p {
+        font-size: 13px;
+    }
+
+
+    .company-dropdown {
+        gap: 96px;
+    }
+
+
+    .company-grid {
+        gap: 64px;
+    }
+
+
+    .company-grid .company-col:nth-child(1) {
+        margin-left: 96px;
+    }
+
+
+    .company-grid .company-col:nth-child(2) {
+        margin-left: 40px;
+    }
+
 
     .healthcare-hero {
         height: 56vh;
+
         min-height: 520px;
-        padding: 144px 24px 45px;
+
+        padding:
+            144px
+            24px
+            45px;
+
         overflow: hidden;
     }
 
-    .hero-content { max-width: 520px; }
+
+    .hero-content {
+        max-width: 520px;
+    }
+
 
     .hero-tag {
         font-size: 10px;
+
         letter-spacing: 0.8px;
     }
 
+
     .hero-content h1 {
         font-size: 42px;
+
         margin-bottom: 16px;
     }
 
+
     .hero-description {
         font-size: 11px;
+
         line-height: 1.6;
+
         max-width: 360px;
+
         margin-left: 160px;
+
         margin-top: 14px;
     }
 
-    .top-content { padding: 64px 6.4%; }
-    .text-box { max-width: 416px; }
+
+    .top-content {
+        padding: 64px 6.4%;
+    }
+
+
+    .text-box {
+        max-width: 416px;
+    }
+
 
     .text-box h2 {
         font-size: 22px;
+
         margin-bottom: 12px;
     }
 
-    .text-box p { font-size: 13px; }
-    .bottom-media { min-height: 560px; }
+
+    .text-box p {
+        font-size: 13px;
+    }
+
+
+    .bottom-media {
+        min-height: 560px;
+    }
+
 
     .construction-top {
-        padding: 32px calc(8% + 16px) 48px 1.6%;
+        padding:
+            32px
+            calc(8% + 16px)
+            48px
+            1.6%;
     }
+
 
     .construction-label {
         font-size: 15px;
+
         margin-bottom: 12px;
     }
 
-    .construction-text { max-width: 416px; }
+
+    .construction-text {
+        max-width: 416px;
+    }
+
 
     .construction-text h2 {
         font-size: 24px;
+
         margin-bottom: 10px;
     }
+
 
     .construction-text p {
         font-size: 14px;
+
         margin-bottom: 10px;
     }
 
+
     .construction-text ul li {
         font-size: 14px;
+
         margin-bottom: 3px;
     }
 
+
     .discover-btn {
         margin-top: 16px;
+
         padding: 8px 12px;
+
         font-size: 16px;
     }
 
+
     .construction-box {
         width: calc(100% - 48px);
+
         margin: 0 24px;
+
         min-height: 560px;
+
         border-radius: 3px;
     }
 
+
     .footer {
         min-height: 336px;
+
         gap: 64px;
-        padding: 37px 26px 29px;
+
+        padding:
+            37px
+            26px
+            29px;
     }
+
 
     .footer-logo {
         height: 26px;
+
         margin-bottom: 124px;
     }
 
-    .footer-address h4,
-    .footer-col h4 { font-size: 12px; }
 
-    .footer-address h4 { margin-bottom: 8px; }
-    .footer-address p { font-size: 11px; }
+    .footer-address h4,
+    .footer-col h4 {
+        font-size: 12px;
+    }
+
+
+    .footer-address h4 {
+        margin-bottom: 8px;
+    }
+
+
+    .footer-address p {
+        font-size: 11px;
+    }
+
 
     .footer-line {
         width: 176px;
+
         margin: 14px 0;
     }
 
+
     .footer-columns {
         gap: 72px;
+
         padding-top: 10px;
     }
 
-    .footer-col h4 { margin-bottom: 27px; }
-    .footer-col a { font-size: 12px; }
+
+    .footer-col h4 {
+        margin-bottom: 27px;
+    }
+
+
+    .footer-col a {
+        font-size: 12px;
+    }
+
 }
+
+
+/* =========================
+   FULL WIDTH
+========================= */
 
 html,
 body,
@@ -1256,17 +1726,21 @@ body,
 .construction-top,
 .footer {
     width: 100%;
+
     max-width: none;
 }
+
 
 html,
 body {
     overflow-x: hidden;
 }
 
+
 .page-content {
     margin: 0;
 }
+
 
 .healthcare-hero,
 .bottom-media,
@@ -1274,250 +1748,363 @@ body {
 .construction-top,
 .footer {
     background-size: cover;
+
     background-position: center;
 }
 
+
+/* =========================
+   LARGE DESKTOP
+========================= */
+
 @media (min-width: 1440px) {
+
     .page-content {
         width: 100%;
+
         max-width: none;
+
         margin: 0;
     }
 
+
     .navbar {
         width: 100%;
+
         padding-left: 34px;
+
         padding-right: 34px;
     }
 
-    .nav-menu { gap: 34px; }
-}
 
-@media (max-width: 1100px) {
-    .healthcare-hero {
-        height: auto;
-        min-height: 620px;
-        padding: 140px 30px 45px;
+    .nav-menu {
+        gap: 34px;
     }
 
-    .hero-description {
-        max-width: 430px;
-        margin-left: 120px;
-    }
-
-    .construction-box {
-        width: calc(100% - 40px);
-        margin: 0 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .healthcare-hero {
-        min-height: 560px;
-        padding: 120px 20px 36px;
-    }
-
-    .hero-content h1 { font-size: 40px; }
-
-    .hero-description {
-        max-width: 100%;
-        margin-left: 0;
-        margin-top: 22px;
-        font-size: 12px;
-    }
-
-    .top-content { padding: 50px 20px; }
-    .construction-top { padding: 36px 20px 44px; }
-
-    .construction-box {
-        width: calc(100% - 30px);
-        margin: 0 15px;
-        min-height: 420px;
-    }
 }
 
 
 /* =========================================================
    HEALTHCARE RESPONSIVE SYSTEM
-   Mirrors the shared homepage/Industrial mobile behavior.
 ========================================================= */
 
 html,
 body {
     width: 100%;
+
     overflow-x: hidden;
 }
+
 
 body {
     padding-top: 0;
 }
 
+
 .page-content {
     width: 100%;
+
     max-width: none;
+
     margin: 0;
+
     overflow: hidden;
 }
+
 
 img,
 video {
     max-width: 100%;
 }
 
+
 .nav-logo {
     flex-shrink: 0;
+
     min-width: 0;
 }
 
+
 .nav-logo img {
     width: auto !important;
+
     object-fit: contain;
 }
 
+
+/* =========================
+   MOBILE MENU
+========================= */
+
 .mobile-menu-btn {
     display: none;
+
     align-items: center;
+
     justify-content: center;
+
     position: relative;
+
     z-index: 1002;
+
     padding: 6px;
+
     border: 0;
+
     background: transparent;
-    color: #000;
+
+    color: #000000;
+
     cursor: pointer;
 }
+
 
 .mobile-menu-btn .material-icons {
     font-size: 34px;
 }
 
+
 .mobile-menu-panel {
     position: fixed;
+
     top: 76px;
+
     left: 0;
+
     width: 100%;
-    height: calc(100dvh - 76px);
+
+    height:
+        calc(
+            100dvh -
+            76px
+        );
+
     z-index: 1001;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 22px;
-    padding: 30px 24px;
+
+    padding:
+        30px
+        24px;
+
     overflow-y: auto;
+
     overscroll-behavior: contain;
-    background: #fff;
+
+    background: #ffffff;
+
     transform: translateX(100%);
-    transition: transform 0.35s ease;
+
+    transition:
+        transform
+        0.35s
+        ease;
 }
+
 
 .mobile-menu-panel.active {
     transform: translateX(0);
 }
 
+
 .mobile-menu-panel a {
-    color: #000;
+    color: #000000;
+
     text-decoration: none;
+
     font-size: 22px;
+
     font-weight: 500;
 }
+
 
 .mobile-menu-panel a[aria-current="page"] {
     color: #808080;
 }
 
+
 body.mobile-menu-open {
     overflow: hidden;
+
     touch-action: none;
 }
 
+
+/* =========================
+   FLUID CONTENT
+========================= */
+
 .healthcare-hero {
-    min-height: clamp(520px, 56vh, 760px);
+    min-height:
+        clamp(
+            520px,
+            56vh,
+            760px
+        );
+
     height: auto;
 }
 
+
 .hero-content h1 {
-    font-size: clamp(38px, 4vw, 52px);
+    font-size:
+        clamp(
+            38px,
+            4vw,
+            52px
+        );
 }
+
 
 .hero-description {
     overflow-wrap: anywhere;
 }
+
 
 .top-content,
 .construction-top {
     width: 100%;
 }
 
+
 .bottom-media {
-    min-height: clamp(420px, 48vw, 700px);
+    min-height:
+        clamp(
+            420px,
+            48vw,
+            700px
+        );
 }
+
 
 .construction-box {
     height: auto;
-    min-height: clamp(420px, 48vw, 700px);
+
+    min-height:
+        clamp(
+            420px,
+            48vw,
+            700px
+        );
+
     aspect-ratio: 16 / 8.5;
 }
 
+
 .construction-image {
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     object-position: center;
 }
 
+
+/* =========================
+   FOOTER TOGGLES
+========================= */
+
 .footer-toggle {
     display: flex;
+
     padding: 0;
+
     margin-bottom: 34px;
+
     border: 0;
+
     background: transparent;
+
     color: #9a9a9a;
+
     font: inherit;
+
     font-size: 15px;
+
     font-weight: 700;
+
     text-align: left;
+
     pointer-events: none;
 }
+
 
 .footer-toggle .footer-icon {
     display: none;
 }
 
+
 .footer-links {
     display: flex;
+
     flex-direction: column;
 }
 
+
 .footer-links a {
-    color: #fff;
+    color: #ffffff;
+
     text-decoration: none;
+
     font-size: 15px;
+
     font-weight: 600;
+
     line-height: 1.55;
 }
 
+
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 1100px) {
+
     body {
         padding-top: 76px;
     }
 
+
     .navbar {
         position: fixed;
+
         top: 0;
+
         left: 0;
+
         width: 100%;
+
         height: 76px;
-        padding: 0 22px;
+
+        padding:
+            0
+            22px;
+
         justify-content: space-between;
     }
+
 
     .nav-logo {
         flex: unset;
     }
 
+
     .nav-logo img {
         height: 32px;
-        max-width: min(72vw, 320px);
+
+        max-width:
+            min(
+                72vw,
+                320px
+            );
     }
+
 
     .nav-menu,
     .nav-actions,
@@ -1525,415 +2112,920 @@ body.mobile-menu-open {
         display: none;
     }
 
+
     .mobile-menu-btn {
         display: inline-flex;
     }
 
+
     .page-content.blur {
         filter: none;
+
         pointer-events: auto;
     }
 
+
     .healthcare-hero {
         min-height: 620px;
-        padding: 145px 28px 52px;
+
+        padding:
+            145px
+            28px
+            52px;
+
         align-items: flex-end;
     }
+
 
     .hero-content {
         max-width: 680px;
     }
 
+
     .hero-content h1 {
-        font-size: clamp(44px, 6vw, 58px);
+        font-size:
+            clamp(
+                44px,
+                6vw,
+                58px
+            );
     }
+
 
     .hero-description {
         max-width: 470px;
+
         margin-left: 120px;
     }
+
 
     .top-content {
         padding: 64px 7%;
     }
 
+
     .bottom-media {
         min-height: 460px;
     }
+
 
     .construction-top {
         padding: 52px 5%;
     }
 
+
     .construction-text {
         max-width: 500px;
     }
 
+
     .construction-box {
         width: calc(100% - 40px);
+
         min-height: 520px;
-        margin: 0 20px;
+
+        margin:
+            0
+            20px;
     }
+
 
     .footer {
         grid-template-columns: 1fr;
+
         gap: 48px;
     }
+
 
     .footer-logo {
         margin-bottom: 60px;
     }
 
+
     .footer-columns {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
         gap: 38px;
     }
+
+
+    .scroll-to-top {
+        right: 20px;
+
+        bottom: 20px;
+
+        width: 46px;
+
+        height: 46px;
+    }
+
 }
 
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 768px) {
+
     body {
         padding-top: 70px;
     }
 
+
     .navbar {
         height: 70px;
-        padding: 0 16px;
+
+        padding:
+            0
+            16px;
     }
+
 
     .nav-logo img {
         height: 30px;
-        max-width: min(70vw, 280px);
+
+        max-width:
+            min(
+                70vw,
+                280px
+            );
     }
+
 
     .mobile-menu-panel {
         top: 70px;
-        height: calc(100dvh - 70px);
-        padding: 28px 20px;
+
+        height:
+            calc(
+                100dvh -
+                70px
+            );
+
+        padding:
+            28px
+            20px;
     }
+
 
     .healthcare-hero {
         min-height: 620px;
-        padding: 130px 20px 42px;
+
+        padding:
+            130px
+            20px
+            42px;
+
         align-items: flex-end;
     }
 
+
     .hero-content {
         width: 100%;
+
         max-width: none;
     }
 
+
     .hero-tag {
         display: block;
+
         margin-bottom: 12px;
+
         font-size: 10px;
     }
 
+
     .hero-content h1 {
-        font-size: clamp(36px, 10vw, 48px);
+        font-size:
+            clamp(
+                36px,
+                10vw,
+                48px
+            );
+
         line-height: 1.04;
+
         margin-bottom: 24px;
     }
 
+
     .hero-description {
         width: 100%;
+
         max-width: 100%;
+
         margin: 0;
+
         font-size: 12px;
+
         line-height: 1.6;
     }
+
 
     .healthcare-section {
         min-height: 0;
     }
 
+
     .top-content {
         justify-content: flex-start;
-        padding: 48px 20px;
+
+        padding:
+            48px
+            20px;
     }
+
 
     .text-box {
         max-width: none;
     }
 
+
     .text-box h2 {
         font-size: 26px;
     }
+
 
     .text-box p {
         font-size: 15px;
     }
 
+
     .bottom-media {
         min-height: 380px;
     }
 
+
     .construction-top {
         display: block;
-        padding: 44px 20px 46px;
+
+        padding:
+            44px
+            20px
+            46px;
     }
+
 
     .construction-label {
         margin-bottom: 30px;
+
         font-size: 13px;
     }
+
 
     .construction-text {
         max-width: none;
     }
 
+
     .construction-text h2 {
         font-size: 29px;
     }
+
 
     .construction-text p,
     .construction-text ul li {
         font-size: 15px;
     }
 
+
     .construction-box {
-        width: calc(100% - 28px);
-        min-height: clamp(340px, 105vw, 500px);
-        margin: 0 14px;
+        width:
+            calc(
+                100% -
+                28px
+            );
+
+        min-height:
+            clamp(
+                340px,
+                105vw,
+                500px
+            );
+
+        margin:
+            0
+            14px;
+
         aspect-ratio: 4 / 3;
     }
 
+
     .footer {
         grid-template-columns: 1fr;
+
         gap: 38px;
-        padding: 38px 22px;
+
+        padding:
+            38px
+            22px;
     }
+
 
     .footer-logo {
         width: auto !important;
+
         height: 30px;
+
         margin-bottom: 48px;
     }
 
+
     .footer-addresses {
         display: grid;
-        grid-template-columns: 1.2fr 1px 1fr;
+
+        grid-template-columns:
+            1.2fr
+            1px
+            1fr;
+
         gap: 18px;
+
         width: 100%;
     }
+
 
     .footer-line {
         width: 1px;
+
         height: 100%;
+
         min-height: 110px;
+
         margin: 0;
+
         background: #4a4a4a;
     }
 
+
     .footer-address h4 {
         font-size: 13px;
+
         color: #9a9a9a;
     }
 
+
     .footer-address p {
         font-size: 13px;
+
         line-height: 1.55;
     }
 
+
     .footer-columns {
         display: flex;
+
         flex-direction: column;
+
         gap: 0;
+
         padding-top: 18px;
     }
 
+
     .footer-toggle {
         width: 100%;
+
         display: flex;
+
         align-items: center;
+
         justify-content: space-between;
+
         padding: 26px 0;
+
         margin: 0;
+
         color: #8f8f8f;
+
         font-size: 14px;
+
         cursor: pointer;
+
         pointer-events: auto;
     }
 
+
     .footer-toggle .footer-icon {
         display: inline-flex;
+
         align-items: center;
+
         justify-content: center;
-        color: #fff;
+
+        color: #ffffff;
+
         font-size: 28px;
+
         line-height: 1;
-        transition: transform 0.35s ease;
+
+        transition:
+            transform
+            0.35s
+            ease;
     }
+
 
     .footer-col.active .footer-icon {
         transform: rotate(180deg);
     }
 
+
     .footer-links {
         max-height: 0;
+
         overflow: hidden;
+
         opacity: 0;
+
         gap: 8px;
-        transition: max-height 0.45s cubic-bezier(.16,1,.3,1), opacity 0.35s ease;
+
+        transition:
+            max-height
+            0.45s
+            cubic-bezier(
+                0.16,
+                1,
+                0.3,
+                1
+            ),
+            opacity
+            0.35s
+            ease;
     }
+
 
     .footer-col.active .footer-links {
         max-height: 280px;
+
         opacity: 1;
+
         padding-bottom: 22px;
     }
 
+
     .footer-links a {
         font-size: 21px;
+
         font-weight: 500;
+
         line-height: 1.45;
     }
+
+
+    .scroll-to-top {
+        right: 16px;
+
+        bottom: 16px;
+
+        width: 44px;
+
+        height: 44px;
+    }
+
+
+    .scroll-to-top .material-icons {
+        font-size: 22px;
+    }
+
 }
 
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media (max-width: 480px) {
+
     .nav-logo img {
         height: 27px;
+
         max-width: 68vw;
     }
 
+
     .healthcare-hero {
         min-height: 570px;
-        padding: 110px 16px 34px;
+
+        padding:
+            110px
+            16px
+            34px;
     }
+
 
     .hero-content h1 {
         font-size: 34px;
     }
 
+
     .hero-description {
         font-size: 11px;
     }
 
+
     .top-content {
-        padding: 42px 16px;
+        padding:
+            42px
+            16px;
     }
+
 
     .bottom-media {
         min-height: 320px;
     }
 
+
     .construction-top {
-        padding: 38px 16px 42px;
+        padding:
+            38px
+            16px
+            42px;
     }
+
 
     .construction-text h2 {
         font-size: 25px;
     }
 
+
     .construction-box {
-        width: calc(100% - 20px);
+        width:
+            calc(
+                100% -
+                20px
+            );
+
         min-height: 330px;
-        margin: 0 10px;
+
+        margin:
+            0
+            10px;
     }
+
 
     .footer {
         padding-left: 18px;
+
         padding-right: 18px;
     }
+
 
     .footer-addresses {
         grid-template-columns: 1fr;
     }
 
+
     .footer-line {
         width: 100%;
+
         height: 1px;
+
         min-height: 1px;
+
         margin: 16px 0;
     }
+
 
     .footer-links a {
         font-size: 19px;
     }
+
+
+    .scroll-to-top {
+        right: 14px;
+
+        bottom: 14px;
+
+        width: 42px;
+
+        height: 42px;
+    }
+
+
+    .scroll-to-top .material-icons {
+        font-size: 21px;
+    }
+
 }
 
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
 @media (prefers-reduced-motion: reduce) {
+
     html {
         scroll-behavior: auto;
     }
 
+
     .mobile-menu-panel,
     .footer-links,
-    .footer-toggle .footer-icon {
+    .footer-toggle .footer-icon,
+    .scroll-to-top {
         transition: none;
     }
+
 }
 
+
 /* =========================================================
-   CLICKABLE NAVBAR DROPDOWN + HEALTHCARE HASH TARGETS
+   CLICKABLE NAVBAR DROPDOWN + HASH TARGETS
 ========================================================= */
 
-/* Make non-defense dropdown category rows fully clickable. */
-.nav-dropdown:not(.defense-dropdown) .dropdown-categories li > a,
-.nav-dropdown .consumer-col li > a {
+.nav-dropdown:not(.defense-dropdown)
+.dropdown-categories
+li > a,
+
+.nav-dropdown
+.consumer-col
+li > a {
     width: 100%;
+
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     color: inherit;
+
     text-decoration: none;
-    font-family: "Geologica", sans-serif;
+
+    font-family:
+        "Geologica",
+        sans-serif;
+
     font-size: inherit;
+
     font-weight: inherit;
+
     line-height: 1.35;
 
     cursor: pointer;
 }
 
-.nav-dropdown:not(.defense-dropdown) .dropdown-categories li > a,
-.nav-dropdown .consumer-col li > a,
-.nav-dropdown:not(.defense-dropdown) .dropdown-categories li > a:visited,
-.nav-dropdown .consumer-col li > a:visited {
+
+.nav-dropdown:not(.defense-dropdown)
+.dropdown-categories
+li > a,
+
+.nav-dropdown
+.consumer-col
+li > a,
+
+.nav-dropdown:not(.defense-dropdown)
+.dropdown-categories
+li > a:visited,
+
+.nav-dropdown
+.consumer-col
+li > a:visited {
     color: #000000;
 }
 
-.nav-dropdown:not(.defense-dropdown) .dropdown-categories li > a:hover,
-.nav-dropdown .consumer-col li > a:hover {
+
+.nav-dropdown:not(.defense-dropdown)
+.dropdown-categories
+li > a:hover,
+
+.nav-dropdown
+.consumer-col
+li > a:hover {
     color: #808080;
 }
 
-/* Let the anchor control the consumer row layout. */
+
 .consumer-col li {
     display: block;
 }
 
-.nav-dropdown:not(.defense-dropdown) .dropdown-categories li > a .list-icon,
-.consumer-col li > a .list-icon {
+
+.nav-dropdown:not(.defense-dropdown)
+.dropdown-categories
+li > a
+.list-icon,
+
+.consumer-col
+li > a
+.list-icon {
     flex-shrink: 0;
 }
 
-/*
-   Prevent fixed/sticky navbar from covering a section after
-   navigation to #training-simulation, #diagnostic-tools, etc.
-*/
+
+/* =========================
+   HASH OFFSET
+========================= */
+
 .construction-label[id] {
     scroll-margin-top: 100px;
 }
 
+
 @media (min-width: 1101px) {
-    .nav-dropdown:not(.defense-dropdown) .dropdown-categories li > a,
-    .nav-dropdown .consumer-col li > a {
+
+    .nav-dropdown:not(.defense-dropdown)
+    .dropdown-categories
+    li > a,
+
+    .nav-dropdown
+    .consumer-col
+    li > a {
         gap: 8px;
     }
+
 
     .construction-label[id] {
         scroll-margin-top: 90px;
     }
+
 }
 
+
 @media (max-width: 1100px) {
+
     .construction-label[id] {
         scroll-margin-top: 96px;
     }
+
 }
 
+
 @media (max-width: 768px) {
+
     .construction-label[id] {
         scroll-margin-top: 88px;
     }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE DESKTOP / MOBILE IMAGES
+========================================================= */
+
+
+/* =========================
+   HERO PICTURE
+========================= */
+
+.hero-picture {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    z-index: 0;
+}
+
+
+.hero-picture .hero-bg {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+}
+
+
+/* =========================
+   HEALTHCARE OPERATIONS
+========================= */
+
+.responsive-picture {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+}
+
+
+.responsive-picture img {
+    width: 100%;
+
+    height: 700px;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+}
+
+
+/* =========================
+   CATEGORY PICTURES
+========================= */
+
+.construction-picture {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+}
+
+
+.construction-picture .construction-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE IMAGES
+========================= */
+
+@media (max-width: 768px) {
+
+    .hero-picture,
+    .hero-picture .hero-bg {
+        width: 100%;
+
+        height: 100%;
+    }
+
+
+    .responsive-picture {
+        width: 100%;
+
+        height: 100%;
+    }
+
+
+    .responsive-picture img {
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+
+    .construction-picture,
+    .construction-picture .construction-image {
+        width: 100%;
+
+        height: 100%;
+    }
+
+
+    .bottom-media {
+        min-height: 380px;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE IMAGES
+========================= */
+
+@media (max-width: 480px) {
+
+    .bottom-media {
+        min-height: 320px;
+    }
+
 }

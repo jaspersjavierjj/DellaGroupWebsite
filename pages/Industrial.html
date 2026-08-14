@@ -467,7 +467,18 @@
             <section class="industrial-hero">
 
                 <!-- Background Image -->
-                <img src="/assets/images/img/industrial4.png" alt="Industrial Hero" class="hero-bg">
+                <picture>
+                    <!-- Mobile image -->
+                    <source
+                        media="(max-width: 768px)"
+                        srcset="/assets/images/img/industrial4(mobile).png">
+
+                    <!-- Desktop / tablet image -->
+                    <img
+                        src="/assets/images/img/industrial4.png"
+                        alt="Industrial Hero"
+                        class="hero-bg">
+                </picture>
 
                 <div class="hero-overlay"></div>
 
