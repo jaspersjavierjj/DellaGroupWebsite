@@ -1,0 +1,701 @@
+/* =========================================================
+   DELLA COMPLETE SKELETON LOADER
+   /assets/css/della-loader.css
+========================================================= */
+
+:root {
+    --della-loader-bg: #000000;
+    --della-skeleton: #202020;
+    --della-skeleton-light: #292929;
+    --della-border: rgba(255, 255, 255, 0.11);
+    --della-loader-fade: 0.45s;
+}
+
+
+/* =========================================================
+   PAGE LOADING STATE
+========================================================= */
+
+html.della-loading {
+    overflow: hidden;
+    background: #000000;
+}
+
+html.della-loading body {
+    overflow: hidden !important;
+    background: #000000 !important;
+}
+
+/*
+   Hide actual website while loader is active.
+*/
+html.della-loading body > *:not(#della-loader) {
+    visibility: hidden;
+}
+
+
+/* =========================================================
+   FULLSCREEN LOADER
+========================================================= */
+
+#della-loader {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2147483647;
+
+    width: 100%;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    background: #000000;
+
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: all;
+
+    transition:
+        opacity var(--della-loader-fade) ease,
+        visibility var(--della-loader-fade) ease;
+}
+
+
+/* Loader fade */
+#della-loader.is-exiting {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   LOADER SHELL
+========================================================= */
+
+.della-loader__shell {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    padding:
+        0
+        24px
+        20px;
+
+    background: #000000;
+}
+
+
+/* =========================================================
+   NAVBAR SKELETON
+========================================================= */
+
+.della-loader__navbar {
+    flex: 0 0 69px;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(180px, 1fr)
+        auto
+        minmax(180px, 1fr);
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   LOGO SKELETON
+========================================================= */
+
+.della-loader__logo {
+    justify-self: start;
+
+    width: 185px;
+    height: 23px;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================================
+   CENTER NAV
+========================================================= */
+
+.della-loader__nav-center {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 26px;
+}
+
+
+.della-loader__nav-center span {
+    display: block;
+
+    height: 9px;
+
+    border-radius: 2px;
+}
+
+
+.della-loader__nav-center span:nth-child(1) {
+    width: 52px;
+}
+
+.della-loader__nav-center span:nth-child(2) {
+    width: 58px;
+}
+
+.della-loader__nav-center span:nth-child(3) {
+    width: 61px;
+}
+
+.della-loader__nav-center span:nth-child(4) {
+    width: 108px;
+}
+
+
+.della-loader__nav-center i {
+    display: block;
+
+    width: 1px;
+    height: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.25);
+}
+
+
+.della-loader__nav-defense {
+    width: 96px !important;
+}
+
+
+/* =========================================================
+   RIGHT NAV
+========================================================= */
+
+.della-loader__nav-actions {
+    justify-self: end;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.della-loader__nav-actions span {
+    display: block;
+
+    height: 9px;
+
+    border-radius: 2px;
+}
+
+
+.della-loader__nav-actions span:nth-child(1) {
+    width: 55px;
+}
+
+
+.della-loader__nav-actions span:nth-child(2) {
+    width: 76px;
+}
+
+
+/* =========================================================
+   NAVBAR SKELETON BLOCK
+========================================================= */
+
+.della-skeleton-bar {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #292929,
+            #202020
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        inset
+        0
+        1px
+        0
+        rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   MAIN HERO SKELETON
+========================================================= */
+
+.della-loader__hero {
+    position: relative;
+
+    flex: 1;
+
+    width: 100%;
+    min-height: 0;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 22% 28%,
+            rgba(255, 255, 255, 0.045),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 78% 38%,
+            rgba(255, 255, 255, 0.035),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            135deg,
+            #181818 0%,
+            #222222 48%,
+            #181818 100%
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+    border-radius: 2px;
+
+    box-shadow:
+        inset
+        0
+        1px
+        0
+        rgba(255, 255, 255, 0.05),
+
+        inset
+        0
+        -120px
+        200px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   VERY SUBTLE HERO GRID
+========================================================= */
+
+.della-loader__hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.18;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        90px 90px,
+        90px 90px;
+}
+
+
+/* =========================================================
+   MOVING DIAGONAL SHINE
+   JavaScript moves this actual element
+========================================================= */
+
+.della-loader__moving-shine {
+    position: fixed;
+
+    z-index: 999999;
+
+    top: -45vh;
+    left: 0;
+
+    width: 190px;
+    height: 190vh;
+
+    pointer-events: none;
+
+    /*
+       JS will change opacity.
+    */
+    opacity: 0;
+
+    /*
+       Initial offscreen position.
+       JavaScript replaces translate3d().
+    */
+    transform:
+        translate3d(
+            -350px,
+            0,
+            0
+        )
+        rotate(20deg);
+
+    transform-origin:
+        center center;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent 0%,
+
+            rgba(255, 255, 255, 0) 5%,
+
+            rgba(255, 255, 255, 0.05) 18%,
+
+            rgba(255, 255, 255, 0.13) 30%,
+
+            rgba(255, 255, 255, 0.28) 40%,
+
+            rgba(255, 255, 255, 0.55) 47%,
+
+            rgba(255, 255, 255, 0.78) 50%,
+
+            rgba(255, 255, 255, 0.55) 53%,
+
+            rgba(255, 255, 255, 0.28) 60%,
+
+            rgba(255, 255, 255, 0.13) 70%,
+
+            rgba(255, 255, 255, 0.05) 82%,
+
+            rgba(255, 255, 255, 0) 95%,
+
+            transparent 100%
+        );
+
+    filter:
+        blur(5px);
+
+    box-shadow:
+        0
+        0
+        35px
+        rgba(255, 255, 255, 0.16),
+
+        0
+        0
+        85px
+        rgba(255, 255, 255, 0.09);
+
+    mix-blend-mode:
+        screen;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/* =========================================================
+   SHINE CENTER
+========================================================= */
+
+.della-loader__moving-shine::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 24px;
+    height: 100%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(255, 255, 255, 0.35),
+
+            rgba(255, 255, 255, 0.9),
+
+            rgba(255, 255, 255, 0.35),
+
+            transparent
+        );
+
+    filter:
+        blur(4px);
+}
+
+
+/* =========================================================
+   SHINE SOFT OUTER GLOW
+========================================================= */
+
+.della-loader__moving-shine::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 350px;
+    height: 100%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(255, 255, 255, 0.02),
+
+            rgba(255, 255, 255, 0.10),
+
+            rgba(255, 255, 255, 0.02),
+
+            transparent
+        );
+
+    filter:
+        blur(30px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .della-loader__shell {
+        padding:
+            0
+            18px
+            18px;
+    }
+
+
+    .della-loader__navbar {
+        flex-basis: 70px;
+
+        grid-template-columns:
+            auto
+            1fr
+            auto;
+    }
+
+
+    .della-loader__logo {
+        width: 155px;
+        height: 20px;
+    }
+
+
+    .della-loader__nav-center {
+        gap: 14px;
+    }
+
+
+    .della-loader__nav-center
+    span:nth-child(3),
+
+    .della-loader__nav-center
+    span:nth-child(4),
+
+    .della-loader__nav-center i,
+
+    .della-loader__nav-defense {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .della-loader__shell {
+        padding:
+            0
+            12px
+            12px;
+    }
+
+
+    .della-loader__navbar {
+        flex-basis: 70px;
+
+        grid-template-columns:
+            auto
+            1fr
+            auto;
+
+        gap: 10px;
+    }
+
+
+    .della-loader__logo {
+        width: 125px;
+        height: 18px;
+    }
+
+
+    /*
+       Mobile site uses hamburger.
+    */
+
+    .della-loader__nav-center {
+        display: none;
+    }
+
+
+    .della-loader__nav-actions
+    span:nth-child(1) {
+        display: none;
+    }
+
+
+    .della-loader__nav-actions
+    span:nth-child(2) {
+        width: 30px;
+        height: 20px;
+
+        border: 0;
+
+        background:
+            linear-gradient(
+                #292929 0 3px,
+
+                transparent 3px 8px,
+
+                #292929 8px 11px,
+
+                transparent 11px 16px,
+
+                #292929 16px 19px
+            );
+    }
+
+
+    .della-loader__hero {
+        background:
+            radial-gradient(
+                circle at 30% 25%,
+                rgba(255, 255, 255, 0.055),
+                transparent 38%
+            ),
+
+            linear-gradient(
+                145deg,
+                #191919,
+                #232323 50%,
+                #191919
+            );
+    }
+
+
+    .della-loader__moving-shine {
+        width: 145px;
+
+        height: 190vh;
+
+        filter:
+            blur(4px);
+    }
+
+
+    .della-loader__moving-shine::after {
+        width: 250px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .della-loader__shell {
+        padding:
+            0
+            10px
+            10px;
+    }
+
+
+    .della-loader__navbar {
+        flex-basis: 65px;
+    }
+
+
+    .della-loader__logo {
+        width: 108px;
+        height: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .della-loader__moving-shine {
+        display: none;
+    }
+
+}

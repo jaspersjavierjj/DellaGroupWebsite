@@ -358,7 +358,7 @@ if (scrollToTopButton) {
     scrollToTopButton.addEventListener(
         "click",
         () => {
-            smoothScrollToTop(1600);
+            smoothScrollToTop(1000);
         }
     );
 
