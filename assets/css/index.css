@@ -2919,3 +2919,86 @@ video {
     .slider-arrow.next { right: 9px; }
     .slider-arrow .material-icons { font-size: 25px; }
 }
+
+/* =========================================================
+   NAVBAR HASH-LINK / SECTION TARGET SUPPORT
+========================================================= */
+
+/*
+   The navbar uses links such as:
+   /pages/Healthcare.html#diagnostic-tools
+
+   The matching destination page must contain the same id:
+   <div id="diagnostic-tools" class="construction-label">Diagnostic Tools</div>
+*/
+
+/* Full dropdown row remains clickable. */
+.nav-dropdown .dropdown-categories li > a,
+.nav-dropdown .consumer-col li > a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+    font-family: "Geologica", sans-serif;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.35;
+    cursor: pointer;
+}
+
+/* Preserve white dropdown text in normal/visited states. */
+.nav-dropdown .dropdown-categories li > a,
+.nav-dropdown .consumer-col li > a,
+.nav-dropdown .dropdown-categories li > a:visited,
+.nav-dropdown .consumer-col li > a:visited {
+    color: #ffffff;
+}
+
+/* Preserve your existing gray hover effect. */
+.nav-dropdown .dropdown-categories li > a:hover,
+.nav-dropdown .consumer-col li > a:hover {
+    color: #808080;
+}
+
+/* Anchor controls the layout for consumer rows. */
+.consumer-col li {
+    display: block;
+}
+
+.dropdown-categories li > a .list-icon,
+.consumer-col li > a .list-icon {
+    flex-shrink: 0;
+}
+
+/*
+   Put this same rule in Industrial.css, Healthcare.css and
+   Infrastructure.css so a hash target is not hidden under the fixed navbar.
+*/
+.construction-label[id] {
+    scroll-margin-top: 100px;
+}
+
+@media (min-width: 1101px) {
+    .nav-dropdown .dropdown-categories li > a,
+    .nav-dropdown .consumer-col li > a {
+        gap: 8px;
+    }
+
+    .construction-label[id] {
+        scroll-margin-top: 90px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .construction-label[id] {
+        scroll-margin-top: 96px;
+    }
+}
+
+@media (max-width: 768px) {
+    .construction-label[id] {
+        scroll-margin-top: 88px;
+    }
+}

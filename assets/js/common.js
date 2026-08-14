@@ -1,3 +1,492 @@
+/* =========================================================
+   DELLA — CROSS-PAGE SMOOTH SECTION NAVIGATION
+========================================================= */
+
+const DELLA_SECTION_KEY = "della-section-target";
+
+/*
+    Prevent browser from restoring an old scroll position
+    when changing between pages.
+*/
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+
+/* =========================================================
+   CUSTOM SMOOTH SCROLL
+========================================================= */
+
+let dellaSectionAnimation = null;
+
+
+function dellaNavbarOffset() {
+
+    const navbar =
+        document.querySelector(".navbar");
+
+    if (!navbar) {
+        return 20;
+    }
+
+    return (
+        navbar.getBoundingClientRect().height +
+        20
+    );
+}
+
+
+function dellaEaseInOutCubic(t) {
+
+    return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+
+function dellaSmoothScrollTo(
+    target,
+    duration = 1500
+) {
+
+    if (!target) return;
+
+
+    if (dellaSectionAnimation) {
+
+        cancelAnimationFrame(
+            dellaSectionAnimation
+        );
+
+        dellaSectionAnimation = null;
+    }
+
+
+    const html =
+        document.documentElement;
+
+
+    const oldScrollBehavior =
+        html.style.scrollBehavior;
+
+
+    /*
+        IMPORTANT:
+        Disable CSS smooth scroll temporarily.
+
+        This prevents:
+        html {
+            scroll-behavior: smooth;
+        }
+
+        from interfering with our custom animation.
+    */
+    html.style.scrollBehavior = "auto";
+
+
+    const startPosition =
+        window.scrollY ||
+        window.pageYOffset ||
+        0;
+
+
+    const targetPosition =
+        Math.max(
+            0,
+
+            target
+                .getBoundingClientRect()
+                .top +
+
+            startPosition -
+
+            dellaNavbarOffset()
+        );
+
+
+    const distance =
+        targetPosition -
+        startPosition;
+
+
+    const startTime =
+        performance.now();
+
+
+    function animation(currentTime) {
+
+        const elapsed =
+            currentTime -
+            startTime;
+
+
+        const progress =
+            Math.min(
+                elapsed / duration,
+                1
+            );
+
+
+        const eased =
+            dellaEaseInOutCubic(
+                progress
+            );
+
+
+        window.scrollTo(
+            0,
+            startPosition +
+            distance * eased
+        );
+
+
+        if (progress < 1) {
+
+            dellaSectionAnimation =
+                requestAnimationFrame(
+                    animation
+                );
+
+        } else {
+
+            window.scrollTo(
+                0,
+                targetPosition
+            );
+
+
+            dellaSectionAnimation =
+                null;
+
+
+            html.style.scrollBehavior =
+                oldScrollBehavior;
+        }
+    }
+
+
+    dellaSectionAnimation =
+        requestAnimationFrame(
+            animation
+        );
+}
+
+
+/* =========================================================
+   CLICK NAVBAR HASH LINK
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const link =
+            event.target.closest(
+                "a[href]"
+            );
+
+
+        if (!link) return;
+
+
+        /*
+            Do not modify:
+            CTRL + CLICK
+            SHIFT + CLICK
+            middle click
+            target="_blank"
+        */
+        if (
+            event.button !== 0 ||
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey ||
+            link.target === "_blank"
+        ) {
+
+            return;
+        }
+
+
+        let destination;
+
+
+        try {
+
+            destination =
+                new URL(
+                    link.href,
+                    window.location.href
+                );
+
+        } catch {
+
+            return;
+        }
+
+
+        /*
+            External website?
+            Leave it alone.
+        */
+        if (
+            destination.origin !==
+            window.location.origin
+        ) {
+
+            return;
+        }
+
+
+        /*
+            No #section?
+            Leave normal navigation alone.
+        */
+        if (
+            !destination.hash ||
+            destination.hash === "#"
+        ) {
+
+            return;
+        }
+
+
+        const currentPath =
+            window.location.pathname;
+
+
+        const destinationPath =
+            destination.pathname;
+
+
+        /* =================================================
+           SAME PAGE
+        ================================================= */
+
+        if (
+            destinationPath ===
+            currentPath
+        ) {
+
+            const sectionId =
+                decodeURIComponent(
+                    destination.hash.substring(1)
+                );
+
+
+            const section =
+                document.getElementById(
+                    sectionId
+                );
+
+
+            if (!section) return;
+
+
+            event.preventDefault();
+
+
+            /*
+                Update URL without allowing browser
+                to instantly jump.
+            */
+            history.pushState(
+                null,
+                "",
+                destination.hash
+            );
+
+
+            dellaSmoothScrollTo(
+                section,
+                1500
+            );
+
+
+            return;
+        }
+
+
+        /* =================================================
+           DIFFERENT PAGE
+
+           Example:
+
+           INDEX
+             ↓
+           Industrial.html#construction
+
+           We DO NOT navigate with #construction.
+
+           Instead:
+           1. Save construction
+           2. Open Industrial.html
+           3. Wait until page completely loads
+           4. Smooth scroll
+        ================================================= */
+
+        event.preventDefault();
+
+
+        sessionStorage.setItem(
+            DELLA_SECTION_KEY,
+            JSON.stringify({
+                path:
+                    destination.pathname,
+
+                search:
+                    destination.search,
+
+                hash:
+                    destination.hash
+            })
+        );
+
+
+        /*
+            VERY IMPORTANT:
+
+            DO NOT include destination.hash here.
+
+            Correct:
+            /pages/Industrial.html
+
+            Wrong:
+            /pages/Industrial.html#construction
+
+            The wrong version causes the instant jump.
+        */
+        window.location.href =
+            destination.pathname +
+            destination.search;
+
+    }
+);
+
+
+/* =========================================================
+   DESTINATION PAGE LOAD
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        let storedTarget;
+
+
+        try {
+
+            storedTarget =
+                JSON.parse(
+                    sessionStorage.getItem(
+                        DELLA_SECTION_KEY
+                    )
+                );
+
+        } catch {
+
+            storedTarget = null;
+        }
+
+
+        if (!storedTarget) {
+            return;
+        }
+
+
+        /*
+            Make sure this is actually the page
+            the user requested.
+        */
+        if (
+            storedTarget.path !==
+            window.location.pathname
+        ) {
+
+            return;
+        }
+
+
+        sessionStorage.removeItem(
+            DELLA_SECTION_KEY
+        );
+
+
+        const sectionId =
+            decodeURIComponent(
+                storedTarget.hash.substring(1)
+            );
+
+
+        const targetSection =
+            document.getElementById(
+                sectionId
+            );
+
+
+        if (!targetSection) {
+
+            console.warn(
+                "Section ID not found:",
+                sectionId
+            );
+
+            return;
+        }
+
+
+        /*
+            Force destination page to begin at top.
+        */
+        document.documentElement.style.scrollBehavior =
+            "auto";
+
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+
+        /*
+            Update URL without triggering the
+            browser's native instant hash jump.
+        */
+        history.replaceState(
+            null,
+            "",
+            window.location.pathname +
+            window.location.search +
+            storedTarget.hash
+        );
+
+
+        /*
+            Wait for final browser layout,
+            then smoothly move down.
+        */
+        requestAnimationFrame(
+            function () {
+
+                requestAnimationFrame(
+                    function () {
+
+                        dellaSmoothScrollTo(
+                            targetSection,
+                            1500
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
