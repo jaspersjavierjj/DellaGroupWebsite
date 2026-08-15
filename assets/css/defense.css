@@ -1,3 +1,7 @@
+/* =========================================================
+   DELLA DEFENSE
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,55 +9,60 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    padding-top: 0;
     background: #000;
     font-family: "Geologica", sans-serif;
+}
+
+img,
+video {
+    max-width: 100%;
 }
 
 #page-loader {
     position: fixed;
     top: 0;
     left: 0;
-    width: 0%;
-    height: 4px;
-    background: #4B5320;
     z-index: 99999;
-
-    transition:
-        width 0.25s ease,
-        opacity 0.3s ease;
-
+    width: 0%;
+    height: 3px;
+    background: #4b5320;
     pointer-events: none;
+    transition:
+        width .25s ease,
+        opacity .3s ease;
 }
 
-/* =========================
+
+/* =========================================================
    NAVBAR
-========================= */
+========================================================= */
 
-/* Normal navbar */
 .navbar {
-    width: 100%;
-    height: 86px;
-    background: #000;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 28px;
-
     position: sticky;
     top: 0;
     z-index: 1000;
-
+    width: 100%;
+    height: 69px;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    background: #000;
     transition:
-        background-color 0.6s ease,
-        transform 0.35s ease;
+        background-color .6s ease,
+        transform .35s ease;
 }
 
-/* Olive drab navbar */
 .navbar.defense-active {
     background: #3d4519;
 }
@@ -69,22 +78,39 @@ body {
     pointer-events: none;
 }
 
+
+/* =========================================================
+   NAV LOGO
+========================================================= */
+
 .nav-logo {
     flex: 1;
+    flex-shrink: 0;
+    min-width: 0;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .nav-logo img {
-    height: 56px;
+    display: block;
+    width: auto !important;
+    height: 45px;
+    object-fit: contain;
+    object-position: left center;
 }
+
+
+/* =========================================================
+   NAV MENU
+========================================================= */
 
 .nav-menu {
     flex: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 34px;
+    gap: 27px;
 }
 
 .nav-actions {
@@ -92,12 +118,12 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 45px;
+    gap: 36px;
 }
 
 .nav-item {
     position: relative;
-    height: 86px;
+    height: 69px;
     display: flex;
     align-items: center;
 }
@@ -106,206 +132,304 @@ body {
     content: "";
     position: absolute;
     top: 100%;
-    left: -20px;
-    width: calc(100% + 40px);
-    height: 30px;
+    left: -16px;
+    width: calc(100% + 32px);
+    height: 24px;
 }
 
 .nav-item > a {
     display: inline-flex;
     align-items: center;
-    height: auto;
-    padding: 8px 0;
+    padding: 6px 0;
 }
 
 .nav-menu a,
 .nav-actions a {
     color: #fff;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 12px;
     white-space: nowrap;
 }
 
-.nav-menu a:hover,
-.nav-actions a:hover {
+.nav-menu > .nav-item > a:hover,
+.nav-actions > a:hover {
     color: #808080;
 }
 
 .nav-separator {
-    width: 2px;
-    height: 24px;
+    width: 1px;
+    height: 19px;
     background: #a8a8a7;
 }
 
 .defense-link span {
-    color: #ffffff;
+    color: #fff;
     font-weight: 700;
 }
 
 .search-link {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    cursor: pointer;
 }
 
 .search-link .material-icons {
-    font-size: 20px;
+    font-size: 16px;
 }
 
-/* DROPDOWN */
+
+/* =========================================================
+   PLUS / MINUS ICONS
+========================================================= */
+
+.company-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.company-icon,
+.list-icon {
+    position: relative;
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.icon-plus,
+.icon-minus,
+.list-icon .icon-plus,
+.list-icon .icon-minus {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 500;
+    transition:
+        opacity .55s ease,
+        transform .55s cubic-bezier(.16,1,.3,1);
+}
+
+.icon-plus,
+.list-icon .icon-plus {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+.icon-minus,
+.list-icon .icon-minus {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+
+/* =========================================================
+   NAV DROPDOWN
+========================================================= */
 
 .nav-dropdown {
     position: fixed;
-    top: 86px;
+    top: 69px;
     left: 0;
-
     width: 100%;
-    height: 360px;
-
+    height: 288px;
+    display: flex;
+    gap: 176px;
+    padding: 44px 56px;
     background: #000;
     color: #fff;
-
-    display: flex;
-    gap: 220px;
-    padding: 55px 70px;
-
+    border-top: 1px solid #242424;
+    border-bottom: 1px solid #242424;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-35px);
-
+    pointer-events: none;
+    transform: translateY(-28px);
     transition:
-        opacity 0.4s ease,
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        visibility 0s linear 0.4s;
+        opacity .4s ease,
+        transform .8s cubic-bezier(.16,1,.3,1),
+        visibility 0s linear .4s;
 }
 
 .nav-item:hover .nav-dropdown {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
-
     transition:
-        opacity 0.4s ease,
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        visibility 0s linear 0s;
+        opacity .4s ease,
+        transform .8s cubic-bezier(.16,1,.3,1),
+        visibility 0s;
 }
 
+
+/* Product dropdowns need additional height */
+.tier-products-dropdown {
+    height: 320px;
+    min-height: 320px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+/* =========================================================
+   DROPDOWN INFORMATION
+========================================================= */
+
 .dropdown-info {
-    width: 420px;
+    width: 336px;
+    flex-shrink: 0;
 }
 
 .dropdown-info h4,
 .dropdown-categories h4 {
-    font-size: 16px;
-    margin-bottom: 35px;
+    margin-bottom: 28px;
+    font-size: 13px;
 }
 
 .dropdown-info p {
-    font-size: 16px;
+    font-size: 13px;
     line-height: 1.45;
     font-weight: 400;
 }
 
+.dropdown-categories {
+    min-width: 0;
+}
+
 .dropdown-categories ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
+
+/* =========================================================
+   CLICKABLE DROPDOWN PRODUCTS
+========================================================= */
 
 .dropdown-categories li {
-    font-size: 17px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 0;
+    color: #fff;
+    font-size: 14px;
     font-weight: 400;
-    margin-bottom: 3px;
+    cursor: pointer;
 }
 
-.search-link {
+.dropdown-categories li > a {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    font: inherit;
+    line-height: 1.35;
+    white-space: normal;
+    cursor: pointer;
+    transition: color .25s ease;
 }
 
-.search-link .material-icons {
-    font-size: 20px;
+.dropdown-categories li > a:hover {
+    color: #808080;
 }
 
-/* COMPANY PLUS / MINUS ICON */
-
-.company-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
+.dropdown-categories li > a .list-icon {
+    flex: 0 0 11px;
 }
 
-.company-icon {
-    position: relative;
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-}
-
-.icon-plus,
-.icon-minus {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 18px;
-    line-height: 1;
-    font-weight: 500;
-
-    transition:
-        opacity 0.55s ease,
-        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.icon-plus {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.icon-minus {
+.dropdown-categories li:hover .icon-plus,
+.company-col li:hover .icon-plus {
     opacity: 0;
-    transform: rotate(-90deg);
+    transform: rotate(180deg);
 }
-/* keep company aligned with nav-item system */
+
+.dropdown-categories li:hover .icon-minus,
+.company-col li:hover .icon-minus {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+
+/* =========================================================
+   DELLA GROUP DROPDOWN
+========================================================= */
+
+.defense-dropdown {
+    height: 288px;
+    min-height: 288px;
+    background: #3d4519;
+}
+
+.defense-dropdown .dropdown-info h4,
+.defense-dropdown .dropdown-categories h4,
+.defense-dropdown .dropdown-info p,
+.defense-dropdown .dropdown-categories li,
+.defense-dropdown .dropdown-categories li > a {
+    color: #fff;
+}
+
+.defense-dropdown .dropdown-categories li > a:hover {
+    color: #d0d0d0;
+}
+
+
+/* =========================================================
+   COMPANY DROPDOWN
+========================================================= */
+
 .company-item {
     position: relative;
 }
 
-/* reuse your existing nav-dropdown BUT adjust layout only for company */
 .company-dropdown {
-    gap: 120px; /* same spacing system */
+    height: 288px;
+    min-height: 288px;
+    gap: 96px;
 }
 
-/* override categories into 2-column grid */
+.company-social {
+    margin-top: 32px;
+}
+
+.company-social h4 {
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 10px;
+}
+
+.company-social .ig {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
 .company-grid {
     display: flex;
-    gap: 80px;
+    gap: 64px;
 }
 
-/* container stays normal flex */
-.company-grid {
-    display: flex;
-    gap: 80px;
-}
-
-/* FIRST COLUMN (LEARN MORE) */
 .company-grid .company-col:nth-child(1) {
-    margin-left: 120px; /* keep default */
+    margin-left: 96px;
 }
 
-/* SECOND COLUMN (EXPLORE) */
 .company-grid .company-col:nth-child(2) {
-    margin-left: 50px; /* adjust this value freely */
+    margin-left: 40px;
 }
 
-/* columns inside company only */
 .company-col h4 {
-    font-size: 16px;
-    margin-bottom: 35px;
-    color: #ffffff;
+    margin-bottom: 28px;
+    color: #fff;
+    font-size: 13px;
 }
 
 .company-col ul {
@@ -314,114 +438,64 @@ body {
     margin: 0;
 }
 
-/* COMPANY LIST ITEMS WITH ICON */
 .company-col li {
     display: flex;
     align-items: center;
-    gap: 10px;
-
-    font-size: 17px;
-    font-weight: 400;
-
-    margin-bottom: 6px;
-    cursor: pointer;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 14px;
 }
 
-
-/* DELLA DEFENSE MEGA MENU */
-
-.defense-dropdown {
-    background: linear-gradient(
-        180deg,
-        #3d4519 0%,
-        #3d4519 50%,
-        #3d4519 100%
-    );
-}
-
-.defense-dropdown .dropdown-info h4,
-.defense-dropdown .dropdown-categories h4,
-.defense-dropdown .dropdown-info p,
-.defense-dropdown .dropdown-categories li {
-    color: #ffffff;
-}
-
-/* DROPDOWN LIST PLUS / MINUS ICON */
-
-.dropdown-categories li {
+.company-col li > a {
     display: flex;
     align-items: center;
-    gap: 10px;
-
-    font-size: 17px;
-    font-weight: 400;
-    margin-bottom: 6px;
-
-    cursor: pointer;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    white-space: normal;
 }
 
-.list-icon {
-    position: relative;
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    flex-shrink: 0;
+.company-col li > a:hover {
+    color: #808080;
 }
 
-.list-icon .icon-plus,
-.list-icon .icon-minus {
-    position: absolute;
-    inset: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* =========================================================
+   PAGE
+========================================================= */
 
-    font-size: 18px;
-    line-height: 1;
-    font-weight: 500;
-
-    transition:
-        opacity 0.55s ease,
-        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+.page-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    overflow: hidden;
 }
 
-.list-icon .icon-plus {
-    opacity: 1;
-    transform: rotate(0deg);
+.page-content.blur {
+    filter: blur(6px);
+    pointer-events: none;
+    transition: filter .3s ease;
 }
 
-.list-icon .icon-minus {
-    opacity: 0;
-    transform: rotate(-90deg);
-}
 
-.dropdown-categories li:hover .icon-plus {
-    opacity: 0;
-    transform: rotate(180deg);
-}
-
-.dropdown-categories li:hover .icon-minus {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-/* =========================
-   FIRST PAGE
-========================= */
+/* =========================================================
+   HERO
+========================================================= */
 
 .first-page {
     width: 100%;
+    padding: 0 clamp(12px,1.5vw,28px) clamp(12px,1.5vw,28px);
     background: #000;
-    padding: 0 28px 28px;
 }
 
 .hero-placeholder {
     width: 100%;
-    height: 770px;
+    height: auto;
+    min-height: clamp(460px,68vh,780px);
+    aspect-ratio: 16 / 8.2;
     overflow: hidden;
     background: #0b0b0b;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .hero-placeholder__picture {
@@ -431,80 +505,83 @@ body {
 }
 
 .hero-placeholder__img {
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
     object-position: center;
 }
 
 
-
-
-/* =========================
+/* =========================================================
    SECTOR GRID
-========================= */
+========================================================= */
 
 .sector-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 30px;
-
-    padding: 0 28px 28px;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: clamp(14px,1.6vw,30px);
+    padding: 0 clamp(12px,1.5vw,28px) clamp(12px,1.5vw,28px);
     background: #000;
 }
 
 .sector {
     position: relative;
+    width: 100%;
+    height: auto;
+    min-height: clamp(340px,30vw,500px);
+    aspect-ratio: 4 / 3;
     overflow: hidden;
-    cursor: pointer;
-    border-radius: 4px;
-    height: 480px;
+    border-radius: 3px;
     background: #b3b3b3;
-}
-
-.sector {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .sector-img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-
-    transition: transform 1s ease, filter 1s ease;
+    transition:
+        transform 1s ease,
+        filter 1s ease;
 }
 
 .sector::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.1)
-    );
     z-index: 1;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.8),
+            rgba(0,0,0,.35),
+            rgba(0,0,0,.1)
+        );
 }
 
 .sector:hover .sector-img {
     transform: scale(1.05);
-    filter: brightness(0.85);
+    filter: brightness(.85);
 }
+
+
+/* =========================================================
+   SECTOR TEXT
+========================================================= */
 
 .sector-content {
     position: absolute;
-    left: 38px;
-    right: 38px; 
-    bottom: 38px;
-    max-width: 520px;
+    left: clamp(22px,3vw,38px);
+    right: clamp(22px,3vw,38px);
+    bottom: clamp(24px,3vw,38px);
     z-index: 2;
-
-    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 520px;
+    transition:
+        transform .9s cubic-bezier(.16,1,.3,1);
 }
 
 .sector:hover .sector-content {
@@ -515,68 +592,52 @@ body {
 .sector p {
     color: #fff;
     text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.6),
-        0 1px 2px rgba(0, 0, 0, 0.8);
+        0 2px 8px rgba(0,0,0,.6),
+        0 1px 2px rgba(0,0,0,.8);
 }
 
 .sector h3 {
-    font-size: 30px;
-    font-weight: 700;
-    color: #fff;
     margin-bottom: 8px;
+    font-size: clamp(24px,2.5vw,30px);
+    font-weight: 700;
 }
 
 .sector p {
-    font-size: 20px;
+    flex: 1;
+    margin: 0;
+    font-size: clamp(15px,1.5vw,20px);
     font-weight: 400;
-    color: #fff;
     line-height: 1.25;
-
     opacity: 0;
     transform: translateY(18px);
     clip-path: inset(0 0 100% 0);
-
     transition:
-        opacity 0.9s ease,
-        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-        clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity .9s ease,
+        transform .9s cubic-bezier(.16,1,.3,1),
+        clip-path .9s cubic-bezier(.16,1,.3,1);
 }
 
 .sector:hover p {
     opacity: 1;
     transform: translateY(0);
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0);
 }
 
 .sector-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
-}
-
-.sector-link p {
-    margin: 0;
-    flex: 1;
-}
-
-.sector-arrow-link {
-    color: inherit;
-    text-decoration: none;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .sector-arrow {
-    font-size: 26px;
     color: #fff;
-
+    font-size: 26px;
     opacity: 0;
     transform: translateY(18px);
-
     transition:
-        opacity 0.9s ease,
-        transform 0.3s ease;
+        opacity .9s ease,
+        transform .3s ease;
 }
 
 .sector:hover .sector-arrow {
@@ -584,131 +645,145 @@ body {
     transform: translateY(0);
 }
 
-.sector-arrow-link:hover .sector-arrow {
-    transform: translateY(0) scale(1.15);
+
+/* =========================================================
+   SUPPORT / STRATEGIC ENGAGEMENT GRID
+========================================================= */
+
+.sector-grid--additional {
+    grid-template-columns: repeat(2,minmax(0,1fr));
 }
 
-.sector:hover .sector-arrow {
-    opacity: 1;
-    transform: translateY(0);
+.sector-grid--additional .sector {
+    aspect-ratio: 16 / 8.5;
+    min-height: clamp(340px,29vw,500px);
 }
 
-.final-frontier {
-    width: 100%;
-    min-height: 100vh;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    /* controlled vertical breathing space */
-    padding: 150px 20px;
+.sector-grid--additional .sector-content {
+    max-width: 620px;
 }
 
-.final-frontier h1 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(42px, 9vw, 110px);
-    font-weight: 500;
-    color: #fff;
-    line-height: 1.05;
-    letter-spacing: -5px;
-    text-transform: uppercase;
-    margin: 0;
-}
 
-/* SURVIVE emphasis */
-.final-frontier .big-word {
-    display: inline-block;
-    font-size: 1.35em;
-    font-weight: 600;
+/* =========================================================
+   DELLA DEFENSE SUSTAINMENT MESSAGE
+========================================================= */
+
+.defense-sustainment {
     position: relative;
-    margin: 0px 0;
-}
-
-.final-frontier .logo-line {
+    width: 100%;
+    min-height: clamp(420px,35vw,610px);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 12px;
+    overflow: hidden;
+    padding: clamp(70px,8vw,118px) 28px;
+    background: #0d0e0e;
+    color: #fff;
+    text-align: center;
 }
 
-/* the horizontal lines */
-.final-frontier .logo-line .line {
-    flex: 1;
-    height: 2px;
-    background: #4B5320;
-    opacity: 0.9;
+.defense-sustainment::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+    background-size: 32px 32px;
+    opacity: .85;
 }
 
-/* logo in the middle */
-.final-frontier .logo-line img {
-    height: 38px;   /* adjust size */
-    width: auto;
+.defense-sustainment::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 50% -28%,
+            rgba(255,255,255,.08),
+            transparent 40%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.18),
+            rgba(0,0,0,.05) 26%,
+            rgba(0,0,0,.18)
+        );
+}
+
+.defense-sustainment__inner {
+    position: relative;
+    z-index: 2;
+    width: min(1220px,100%);
+    margin: 0 auto;
+}
+
+.defense-sustainment__logo {
+    display: block;
+    width: auto !important;
+    height: clamp(54px,5vw,78px);
+    margin: 0 auto clamp(34px,3.6vw,52px);
+    object-fit: contain;
+}
+
+.defense-sustainment__title {
+    margin: 0;
+    color: #fff;
+    font-family: "Geologica", sans-serif;
+    font-size: clamp(34px,4vw,64px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: .015em;
+    text-transform: uppercase;
+}
+
+.defense-sustainment__title span,
+.defense-sustainment__title strong {
     display: block;
 }
 
-/* RED section */
-.final-frontier .red-block {
-    color: #ff2a2a;
-    font-weight: 500;
-    margin-top: 20px;
-    line-height: 1.05;
+.defense-sustainment__title strong {
+    margin-top: clamp(8px,1vw,14px);
+    color: #ff1111;
+    font-weight: 700;
 }
 
-/* tighten default br spacing */
-.final-frontier br {
-    line-height: 1;
+.defense-sustainment__subline {
+    margin: clamp(28px,3vw,44px) 0 0;
+    color: #fff;
+    font-size: clamp(14px,1.35vw,20px);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: .045em;
+    text-transform: uppercase;
 }
 
-/* =========================
-   DELLA DEFENSE SECTION
-========================= */
-
-.defense-section {
-    width: 100%;
-    background: #000000;
-
-    padding: 30px;
-    margin: 0px;
-
-    width: calc(100%);
+.defense-sustainment__green {
+    color: #28e33f;
+    font-weight: 600;
 }
 
-.defense-media {
-    width: 100%;
-    height: 600px;
-
-    background: #ffffff;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.defense-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.defense-sustainment__red {
+    color: #ff1111;
+    font-weight: 600;
 }
 
 
-
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 .footer {
     width: 100%;
-    min-height: 420px;
-    background: #000;
-    color: #fff;
-
+    min-height: 336px;
     display: grid;
     grid-template-columns: 1.3fr 1.4fr;
-    gap: 80px;
-
-    padding: 46px 32px 36px;
+    gap: 64px;
+    padding: 37px 26px 29px;
+    background: #000;
+    color: #fff;
 }
 
 .footer-left {
@@ -718,45 +793,43 @@ body {
 }
 
 .footer-logo {
-    height: 45px;
-    width: auto;
     display: block;
+    width: auto !important;
+    height: 36px;
+    margin-bottom: 124px;
     object-fit: contain;
-
-    margin-bottom: 155px;
 }
 
 .footer-addresses {
     margin-top: 0;
 }
 
-.footer-address h4,
-.footer-col h4 {
-    font-size: 15px;
-    font-weight: 700;
+.footer-address h4 {
+    margin-bottom: 8px;
     color: #fff;
-    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .footer-address p {
-    font-size: 14px;
+    color: #fff;
+    font-size: 11px;
     font-weight: 400;
     line-height: 1.45;
-    color: #fff;
 }
 
 .footer-line {
-    width: 220px;
+    width: 176px;
     height: 1px;
+    margin: 14px 0;
     background: #999;
-    margin: 18px 0;
 }
 
 .footer-columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 90px;
-    padding-top: 12px;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 72px;
+    padding-top: 10px;
 }
 
 .footer-col {
@@ -764,824 +837,15 @@ body {
     flex-direction: column;
 }
 
-.footer-col h4 {
-    color: #9a9a9a;
-    margin-bottom: 34px;
-}
-
-.footer-col a {
-    color: #fff;
-    text-decoration: none;
-
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.55;
-}
-
-.footer-col a:hover {
-    color: #808080;
-}
-
-/* =========================================================
-   RESPONSIVE 80%-STYLE DESKTOP SCALE + FULL-WIDTH COVER
-   Appended overrides
-   ========================================================= */
-
-html,
-body {
-    width: 100%;
-    max-width: none;
-    overflow-x: hidden;
-}
-
-body,
-.navbar,
-.nav-dropdown,
-.first-page,
-.hero-placeholder,
-.sector-grid,
-.final-frontier,
-.defense-section,
-.defense-media,
-.footer {
-    width: 100%;
-    max-width: none;
-}
-
-.hero-placeholder,
-.sector,
-.sector-img,
-.defense-media,
-.defense-media video {
-    background-size: cover;
-    background-position: center;
-}
-
-img,
-video {
-    max-width: 100%;
-}
-
-/* =========================
-   DESKTOP — 80% VISUAL SCALE
-========================= */
-
-@media (min-width: 1101px) {
-
-    .navbar {
-        height: 69px;
-        padding: 0 22px;
-    }
-
-    .nav-logo img {
-        height: 45px;
-    }
-
-    .nav-menu {
-        gap: 27px;
-    }
-
-    .nav-actions {
-        gap: 36px;
-    }
-
-    .nav-item {
-        height: 69px;
-    }
-
-    .nav-item::after {
-        left: -16px;
-        width: calc(100% + 32px);
-        height: 24px;
-    }
-
-    .nav-item > a {
-        padding: 6px 0;
-    }
-
-    .nav-menu a,
-    .nav-actions a {
-        font-size: 12px;
-    }
-
-    .nav-separator {
-        width: 1px;
-        height: 19px;
-    }
-
-    .search-link {
-        gap: 6px;
-    }
-
-    .search-link .material-icons {
-        font-size: 16px;
-    }
-
-    .nav-dropdown {
-        top: 69px;
-        height: 288px;
-        gap: 176px;
-        padding: 44px 56px;
-        transform: translateY(-28px);
-    }
-
-    .dropdown-info {
-        width: 336px;
-    }
-
-    .dropdown-info h4,
-    .dropdown-categories h4,
-    .company-col h4 {
-        font-size: 13px;
-        margin-bottom: 28px;
-    }
-
-    .dropdown-info p {
-        font-size: 13px;
-    }
-
-    .dropdown-categories li,
-    .company-col li {
-        gap: 8px;
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-
-    .company-link {
-        gap: 6px;
-    }
-
-    .company-icon,
-    .list-icon {
-        width: 11px;
-        height: 11px;
-    }
-
-    .icon-plus,
-    .icon-minus,
-    .list-icon .icon-plus,
-    .list-icon .icon-minus {
-        font-size: 14px;
-    }
-
-    .company-dropdown {
-        gap: 96px;
-    }
-
-    .company-grid {
-        gap: 64px;
-    }
-
-    .company-grid .company-col:nth-child(1) {
-        margin-left: 96px;
-    }
-
-    .company-grid .company-col:nth-child(2) {
-        margin-left: 40px;
-    }
-
-    .first-page {
-        padding: 0 22px 22px;
-    }
-
-    .hero-placeholder {
-        height: 616px;
-        border-radius: 3px;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .sector-grid {
-        gap: 24px;
-        padding: 0 22px 22px;
-    }
-
-    .sector {
-        height: 384px;
-        border-radius: 3px;
-    }
-
-    .sector-content {
-        left: 30px;
-        right: 30px;
-        bottom: 30px;
-        max-width: 416px;
-    }
-
-    .sector:hover .sector-content {
-        transform: translateY(-18px);
-    }
-
-    .sector h3 {
-        font-size: 24px;
-        margin-bottom: 6px;
-    }
-
-    .sector p {
-        font-size: 16px;
-        transform: translateY(14px);
-    }
-
-    .sector-arrow {
-        font-size: 21px;
-        transform: translateY(14px);
-    }
-
-    .final-frontier {
-        min-height: 80vh;
-        padding: 120px 16px;
-    }
-
-    .final-frontier h1 {
-        font-size: clamp(34px, 7.2vw, 88px);
-        letter-spacing: -4px;
-    }
-
-    .final-frontier .logo-line {
-        gap: 12px;
-        margin-top: 10px;
-    }
-
-    .final-frontier .logo-line .line {
-        height: 1px;
-    }
-
-    .final-frontier .logo-line img {
-        height: 30px;
-    }
-
-    .final-frontier .red-block {
-        margin-top: 16px;
-    }
-
-    .defense-section {
-        padding: 24px;
-    }
-
-    .defense-media {
-        height: 480px;
-    }
-
-    .footer {
-        min-height: 336px;
-        gap: 64px;
-        padding: 37px 26px 29px;
-    }
-
-    .footer-logo {
-        height: 36px;
-        margin-bottom: 124px;
-    }
-
-    .footer-address h4,
-    .footer-col h4 {
-        font-size: 12px;
-        margin-bottom: 8px;
-    }
-
-    .footer-address p {
-        font-size: 11px;
-    }
-
-    .footer-line {
-        width: 176px;
-        margin: 14px 0;
-    }
-
-    .footer-columns {
-        gap: 72px;
-        padding-top: 10px;
-    }
-
-    .footer-col h4 {
-        margin-bottom: 27px;
-    }
-
-    .footer-col a {
-        font-size: 12px;
-    }
-}
-
-/* =========================
-   LARGE DESKTOP
-========================= */
-
-@media (min-width: 1440px) {
-    .navbar {
-        padding-left: 28px;
-        padding-right: 28px;
-    }
-
-    .first-page,
-    .sector-grid {
-        padding-left: 28px;
-        padding-right: 28px;
-    }
-
-    .sector-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .hero-placeholder,
-    .sector-img,
-    .defense-media video {
-        object-fit: cover;
-    }
-}
-
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 1100px) {
-
-    .navbar {
-        height: 72px;
-        padding: 0 20px;
-    }
-
-    .nav-logo img {
-        height: 44px;
-    }
-
-    .nav-menu {
-        gap: 18px;
-    }
-
-    .nav-actions {
-        gap: 22px;
-    }
-
-    .nav-item {
-        height: 72px;
-    }
-
-    .nav-menu a,
-    .nav-actions a {
-        font-size: 13px;
-    }
-
-    .nav-dropdown {
-        top: 72px;
-        height: auto;
-        min-height: 290px;
-        gap: 56px;
-        padding: 38px 32px;
-    }
-
-    .dropdown-info {
-        width: 38%;
-    }
-
-    .company-dropdown {
-        gap: 48px;
-    }
-
-    .company-grid {
-        gap: 36px;
-    }
-
-    .company-grid .company-col:nth-child(1),
-    .company-grid .company-col:nth-child(2) {
-        margin-left: 0;
-    }
-
-    .hero-placeholder {
-        height: 62vw;
-        min-height: 470px;
-        max-height: 680px;
-    }
-
-    .sector-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
-        padding: 0 22px 22px;
-    }
-
-    .sector {
-        height: 430px;
-    }
-
-    .sector-content {
-        left: 28px;
-        right: 28px;
-        bottom: 28px;
-    }
-
-    .sector h3 {
-        font-size: 26px;
-    }
-
-    .sector p {
-        font-size: 17px;
-    }
-
-    .final-frontier {
-        min-height: 75vh;
-        padding: 110px 24px;
-    }
-
-    .final-frontier h1 {
-        font-size: clamp(38px, 8vw, 82px);
-        letter-spacing: -3px;
-    }
-
-    .defense-section {
-        padding: 22px;
-    }
-
-    .defense-media {
-        height: 58vw;
-        min-height: 440px;
-        max-height: 620px;
-    }
-
-    .footer {
-        grid-template-columns: 1fr;
-        gap: 50px;
-        padding: 38px 28px;
-    }
-
-    .footer-logo {
-        margin-bottom: 60px;
-    }
-
-    .footer-columns {
-        gap: 50px;
-    }
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .navbar {
-        height: 64px;
-        padding: 0 16px;
-    }
-
-    .nav-logo img {
-        height: 38px;
-    }
-
-    .nav-menu {
-        display: none;
-    }
-
-    .nav-actions {
-        gap: 16px;
-    }
-
-    .nav-actions a {
-        font-size: 12px;
-    }
-
-    .nav-separator {
-        height: 18px;
-    }
-
-    .nav-dropdown {
-        display: none;
-    }
-
-    .first-page {
-        padding: 0 14px 14px;
-    }
-
-    .hero-placeholder {
-        height: 72vh;
-        min-height: 460px;
-        max-height: 700px;
-        border-radius: 3px;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .sector-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        padding: 0 14px 14px;
-    }
-
-    .sector {
-        height: 62vh;
-        min-height: 390px;
-        max-height: 560px;
-    }
-
-    .sector-content {
-        left: 22px;
-        right: 22px;
-        bottom: 24px;
-    }
-
-    .sector h3 {
-        font-size: 24px;
-    }
-
-    .sector p {
-        font-size: 16px;
-        opacity: 1;
-        transform: none;
-        clip-path: none;
-    }
-
-    .sector-arrow {
-        font-size: 22px;
-        opacity: 1;
-        transform: none;
-    }
-
-    .sector:hover .sector-content,
-    .sector:hover p,
-    .sector:hover .sector-arrow {
-        transform: none;
-    }
-
-    .final-frontier {
-        min-height: 70vh;
-        padding: 90px 18px;
-    }
-
-    .final-frontier h1 {
-        font-size: clamp(34px, 12vw, 62px);
-        line-height: 1.08;
-        letter-spacing: -2px;
-    }
-
-    .final-frontier .big-word {
-        font-size: 1.22em;
-    }
-
-    .final-frontier .logo-line {
-        gap: 9px;
-        margin-top: 10px;
-    }
-
-    .final-frontier .logo-line img {
-        height: 26px;
-    }
-
-    .final-frontier .red-block {
-        margin-top: 14px;
-    }
-
-    .defense-section {
-        padding: 14px;
-    }
-
-    .defense-media {
-        height: 58vh;
-        min-height: 360px;
-        max-height: 560px;
-    }
-
-    .defense-media video {
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .footer {
-        min-height: 0;
-        grid-template-columns: 1fr;
-        gap: 38px;
-        padding: 34px 22px;
-    }
-
-    .footer-logo {
-        height: 36px;
-        margin-bottom: 44px;
-    }
-
-    .footer-address h4,
-    .footer-col h4 {
-        font-size: 13px;
-    }
-
-    .footer-address p {
-        font-size: 12px;
-    }
-
-    .footer-columns {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 32px 22px;
-        padding-top: 0;
-    }
-
-    .footer-col h4 {
-        margin-bottom: 20px;
-    }
-
-    .footer-col a {
-        font-size: 13px;
-    }
-}
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 480px) {
-
-    .nav-actions .search-link span:not(.material-icons) {
-        display: none;
-    }
-
-    .hero-placeholder {
-        min-height: 420px;
-    }
-
-    .sector {
-        min-height: 360px;
-    }
-
-    .final-frontier {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-
-    .footer-columns {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-
-/* =========================================================
-   DELLA DEFENSE RESPONSIVE SYSTEM
-   Shared behavior with the main Della website.
-========================================================= */
-
-html,
-body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    padding-top: 0;
-}
-
-.page-content {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    overflow: hidden;
-}
-
-img,
-video {
-    max-width: 100%;
-}
-
-.nav-logo {
-    flex-shrink: 0;
-    min-width: 0;
-}
-
-.nav-logo img,
-.footer-logo {
-    width: auto !important;
-    object-fit: contain;
-}
-
-/* =========================
-   MOBILE NAVIGATION
-========================= */
-
-.mobile-menu-btn {
-    display: none;
-    position: relative;
-    z-index: 1002;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-}
-
-.mobile-menu-btn .material-icons {
-    font-size: 34px;
-}
-
-.mobile-menu-panel {
-    position: fixed;
-    top: 76px;
-    left: 0;
-    z-index: 999;
-    width: 100%;
-    height: calc(100dvh - 76px);
-    padding: 30px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    background: #000;
-    transform: translateX(100%);
-    transition: transform .35s ease;
-}
-
-.mobile-menu-panel.active {
-    transform: translateX(0);
-}
-
-.mobile-menu-panel a {
-    color: #fff;
-    text-decoration: none;
-    font-family: "Geologica", sans-serif;
-    font-size: 22px;
-    font-weight: 500;
-}
-
-.mobile-menu-panel a:hover {
-    color: #808080;
-}
-
-body.mobile-menu-open {
-    overflow: hidden;
-    touch-action: none;
-}
-
-/* =========================
-   FLUID CONTENT
-========================= */
-
-.first-page,
-.sector-grid {
-    padding-left: clamp(12px, 1.5vw, 28px);
-    padding-right: clamp(12px, 1.5vw, 28px);
-    padding-bottom: clamp(12px, 1.5vw, 28px);
-}
-
-.hero-placeholder {
-    width: 100%;
-    height: auto;
-    min-height: clamp(460px, 68vh, 780px);
-    aspect-ratio: 16 / 8.2;
-}
-
-.sector-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(14px, 1.6vw, 30px);
-}
-
-.sector {
-    width: 100%;
-    height: auto;
-    min-height: clamp(340px, 30vw, 500px);
-    aspect-ratio: 4 / 3;
-}
-
-.sector-content {
-    left: clamp(22px, 3vw, 38px);
-    right: clamp(22px, 3vw, 38px);
-    bottom: clamp(24px, 3vw, 38px);
-}
-
-.sector h3 {
-    font-size: clamp(24px, 2.5vw, 30px);
-}
-
-.sector p {
-    font-size: clamp(15px, 1.5vw, 20px);
-}
-
-.defense-section {
-    padding: clamp(14px, 2vw, 30px);
-}
-
-.defense-media {
-    width: 100%;
-    height: auto;
-    min-height: clamp(360px, 42vw, 650px);
-    aspect-ratio: 16 / 7;
-}
-
-.defense-media video {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
 .footer-toggle {
     display: flex;
     padding: 0;
-    margin-bottom: 34px;
+    margin-bottom: 27px;
     border: 0;
     background: transparent;
     color: #9a9a9a;
     font-family: "Geologica", sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     text-align: left;
     pointer-events: none;
@@ -1599,14 +863,19 @@ body.mobile-menu-open {
 .footer-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.55;
 }
 
-/* =========================
+.footer-links a:hover {
+    color: #808080;
+}
+
+
+/* =========================================================
    SCROLL TO TOP
-========================= */
+========================================================= */
 
 .scroll-to-top {
     position: fixed;
@@ -1659,11 +928,311 @@ body.mobile-menu-open .scroll-to-top {
     pointer-events: none;
 }
 
-/* =========================
-   TABLET / COMPACT NAVBAR
-========================= */
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+.mobile-menu-btn {
+    display: none;
+    position: relative;
+    z-index: 1002;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.mobile-menu-btn .material-icons {
+    font-size: 34px;
+}
+
+.mobile-menu-panel {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: calc(100dvh - 76px);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 30px 24px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #000;
+    transform: translateX(100%);
+    transition: transform .35s ease;
+}
+
+.mobile-menu-panel.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-panel a {
+    color: #fff;
+    text-decoration: none;
+    font-family: "Geologica", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.mobile-menu-panel a:hover {
+    color: #808080;
+}
+
+body.mobile-menu-open {
+    overflow: hidden;
+    touch-action: none;
+}
+
+
+/* =========================================================
+   GLOBAL SEARCH
+========================================================= */
+
+.site-search-panel {
+    position: fixed;
+    top: 69px;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    max-height: min(620px,calc(100vh - 69px));
+    background: #000;
+    color: #fff;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-24px);
+    transition:
+        opacity .28s ease,
+        transform .45s cubic-bezier(.16,1,.3,1),
+        visibility 0s linear .45s;
+}
+
+.site-search-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition:
+        opacity .28s ease,
+        transform .45s cubic-bezier(.16,1,.3,1),
+        visibility 0s;
+}
+
+.site-search-inner {
+    width: 100%;
+    max-height: min(620px,calc(100vh - 69px));
+    padding: 34px 42px 32px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.site-search-topline {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.site-search-field-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid rgba(255,255,255,.72);
+}
+
+.site-search-field-wrap .material-icons {
+    flex: 0 0 auto;
+    color: #fff;
+    font-size: 25px;
+}
+
+.site-search-input {
+    width: 100%;
+    height: 62px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-family: "Geologica", sans-serif;
+    font-size: clamp(24px,2.2vw,38px);
+    font-weight: 400;
+    letter-spacing: -.02em;
+}
+
+.site-search-input::placeholder {
+    color: rgba(255,255,255,.45);
+}
+
+.site-search-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.site-search-close {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition:
+        background-color .22s ease,
+        border-color .22s ease,
+        transform .22s ease;
+}
+
+.site-search-close:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.7);
+}
+
+.site-search-close:active {
+    transform: scale(.94);
+}
+
+.site-search-close .material-icons {
+    font-size: 22px;
+}
+
+.site-search-helper {
+    margin-top: 14px;
+    color: rgba(255,255,255,.48);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.site-search-results {
+    margin-top: 26px;
+}
+
+.site-search-status {
+    padding: 12px 0 2px;
+    color: rgba(255,255,255,.55);
+    font-size: 13px;
+}
+
+.site-search-result-list {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 0 34px;
+}
+
+.site-search-result {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,.12);
+    color: #fff;
+    text-decoration: none;
+    transition:
+        opacity .2s ease,
+        padding-left .25s ease;
+}
+
+.site-search-result:hover {
+    padding-left: 8px;
+}
+
+.site-search-result-main {
+    min-width: 0;
+}
+
+.site-search-result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-bottom: 6px;
+    color: rgba(255,255,255,.48);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.site-search-result-code {
+    color: #aab36a;
+    font-weight: 600;
+}
+
+.site-search-result-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.site-search-result-description {
+    margin-top: 5px;
+    color: rgba(255,255,255,.58);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.site-search-result-arrow {
+    color: rgba(255,255,255,.72);
+    font-size: 23px;
+    transition: transform .25s ease;
+}
+
+.site-search-result:hover .site-search-result-arrow {
+    transform: translate(3px,-3px);
+}
+
+.site-search-empty {
+    padding: 24px 0 4px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.58);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+body.site-search-open .nav-dropdown {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1440px) {
+    .navbar {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .first-page,
+    .sector-grid {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 1100px) {
+
     body {
         padding-top: 76px;
     }
@@ -1683,7 +1252,8 @@ body.mobile-menu-open .scroll-to-top {
     }
 
     .nav-logo img {
-        max-width: min(72vw, 320px);
+        width: auto !important;
+        max-width: min(72vw,320px);
         height: 44px;
     }
 
@@ -1697,17 +1267,46 @@ body.mobile-menu-open .scroll-to-top {
         display: inline-flex;
     }
 
+    .page-content.blur {
+        filter: none;
+        pointer-events: auto;
+    }
+
     .hero-placeholder {
-        min-height: clamp(480px, 62vw, 680px);
+        min-height: clamp(480px,62vw,680px);
     }
 
     .sector-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2,minmax(0,1fr));
     }
 
     .sector.infrastructure {
         grid-column: 1 / -1;
         aspect-ratio: 16 / 7;
+    }
+
+    .sector-grid--additional {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+
+    .sector-grid--additional .sector {
+        grid-column: auto;
+        aspect-ratio: 4 / 3;
+        min-height: clamp(340px,43vw,470px);
+    }
+
+    .defense-sustainment {
+        min-height: 470px;
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+
+    .defense-sustainment__title {
+        font-size: clamp(34px,5.4vw,56px);
+    }
+
+    .defense-sustainment__subline {
+        font-size: clamp(13px,1.8vw,18px);
     }
 
     .footer {
@@ -1720,7 +1319,7 @@ body.mobile-menu-open .scroll-to-top {
     }
 
     .footer-columns {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3,minmax(0,1fr));
         gap: 38px;
     }
 
@@ -1730,13 +1329,29 @@ body.mobile-menu-open .scroll-to-top {
         width: 46px;
         height: 46px;
     }
+
+    .site-search-panel {
+        top: 76px;
+        max-height: calc(100vh - 76px);
+    }
+
+    .site-search-inner {
+        max-height: calc(100vh - 76px);
+        padding: 28px 24px 30px;
+    }
+
+    .site-search-result-list {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* =========================
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media (max-width: 768px) {
+
     body {
         padding-top: 70px;
     }
@@ -1747,7 +1362,8 @@ body.mobile-menu-open .scroll-to-top {
     }
 
     .nav-logo img {
-        max-width: min(70vw, 280px);
+        width: auto !important;
+        max-width: min(70vw,280px);
         height: 40px;
     }
 
@@ -1764,7 +1380,7 @@ body.mobile-menu-open .scroll-to-top {
     }
 
     .hero-placeholder {
-        min-height: clamp(500px, 82svh, 730px);
+        min-height: clamp(500px,82svh,730px);
         aspect-ratio: 9 / 13;
         border-radius: 0;
     }
@@ -1778,7 +1394,7 @@ body.mobile-menu-open .scroll-to-top {
     .sector,
     .sector.infrastructure {
         grid-column: auto;
-        min-height: clamp(360px, 105vw, 500px);
+        min-height: clamp(360px,105vw,500px);
         aspect-ratio: 4 / 5;
     }
 
@@ -1802,13 +1418,39 @@ body.mobile-menu-open .scroll-to-top {
         transform: none;
     }
 
-    .defense-section {
-        padding: 14px;
+    .sector-grid--additional {
+        grid-template-columns: 1fr;
     }
 
-    .defense-media {
-        min-height: clamp(340px, 100vw, 480px);
-        aspect-ratio: 4 / 3;
+    .sector-grid--additional .sector {
+        min-height: clamp(360px,105vw,500px);
+        aspect-ratio: 4 / 5;
+    }
+
+    .defense-sustainment {
+        min-height: 430px;
+        padding: 72px 18px;
+    }
+
+    .defense-sustainment__logo {
+        height: 52px;
+        margin-bottom: 34px;
+    }
+
+    .defense-sustainment__title {
+        font-size: clamp(30px,8vw,46px);
+        line-height: 1.1;
+    }
+
+    .defense-sustainment__title strong {
+        margin-top: 12px;
+    }
+
+    .defense-sustainment__subline {
+        max-width: 680px;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: clamp(12px,3.4vw,16px);
     }
 
     .footer {
@@ -1823,10 +1465,10 @@ body.mobile-menu-open .scroll-to-top {
     }
 
     .footer-addresses {
+        width: 100%;
         display: grid;
         grid-template-columns: 1.2fr 1px 1fr;
         gap: 18px;
-        width: 100%;
     }
 
     .footer-line {
@@ -1838,8 +1480,8 @@ body.mobile-menu-open .scroll-to-top {
     }
 
     .footer-address h4 {
-        font-size: 13px;
         color: #9a9a9a;
+        font-size: 13px;
     }
 
     .footer-address p {
@@ -1870,7 +1512,8 @@ body.mobile-menu-open .scroll-to-top {
         color: #fff;
         font-size: 28px;
         line-height: 1;
-        transition: transform .35s cubic-bezier(.16,1,.3,1);
+        transition:
+            transform .35s cubic-bezier(.16,1,.3,1);
     }
 
     .footer-col.active .footer-icon {
@@ -1905,13 +1548,68 @@ body.mobile-menu-open .scroll-to-top {
         width: 44px;
         height: 44px;
     }
+
+    .site-search-panel {
+        top: 70px;
+        max-height: calc(100svh - 70px);
+    }
+
+    .site-search-inner {
+        max-height: calc(100svh - 70px);
+        padding: 24px 18px 28px;
+    }
+
+    .site-search-topline {
+        gap: 12px;
+    }
+
+    .site-search-field-wrap {
+        gap: 10px;
+    }
+
+    .site-search-field-wrap .material-icons {
+        font-size: 22px;
+    }
+
+    .site-search-input {
+        height: 56px;
+        font-size: 24px;
+    }
+
+    .site-search-close {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+
+    .site-search-helper {
+        font-size: 11px;
+    }
+
+    .site-search-results {
+        margin-top: 20px;
+    }
+
+    .site-search-result {
+        padding: 16px 0;
+    }
+
+    .site-search-result-title {
+        font-size: 17px;
+    }
+
+    .site-search-result-description {
+        font-size: 12px;
+    }
 }
 
-/* =========================
+
+/* =========================================================
    SMALL MOBILE
-========================= */
+========================================================= */
 
 @media (max-width: 480px) {
+
     .nav-logo img {
         max-width: 68vw;
         height: 36px;
@@ -1921,12 +1619,28 @@ body.mobile-menu-open .scroll-to-top {
         min-height: 520px;
     }
 
-    .sector {
+    .sector,
+    .sector-grid--additional .sector {
         min-height: 350px;
     }
 
-    .defense-media {
-        min-height: 320px;
+    .defense-sustainment {
+        min-height: 390px;
+        padding: 60px 14px;
+    }
+
+    .defense-sustainment__logo {
+        height: 46px;
+        margin-bottom: 30px;
+    }
+
+    .defense-sustainment__title {
+        font-size: clamp(27px,8.5vw,38px);
+    }
+
+    .defense-sustainment__subline {
+        font-size: 12px;
+        letter-spacing: .02em;
     }
 
     .footer {
@@ -1955,7 +1669,27 @@ body.mobile-menu-open .scroll-to-top {
         width: 42px;
         height: 42px;
     }
+
+    .site-search-inner {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .site-search-input {
+        font-size: 21px;
+    }
+
+    .site-search-close {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+    }
 }
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
     .mobile-menu-panel,
@@ -1964,778 +1698,17 @@ body.mobile-menu-open .scroll-to-top {
     }
 }
 
-/* =========================================================
-   ADDITIONAL DEFENSE SECTORS
-   Uses the existing .sector hover and scramble-text system
-========================================================= */
-
-.sector-grid--additional {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-/*
-   No separate hover animation is added here.
-   These cards inherit the existing:
-   - image zoom
-   - text reveal
-   - arrow reveal
-   - scramble text JavaScript
-   from the standard .sector classes.
-*/
-
-.sector-grid--additional .sector {
-    aspect-ratio: 16 / 8.5;
-    min-height: clamp(340px, 29vw, 500px);
-}
-
-.sector-grid--additional .sector-content {
-    max-width: 620px;
-}
-
-/* Keep the two cards side by side on tablet */
-@media (max-width: 1100px) {
-    .sector-grid--additional {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .sector-grid--additional .sector {
-        grid-column: auto;
-        aspect-ratio: 4 / 3;
-        min-height: clamp(340px, 43vw, 470px);
-    }
-}
-
-/* Stack on mobile and keep descriptions visible */
-@media (max-width: 768px) {
-    .sector-grid--additional {
-        grid-template-columns: 1fr;
-    }
-
-    .sector-grid--additional .sector {
-        min-height: clamp(360px, 105vw, 500px);
-        aspect-ratio: 4 / 5;
-    }
-}
-
-@media (max-width: 480px) {
-    .sector-grid--additional .sector {
-        min-height: 350px;
-    }
-}
 
 /* =========================================================
-   DELLA DEFENSE — SUSTAINMENT MESSAGE
-   Below Support Equipment / Strategic Engagements
-========================================================= */
-
-.defense-sustainment {
-    position: relative;
-    width: 100%;
-    min-height: clamp(420px, 35vw, 610px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: clamp(70px, 8vw, 118px) 28px;
-    background: #0d0e0e;
-    color: #ffffff;
-    text-align: center;
-}
-
-.defense-sustainment::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
-    background-size: 32px 32px;
-    opacity: .85;
-}
-
-.defense-sustainment::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 50% -28%, rgba(255,255,255,.08), transparent 40%),
-        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.05) 26%, rgba(0,0,0,.18));
-}
-
-.defense-sustainment__inner {
-    position: relative;
-    z-index: 2;
-    width: min(1220px, 100%);
-    margin: 0 auto;
-}
-
-.defense-sustainment__logo {
-    width: auto !important;
-    height: clamp(54px, 5vw, 78px);
-    display: block;
-    margin: 0 auto clamp(34px, 3.6vw, 52px);
-    object-fit: contain;
-}
-
-.defense-sustainment__title {
-    margin: 0;
-    color: #ffffff;
-    font-family: "Geologica", sans-serif;
-    font-size: clamp(34px, 4vw, 64px);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: .015em;
-    text-transform: uppercase;
-}
-
-.defense-sustainment__title span,
-.defense-sustainment__title strong {
-    display: block;
-}
-
-.defense-sustainment__title strong {
-    margin-top: clamp(8px, 1vw, 14px);
-    color: #ff1111;
-    font-weight: 700;
-}
-
-.defense-sustainment__subline {
-    margin: clamp(28px, 3vw, 44px) 0 0;
-    color: #ffffff;
-    font-size: clamp(14px, 1.35vw, 20px);
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: .045em;
-    text-transform: uppercase;
-}
-
-.defense-sustainment__green {
-    color: #28e33f;
-    font-weight: 600;
-}
-
-.defense-sustainment__red {
-    color: #ff1111;
-    font-weight: 600;
-}
-
-/* Hero image follows the existing responsive hero container */
-.hero-placeholder__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-@media (max-width: 1100px) {
-    .defense-sustainment {
-        min-height: 470px;
-        padding-right: 22px;
-        padding-left: 22px;
-    }
-
-    .defense-sustainment__title {
-        font-size: clamp(34px, 5.4vw, 56px);
-    }
-
-    .defense-sustainment__subline {
-        font-size: clamp(13px, 1.8vw, 18px);
-    }
-}
-
-@media (max-width: 768px) {
-    .defense-sustainment {
-        min-height: 430px;
-        padding: 72px 18px;
-    }
-
-    .defense-sustainment__logo {
-        height: 52px;
-        margin-bottom: 34px;
-    }
-
-    .defense-sustainment__title {
-        font-size: clamp(30px, 8vw, 46px);
-        line-height: 1.1;
-    }
-
-    .defense-sustainment__title strong {
-        margin-top: 12px;
-    }
-
-    .defense-sustainment__subline {
-        max-width: 680px;
-        margin-right: auto;
-        margin-left: auto;
-        font-size: clamp(12px, 3.4vw, 16px);
-    }
-}
-
-@media (max-width: 480px) {
-    .defense-sustainment {
-        min-height: 390px;
-        padding: 60px 14px;
-    }
-
-    .defense-sustainment__logo {
-        height: 46px;
-        margin-bottom: 30px;
-    }
-
-    .defense-sustainment__title {
-        font-size: clamp(27px, 8.5vw, 38px);
-    }
-
-    .defense-sustainment__subline {
-        font-size: 12px;
-        letter-spacing: .02em;
-    }
-}
-
-/* =========================================================
-   GLOBAL SEARCH DROPDOWN
-   Controlled by assets/js/search.js
-========================================================= */
-
-.search-link {
-    cursor: pointer;
-}
-
-/* =========================================================
-   SEARCH PANEL
-========================================================= */
-
-.site-search-panel {
-    position: fixed;
-    top: 69px;
-    left: 0;
-
-    width: 100%;
-    max-height: min(620px, calc(100vh - 69px));
-
-    background: #000;
-    color: #fff;
-
-    z-index: 999;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transform: translateY(-24px);
-
-    transition:
-        opacity 0.28s ease,
-        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-        visibility 0s linear 0.45s;
-}
-
-
-/* OPEN STATE */
-.site-search-panel.is-open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-
-    transform: translateY(0);
-
-    transition:
-        opacity 0.28s ease,
-        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-        visibility 0s linear 0s;
-}
-
-
-/* =========================================================
-   SEARCH INNER CONTAINER
-========================================================= */
-
-.site-search-inner {
-    width: 100%;
-
-    padding: 34px 42px 32px;
-
-    max-height: min(620px, calc(100vh - 69px));
-
-    overflow-y: auto;
-
-    overscroll-behavior: contain;
-}
-
-
-/* =========================================================
-   SEARCH TOP LINE
-========================================================= */
-
-.site-search-topline {
-    display: flex;
-    align-items: center;
-
-    gap: 18px;
-}
-
-
-/* =========================================================
-   SEARCH INPUT WRAPPER
-========================================================= */
-
-.site-search-field-wrap {
-    position: relative;
-
-    flex: 1;
-
-    display: flex;
-    align-items: center;
-
-    gap: 14px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.72);
-}
-
-
-.site-search-field-wrap .material-icons {
-    flex: 0 0 auto;
-
-    color: #fff;
-
-    font-size: 25px;
-}
-
-
-/* =========================================================
-   SEARCH INPUT
-========================================================= */
-
-.site-search-input {
-    width: 100%;
-    height: 62px;
-
-    border: 0;
-    outline: 0;
-
-    background: transparent;
-
-    color: #fff;
-
-    font-family: "Geologica", sans-serif;
-
-    font-size: clamp(24px, 2.2vw, 38px);
-
-    font-weight: 400;
-
-    letter-spacing: -0.02em;
-}
-
-
-.site-search-input::placeholder {
-    color: rgba(255, 255, 255, 0.45);
-}
-
-
-/* REMOVE DEFAULT SEARCH X */
-.site-search-input::-webkit-search-cancel-button {
-    display: none;
-}
-
-
-/* =========================================================
-   CLOSE BUTTON
-========================================================= */
-
-.site-search-close {
-    width: 42px;
-    height: 42px;
-
-    flex: 0 0 42px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-
-    border-radius: 50%;
-
-    background: transparent;
-
-    color: #fff;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.22s ease,
-        border-color 0.22s ease,
-        transform 0.22s ease;
-}
-
-
-.site-search-close:hover {
-    background: rgba(255, 255, 255, 0.10);
-
-    border-color: rgba(255, 255, 255, 0.70);
-}
-
-
-.site-search-close:active {
-    transform: scale(0.94);
-}
-
-
-.site-search-close .material-icons {
-    font-size: 22px;
-}
-
-
-/* =========================================================
-   SEARCH HELPER TEXT
-========================================================= */
-
-.site-search-helper {
-    margin-top: 14px;
-
-    color: rgba(255, 255, 255, 0.48);
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   SEARCH RESULTS CONTAINER
-========================================================= */
-
-.site-search-results {
-    margin-top: 26px;
-}
-
-
-/* =========================================================
-   SEARCH STATUS
-========================================================= */
-
-.site-search-status {
-    padding: 12px 0 2px;
-
-    color: rgba(255, 255, 255, 0.55);
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   SEARCH RESULT GRID
-========================================================= */
-
-.site-search-result-list {
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 0 34px;
-}
-
-
-/* =========================================================
-   INDIVIDUAL SEARCH RESULT
-========================================================= */
-
-.site-search-result {
-    min-width: 0;
-
-    display: grid;
-
-    grid-template-columns: 1fr auto;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 18px 0;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-
-    color: #fff;
-
-    text-decoration: none;
-
-    transition:
-        opacity 0.2s ease,
-        padding-left 0.25s ease;
-}
-
-
-.site-search-result:hover {
-    padding-left: 8px;
-}
-
-
-/* =========================================================
-   RESULT CONTENT
-========================================================= */
-
-.site-search-result-main {
-    min-width: 0;
-}
-
-
-/* =========================================================
-   RESULT META
-========================================================= */
-
-.site-search-result-meta {
-    display: flex;
-    flex-wrap: wrap;
-
-    align-items: center;
-
-    gap: 8px 12px;
-
-    margin-bottom: 6px;
-
-    color: rgba(255, 255, 255, 0.48);
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.06em;
-}
-
-
-/* PRODUCT ID */
-.site-search-result-code {
-    color: #aab36a;
-
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   RESULT TITLE
-========================================================= */
-
-.site-search-result-title {
-    color: #fff;
-
-    font-size: 18px;
-
-    font-weight: 500;
-
-    line-height: 1.25;
-}
-
-
-/* =========================================================
-   RESULT DESCRIPTION
-========================================================= */
-
-.site-search-result-description {
-    margin-top: 5px;
-
-    color: rgba(255, 255, 255, 0.58);
-
-    font-size: 12px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   RESULT ARROW
-========================================================= */
-
-.site-search-result-arrow {
-    color: rgba(255, 255, 255, 0.72);
-
-    font-size: 23px;
-
-    transition: transform 0.25s ease;
-}
-
-
-.site-search-result:hover .site-search-result-arrow {
-    transform: translate(3px, -3px);
-}
-
-
-/* =========================================================
-   NO RESULTS
-========================================================= */
-
-.site-search-empty {
-    padding: 24px 0 4px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-
-    color: rgba(255, 255, 255, 0.58);
-
-    font-size: 14px;
-
-    line-height: 1.55;
-}
-
-
-/* =========================================================
-   SEARCH OPEN STATE
-   Prevent navbar mega menus opening over search
-========================================================= */
-
-body.site-search-open .nav-dropdown {
-    opacity: 0 !important;
-
-    visibility: hidden !important;
-
-    pointer-events: none !important;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    .site-search-panel {
-        top: 76px;
-
-        max-height: calc(100vh - 76px);
-    }
-
-
-    .site-search-inner {
-        padding: 28px 24px 30px;
-
-        max-height: calc(100vh - 76px);
-    }
-
-
-    .site-search-result-list {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 768px) {
-
-    .site-search-panel {
-        top: 70px;
-
-        max-height: calc(100svh - 70px);
-    }
-
-
-    .site-search-inner {
-        padding: 24px 18px 28px;
-
-        max-height: calc(100svh - 70px);
-    }
-
-
-    .site-search-topline {
-        gap: 12px;
-    }
-
-
-    .site-search-field-wrap {
-        gap: 10px;
-    }
-
-
-    .site-search-field-wrap .material-icons {
-        font-size: 22px;
-    }
-
-
-    .site-search-input {
-        height: 56px;
-
-        font-size: 24px;
-    }
-
-
-    .site-search-close {
-        width: 38px;
-        height: 38px;
-
-        flex-basis: 38px;
-    }
-
-
-    .site-search-helper {
-        font-size: 11px;
-    }
-
-
-    .site-search-results {
-        margin-top: 20px;
-    }
-
-
-    .site-search-result {
-        padding: 16px 0;
-    }
-
-
-    .site-search-result-title {
-        font-size: 17px;
-    }
-
-
-    .site-search-result-description {
-        font-size: 12px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .site-search-inner {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-
-    .site-search-input {
-        font-size: 21px;
-    }
-
-
-    .site-search-close {
-        width: 36px;
-        height: 36px;
-
-        flex-basis: 36px;
-    }
-
-}
-
-/* =========================================================
-   CUSTOM TEXT SELECTION COLOR
+   CUSTOM TEXT SELECTION
 ========================================================= */
 
 ::selection {
-    background: #8A9460; /* light olive drab */
-    color: #ffffff;
+    background: #8a9460;
+    color: #fff;
 }
 
-/* Firefox */
 ::-moz-selection {
-    background: #8A9460;
-    color: #ffffff;
+    background: #8a9460;
+    color: #fff;
 }
