@@ -1060,3 +1060,147 @@ not be considered official DELLA Group Corporation content.
 
 
 })();
+
+/* =========================================================
+   PREVENT IMAGE DRAGGING
+
+   Does NOT disable:
+   - Right click
+   - Inspect Element
+   - Text selection
+   - Normal links
+
+   Only prevents images from being dragged.
+========================================================= */
+
+function initializeImageDragProtection() {
+
+    /*
+       Disable native dragging on all existing images.
+    */
+
+    const images =
+        document.querySelectorAll("img");
+
+
+    images.forEach(image => {
+
+        image.setAttribute(
+            "draggable",
+            "false"
+        );
+
+    });
+
+
+
+    /*
+       Prevent browser drag events.
+
+       Capture mode = true so it catches the drag
+       before links or other elements handle it.
+    */
+
+    document.addEventListener(
+        "dragstart",
+        event => {
+
+            const target =
+                event.target;
+
+
+            if (
+                target instanceof Element &&
+                target.closest("img")
+            ) {
+
+                event.preventDefault();
+
+            }
+
+        },
+        true
+    );
+
+
+
+    /*
+       Also protect images dynamically added later.
+
+       This is useful if search.js or another script
+       inserts content after the page loads.
+    */
+
+    if (
+        "MutationObserver" in window
+    ) {
+
+        const imageObserver =
+            new MutationObserver(
+                mutations => {
+
+                    mutations.forEach(
+                        mutation => {
+
+                            mutation.addedNodes
+                                .forEach(node => {
+
+                                    if (
+                                        !(node instanceof Element)
+                                    ) {
+
+                                        return;
+
+                                    }
+
+
+                                    /*
+                                       If the added node itself is an image.
+                                    */
+
+                                    if (
+                                        node.matches("img")
+                                    ) {
+
+                                        node.setAttribute(
+                                            "draggable",
+                                            "false"
+                                        );
+
+                                    }
+
+
+                                    /*
+                                       If the added node contains images.
+                                    */
+
+                                    node
+                                        .querySelectorAll?.("img")
+                                        .forEach(image => {
+
+                                            image.setAttribute(
+                                                "draggable",
+                                                "false"
+                                            );
+
+                                        });
+
+                                });
+
+                        });
+
+                }
+            );
+
+
+        imageObserver.observe(
+            document.body,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
+
+    }
+
+}
