@@ -2447,3 +2447,18 @@ body.site-search-open .nav-dropdown {
     }
 
 }
+
+/* =========================================================
+   CUSTOM TEXT SELECTION COLOR
+========================================================= */
+
+::selection {
+    background: #8A9460; /* light olive drab */
+    color: #ffffff;
+}
+
+/* Firefox */
+::-moz-selection {
+    background: #8A9460;
+    color: #ffffff;
+}
