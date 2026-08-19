@@ -1,102 +1,262 @@
-const VERSION = "della-v1";
+const VERSION = "della-v2";
 
 const STATIC_CACHE = `della-static-${VERSION}`;
 const PAGE_CACHE = `della-pages-${VERSION}`;
 
-// Important files downloaded immediately
+/*
+=====================================================
+CORE FILES
+Downloaded when the service worker installs
+=====================================================
+*/
+
 const CORE_FILES = [
     "/",
     "/index.html",
     "/favicon.ico"
 ];
 
-// INSTALL
+
+/*
+=====================================================
+INSTALL
+=====================================================
+
+Download fresh copies of the core files.
+
+cache: "reload"
+= bypass normal browser HTTP cache during installation.
+*/
+
 self.addEventListener("install", event => {
+
     event.waitUntil(
-        caches.open(STATIC_CACHE)
-            .then(cache => cache.addAll(CORE_FILES))
+        (async () => {
+
+            const cache = await caches.open(STATIC_CACHE);
+
+            for (const url of CORE_FILES) {
+
+                try {
+
+                    const response = await fetch(url, {
+                        cache: "reload"
+                    });
+
+                    if (response && response.ok) {
+                        await cache.put(
+                            url,
+                            response.clone()
+                        );
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+                        "Core file could not be cached:",
+                        url
+                    );
+
+                }
+
+            }
+
+        })()
     );
 
+    // Activate the new worker immediately
     self.skipWaiting();
 });
 
-// ACTIVATE
+
+/*
+=====================================================
+ACTIVATE
+=====================================================
+
+Delete old Della caches automatically.
+=====================================================
+*/
+
 self.addEventListener("activate", event => {
+
     event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
+        (async () => {
+
+            const cacheNames = await caches.keys();
+
+            await Promise.all(
+
                 cacheNames.map(cacheName => {
+
+                    const isDellaCache =
+                        cacheName.startsWith("della-");
+
+                    const isCurrentCache =
+                        cacheName === STATIC_CACHE ||
+                        cacheName === PAGE_CACHE;
+
                     if (
-                        cacheName !== STATIC_CACHE &&
-                        cacheName !== PAGE_CACHE
+                        isDellaCache &&
+                        !isCurrentCache
                     ) {
                         return caches.delete(cacheName);
                     }
+
                 })
+
             );
-        })
+
+            await self.clients.claim();
+
+        })()
     );
 
-    self.clients.claim();
 });
 
-// FETCH
+
+/*
+=====================================================
+FETCH
+=====================================================
+*/
+
 self.addEventListener("fetch", event => {
 
     const request = event.request;
     const url = new URL(request.url);
 
-    // Only GET requests
+
+    /*
+    -------------------------------------------------
+    ONLY GET REQUESTS
+    -------------------------------------------------
+    */
+
     if (request.method !== "GET") {
         return;
     }
 
-    // Only cache your own website
+
+    /*
+    -------------------------------------------------
+    ONLY DELLA WEBSITE FILES
+    -------------------------------------------------
+    */
+
     if (url.origin !== self.location.origin) {
         return;
     }
 
+
     /*
-    =====================================================
+    =================================================
     HTML PAGES
-    Network first, cache as backup
-    =====================================================
+    NETWORK FIRST
+    =================================================
+
+    Always check Bluehost first.
+
+    If internet/server is unavailable,
+    use cached page.
+    =================================================
     */
 
     if (request.mode === "navigate") {
 
         event.respondWith(
-            fetch(request)
-                .then(response => {
 
-                    const copy = response.clone();
+            (async () => {
 
-                    caches.open(PAGE_CACHE)
-                        .then(cache => {
-                            cache.put(request, copy);
+                try {
+
+                    /*
+                    Force browser to revalidate the page
+                    with the server.
+                    */
+
+                    const networkResponse =
+                        await fetch(request, {
+                            cache: "no-cache"
                         });
 
-                    return response;
 
-                })
-                .catch(() => {
+                    if (
+                        networkResponse &&
+                        networkResponse.ok
+                    ) {
 
-                    return caches.match(request)
-                        .then(cached => {
-                            return cached || caches.match("/index.html");
-                        });
+                        const cache =
+                            await caches.open(PAGE_CACHE);
 
-                })
+                        await cache.put(
+                            request,
+                            networkResponse.clone()
+                        );
+
+                    }
+
+
+                    return networkResponse;
+
+
+                } catch (error) {
+
+                    /*
+                    Offline/server failure:
+                    use cached page.
+                    */
+
+                    const cachedPage =
+                        await caches.match(request);
+
+                    if (cachedPage) {
+                        return cachedPage;
+                    }
+
+
+                    /*
+                    Final offline fallback
+                    */
+
+                    const homePage =
+                        await caches.match("/index.html");
+
+                    if (homePage) {
+                        return homePage;
+                    }
+
+
+                    return Response.error();
+
+                }
+
+            })()
+
         );
 
         return;
     }
 
+
     /*
-    =====================================================
+    =================================================
     STATIC FILES
-    Cache first + update in background
-    =====================================================
+    STALE-WHILE-REVALIDATE
+    =================================================
+
+    Applies to:
+
+    CSS
+    JavaScript
+    Images
+    Fonts
+
+    1. Give cached file immediately.
+    2. Check Bluehost in background.
+    3. Replace cache with server version.
+    4. Next request gets newest version.
+    =================================================
     */
 
     const CACHEABLE_TYPES = [
@@ -106,37 +266,118 @@ self.addEventListener("fetch", event => {
         "font"
     ];
 
-    if (CACHEABLE_TYPES.includes(request.destination)) {
+
+    if (
+        CACHEABLE_TYPES.includes(
+            request.destination
+        )
+    ) {
+
+        /*
+        -------------------------------------------------
+        START SERVER CHECK IMMEDIATELY
+        -------------------------------------------------
+        */
+
+        const refreshPromise =
+
+            fetch(request, {
+                cache: "no-cache"
+            })
+
+            .then(async networkResponse => {
+
+                /*
+                Only cache successful responses.
+                */
+
+                if (
+                    networkResponse &&
+                    networkResponse.ok
+                ) {
+
+                    const cache =
+                        await caches.open(STATIC_CACHE);
+
+                    await cache.put(
+                        request,
+                        networkResponse.clone()
+                    );
+
+                }
+
+
+                return networkResponse;
+
+            })
+
+            .catch(error => {
+
+                /*
+                Network failure is okay because
+                cached copy may still exist.
+                */
+
+                return null;
+
+            });
+
+
+        /*
+        -------------------------------------------------
+        IMPORTANT
+        -------------------------------------------------
+
+        Keep the Service Worker alive until
+        the background cache update finishes.
+        */
+
+        event.waitUntil(
+            refreshPromise.then(() => undefined)
+        );
+
+
+        /*
+        -------------------------------------------------
+        RESPONSE
+        -------------------------------------------------
+        */
 
         event.respondWith(
 
             caches.match(request)
+
                 .then(cachedResponse => {
 
-                    const networkRequest = fetch(request)
-                        .then(networkResponse => {
+                    /*
+                    Cached version exists:
+                    show it immediately.
 
-                            if (
-                                networkResponse &&
-                                networkResponse.status === 200
-                            ) {
+                    Background request above is already
+                    checking for a new version.
+                    */
 
-                                const copy = networkResponse.clone();
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    }
 
-                                caches.open(STATIC_CACHE)
-                                    .then(cache => {
-                                        cache.put(request, copy);
-                                    });
 
+                    /*
+                    Nothing cached:
+                    wait for network.
+                    */
+
+                    return refreshPromise.then(
+                        networkResponse => {
+
+                            if (networkResponse) {
+                                return networkResponse;
                             }
 
-                            return networkResponse;
-                        })
-                        .catch(() => cachedResponse);
+                            return Response.error();
 
-                    // If cached, return immediately.
-                    // Network updates it in background.
-                    return cachedResponse || networkRequest;
+                        }
+                    );
 
                 })
 
