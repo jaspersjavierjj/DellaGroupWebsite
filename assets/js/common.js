@@ -487,14 +487,19 @@ window.addEventListener(
     }
 );
 
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
         /* =================================================
            SCRAMBLE TEXT EFFECT
-           Desktop: Hover
-           Mobile: Reveal when visible
+
+           Desktop:
+           Hover
+
+           Mobile:
+           Reveal when visible
         ================================================= */
 
         const scrambleTargets =
@@ -507,92 +512,115 @@ document.addEventListener(
 
             if (!paragraph) return;
 
+
             const originalText =
                 paragraph.dataset.text ||
                 paragraph.innerText.trim();
 
+
             paragraph.dataset.text =
                 originalText;
+
 
             clearInterval(
                 paragraph.scrambleInterval
             );
 
+
             const chars =
                 "abcdefghijklmnopqrstuvwxyz     ";
 
-            const duration = 1500;
-            const speed = 24;
+
+            const duration =
+                1500;
+
+
+            const speed =
+                24;
+
 
             const startTime =
                 performance.now();
 
 
             paragraph.scrambleInterval =
-                setInterval(() => {
+                setInterval(
+                    () => {
 
-                    const elapsed =
-                        performance.now() -
-                        startTime;
-
-                    const progress =
-                        Math.min(
-                            elapsed / duration,
-                            1
-                        );
+                        const elapsed =
+                            performance.now() -
+                            startTime;
 
 
-                    paragraph.innerText =
-                        originalText
-                            .split("")
-                            .map(
-                                (
-                                    char,
-                                    index
-                                ) => {
+                        const progress =
+                            Math.min(
+                                elapsed /
+                                duration,
+                                1
+                            );
 
-                                    if (
-                                        char === " "
-                                    ) {
-                                        return " ";
-                                    }
-
-                                    const revealPoint =
-                                        index /
-                                        originalText.length;
-
-                                    if (
-                                        progress >
-                                        revealPoint
-                                    ) {
-                                        return originalText[
-                                            index
-                                        ];
-                                    }
-
-                                    return chars[
-                                        Math.floor(
-                                            Math.random() *
-                                            chars.length
-                                        )
-                                    ];
-                                }
-                            )
-                            .join("");
-
-
-                    if (progress >= 1) {
-
-                        clearInterval(
-                            paragraph
-                                .scrambleInterval
-                        );
 
                         paragraph.innerText =
-                            originalText;
-                    }
+                            originalText
+                                .split("")
+                                .map(
+                                    (
+                                        char,
+                                        index
+                                    ) => {
 
-                }, speed);
+                                        if (
+                                            char === " "
+                                        ) {
+
+                                            return " ";
+                                        }
+
+
+                                        const revealPoint =
+                                            index /
+                                            originalText.length;
+
+
+                                        if (
+                                            progress >
+                                            revealPoint
+                                        ) {
+
+                                            return originalText[
+                                                index
+                                            ];
+                                        }
+
+
+                                        return chars[
+                                            Math.floor(
+                                                Math.random() *
+                                                chars.length
+                                            )
+                                        ];
+                                    }
+                                )
+                                .join("");
+
+
+                        if (
+                            progress >= 1
+                        ) {
+
+                            clearInterval(
+                                paragraph
+                                    .scrambleInterval
+                            );
+
+
+                            paragraph.innerText =
+                                originalText;
+                        }
+
+                    },
+                    speed
+                );
         }
 
 
@@ -600,13 +628,20 @@ document.addEventListener(
             (item) => {
 
                 const paragraph =
-                    item.querySelector("p");
+                    item.querySelector(
+                        "p"
+                    );
 
-                if (!paragraph) return;
+
+                if (!paragraph) {
+                    return;
+                }
+
 
                 const originalText =
                     paragraph.dataset.text ||
                     paragraph.innerText.trim();
+
 
                 paragraph.dataset.text =
                     originalText;
@@ -624,6 +659,7 @@ document.addEventListener(
                             item.classList.add(
                                 "is-visible"
                             );
+
 
                             scrambleText(
                                 paragraph
@@ -647,8 +683,10 @@ document.addEventListener(
                                     .scrambleInterval
                             );
 
+
                             paragraph.innerText =
                                 originalText;
+
 
                             item.classList.remove(
                                 "is-visible"
@@ -679,16 +717,20 @@ document.addEventListener(
                                 if (
                                     !entry.isIntersecting
                                 ) {
+
                                     return;
                                 }
 
+
                                 const item =
                                     entry.target;
+
 
                                 const paragraph =
                                     item.querySelector(
                                         "p"
                                     );
+
 
                                 item.classList.add(
                                     "is-visible"
@@ -705,6 +747,7 @@ document.addEventListener(
                                         paragraph
                                     );
 
+
                                     item.dataset
                                         .scrambledOnce =
                                         "true";
@@ -720,9 +763,11 @@ document.addEventListener(
 
             scrambleTargets.forEach(
                 (item) => {
+
                     revealObserver.observe(
                         item
                     );
+
                 }
             );
         }
@@ -730,27 +775,45 @@ document.addEventListener(
 
         /* =================================================
            DELLA DELIVERS SLIDER
+
+           FEATURES:
+           - Automatic every 5 seconds
+           - Previous button
+           - Next button
+           - Swipe left
+           - Swipe right
+           - Mobile vertical scrolling remains normal
         ================================================= */
+
+        const slider =
+            document.querySelector(
+                ".delivers-slider"
+            );
+
 
         const slides =
             document.querySelectorAll(
                 ".delivers-slider .slide"
             );
 
+
         const indicators =
             document.querySelectorAll(
                 ".delivers-slider .indicator"
             );
+
 
         const progressBar =
             document.querySelector(
                 ".slide-progress-bar"
             );
 
+
         const prevBtn =
             document.querySelector(
                 ".slider-arrow.prev"
             );
+
 
         const nextBtn =
             document.querySelector(
@@ -758,41 +821,70 @@ document.addEventListener(
             );
 
 
-        let currentSlide = 0;
-        let slideInterval = null;
+        let currentSlide =
+            0;
 
+
+        let slideInterval =
+            null;
+
+
+        /* =================================================
+           RESET SLIDER PROGRESS
+        ================================================= */
 
         function resetProgress() {
 
-            if (!progressBar) return;
+            if (!progressBar) {
+                return;
+            }
+
 
             progressBar.style.animation =
                 "none";
 
+
+            /*
+                Force browser repaint so animation
+                starts again from zero.
+            */
             void progressBar.offsetWidth;
+
 
             progressBar.style.animation =
                 "progressLoad 5s linear forwards";
         }
 
 
+        /* =================================================
+           SHOW SPECIFIC SLIDE
+        ================================================= */
+
         function showSlide(index) {
 
-            if (!slides.length) return;
+            if (!slides.length) {
+                return;
+            }
+
 
             slides.forEach(
                 (slide) => {
+
                     slide.classList.remove(
                         "active"
                     );
+
                 }
             );
 
+
             indicators.forEach(
                 (indicator) => {
+
                     indicator.classList.remove(
                         "active"
                     );
+
                 }
             );
 
@@ -800,7 +892,10 @@ document.addEventListener(
             const targetSlide =
                 slides[index];
 
-            if (!targetSlide) return;
+
+            if (!targetSlide) {
+                return;
+            }
 
 
             targetSlide.classList.add(
@@ -808,7 +903,9 @@ document.addEventListener(
             );
 
 
-            if (indicators[index]) {
+            if (
+                indicators[index]
+            ) {
 
                 indicators[index]
                     .classList.add(
@@ -821,21 +918,41 @@ document.addEventListener(
         }
 
 
+        /* =================================================
+           NEXT SLIDE
+        ================================================= */
+
         function nextSlide() {
 
-            if (!slides.length) return;
+            if (!slides.length) {
+                return;
+            }
+
 
             currentSlide =
-                (currentSlide + 1) %
+                (
+                    currentSlide +
+                    1
+                ) %
                 slides.length;
 
-            showSlide(currentSlide);
+
+            showSlide(
+                currentSlide
+            );
         }
 
 
+        /* =================================================
+           PREVIOUS SLIDE
+        ================================================= */
+
         function prevSlide() {
 
-            if (!slides.length) return;
+            if (!slides.length) {
+                return;
+            }
+
 
             currentSlide =
                 (
@@ -845,17 +962,28 @@ document.addEventListener(
                 ) %
                 slides.length;
 
-            showSlide(currentSlide);
+
+            showSlide(
+                currentSlide
+            );
         }
 
 
+        /* =================================================
+           START / RESTART AUTOMATIC SLIDER
+        ================================================= */
+
         function startSlider() {
 
-            if (!slides.length) return;
+            if (!slides.length) {
+                return;
+            }
+
 
             clearInterval(
                 slideInterval
             );
+
 
             slideInterval =
                 setInterval(
@@ -865,6 +993,10 @@ document.addEventListener(
         }
 
 
+        /* =================================================
+           NEXT BUTTON
+        ================================================= */
+
         if (nextBtn) {
 
             nextBtn.addEventListener(
@@ -872,11 +1004,21 @@ document.addEventListener(
                 () => {
 
                     nextSlide();
+
+                    /*
+                        Restart timer because user
+                        manually changed slide.
+                    */
                     startSlider();
+
                 }
             );
         }
 
+
+        /* =================================================
+           PREVIOUS BUTTON
+        ================================================= */
 
         if (prevBtn) {
 
@@ -885,17 +1027,422 @@ document.addEventListener(
                 () => {
 
                     prevSlide();
+
+                    /*
+                        Restart timer because user
+                        manually changed slide.
+                    */
                     startSlider();
+
                 }
             );
         }
 
 
-        if (slides.length > 0) {
+        /* =================================================
+           MOBILE / TOUCH SWIPE
+        ================================================= */
+
+        if (slider) {
+
+            let touchStartX =
+                0;
+
+
+            let touchStartY =
+                0;
+
+
+            let touchCurrentX =
+                0;
+
+
+            let touchCurrentY =
+                0;
+
+
+            /*
+                Minimum number of pixels required
+                before gesture counts as a swipe.
+
+                Prevents normal taps from changing
+                the slide.
+            */
+            const swipeThreshold =
+                45;
+
+
+            slider.addEventListener(
+                "touchstart",
+                (event) => {
+
+                    if (
+                        !event.touches ||
+                        !event.touches.length
+                    ) {
+
+                        return;
+                    }
+
+
+                    touchStartX =
+                        event.touches[0]
+                            .clientX;
+
+
+                    touchStartY =
+                        event.touches[0]
+                            .clientY;
+
+
+                    touchCurrentX =
+                        touchStartX;
+
+
+                    touchCurrentY =
+                        touchStartY;
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            slider.addEventListener(
+                "touchmove",
+                (event) => {
+
+                    if (
+                        !event.touches ||
+                        !event.touches.length
+                    ) {
+
+                        return;
+                    }
+
+
+                    touchCurrentX =
+                        event.touches[0]
+                            .clientX;
+
+
+                    touchCurrentY =
+                        event.touches[0]
+                            .clientY;
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            slider.addEventListener(
+                "touchend",
+                () => {
+
+                    const horizontalDistance =
+                        touchCurrentX -
+                        touchStartX;
+
+
+                    const verticalDistance =
+                        touchCurrentY -
+                        touchStartY;
+
+
+                    /*
+                        Not enough horizontal movement.
+
+                        Treat this as a normal tap.
+                    */
+                    if (
+                        Math.abs(
+                            horizontalDistance
+                        ) <
+                        swipeThreshold
+                    ) {
+
+                        return;
+                    }
+
+
+                    /*
+                        If vertical movement is larger
+                        than horizontal movement,
+                        the user is scrolling the page.
+
+                        Do NOT change slide.
+                    */
+                    if (
+                        Math.abs(
+                            horizontalDistance
+                        ) <=
+                        Math.abs(
+                            verticalDistance
+                        )
+                    ) {
+
+                        return;
+                    }
+
+
+                    /* =====================================
+                       SWIPE LEFT
+
+                       Finger:
+                       RIGHT → LEFT
+
+                       Result:
+                       NEXT SLIDE
+                    ===================================== */
+
+                    if (
+                        horizontalDistance <
+                        0
+                    ) {
+
+                        nextSlide();
+
+                    }
+
+
+                    /* =====================================
+                       SWIPE RIGHT
+
+                       Finger:
+                       LEFT → RIGHT
+
+                       Result:
+                       PREVIOUS SLIDE
+                    ===================================== */
+
+                    else {
+
+                        prevSlide();
+
+                    }
+
+
+                    /*
+                        User manually changed slide,
+                        so restart automatic timer.
+                    */
+                    startSlider();
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            /* =================================================
+               POINTER SWIPE SUPPORT
+
+               This also allows swipe-like dragging
+               on supported tablets / touchscreens.
+            ================================================= */
+
+            let pointerStartX =
+                0;
+
+
+            let pointerStartY =
+                0;
+
+
+            let pointerCurrentX =
+                0;
+
+
+            let pointerCurrentY =
+                0;
+
+
+            let pointerActive =
+                false;
+
+
+            slider.addEventListener(
+                "pointerdown",
+                (event) => {
+
+                    /*
+                        Touch events already handle
+                        regular touchscreen swipes.
+
+                        Only use this for pen/touch
+                        pointer input where appropriate.
+                    */
+                    if (
+                        event.pointerType ===
+                        "mouse"
+                    ) {
+
+                        return;
+                    }
+
+
+                    pointerActive =
+                        true;
+
+
+                    pointerStartX =
+                        event.clientX;
+
+
+                    pointerStartY =
+                        event.clientY;
+
+
+                    pointerCurrentX =
+                        event.clientX;
+
+
+                    pointerCurrentY =
+                        event.clientY;
+
+                }
+            );
+
+
+            slider.addEventListener(
+                "pointermove",
+                (event) => {
+
+                    if (
+                        !pointerActive ||
+                        event.pointerType ===
+                        "mouse"
+                    ) {
+
+                        return;
+                    }
+
+
+                    pointerCurrentX =
+                        event.clientX;
+
+
+                    pointerCurrentY =
+                        event.clientY;
+
+                }
+            );
+
+
+            slider.addEventListener(
+                "pointerup",
+                (event) => {
+
+                    if (
+                        !pointerActive ||
+                        event.pointerType ===
+                        "mouse"
+                    ) {
+
+                        return;
+                    }
+
+
+                    pointerActive =
+                        false;
+
+
+                    /*
+                        Touch Events are preferred where
+                        supported, so don't duplicate
+                        navigation unnecessarily.
+                    */
+                    if (
+                        "ontouchstart" in window
+                    ) {
+
+                        return;
+                    }
+
+
+                    const horizontalDistance =
+                        pointerCurrentX -
+                        pointerStartX;
+
+
+                    const verticalDistance =
+                        pointerCurrentY -
+                        pointerStartY;
+
+
+                    if (
+                        Math.abs(
+                            horizontalDistance
+                        ) <
+                        swipeThreshold
+                    ) {
+
+                        return;
+                    }
+
+
+                    if (
+                        Math.abs(
+                            horizontalDistance
+                        ) <=
+                        Math.abs(
+                            verticalDistance
+                        )
+                    ) {
+
+                        return;
+                    }
+
+
+                    if (
+                        horizontalDistance <
+                        0
+                    ) {
+
+                        nextSlide();
+
+                    } else {
+
+                        prevSlide();
+
+                    }
+
+
+                    startSlider();
+
+                }
+            );
+
+
+            slider.addEventListener(
+                "pointercancel",
+                () => {
+
+                    pointerActive =
+                        false;
+
+                }
+            );
+        }
+
+
+        /* =================================================
+           START DELLA DELIVERS SLIDER
+        ================================================= */
+
+        if (
+            slides.length >
+            0
+        ) {
 
             showSlide(
                 currentSlide
             );
+
 
             startSlider();
         }
@@ -945,6 +1492,7 @@ document.addEventListener(
                         scrollAnimationId
                     );
 
+
                     scrollAnimationId =
                         null;
                 }
@@ -953,59 +1501,114 @@ document.addEventListener(
 
             function scrollImmediatelySmoothToTop() {
 
-                // Cancel any existing scroll animation
+                /*
+                    Cancel any existing scroll animation
+                */
                 stopScrollAnimation();
+
 
                 const startPosition =
                     window.scrollY ||
                     window.pageYOffset ||
-                    document.documentElement.scrollTop ||
+                    document.documentElement
+                        .scrollTop ||
                     0;
 
-                if (startPosition <= 0) {
-                    window.scrollTo(0, 0);
+
+                if (
+                    startPosition <=
+                    0
+                ) {
+
+                    window.scrollTo(
+                        0,
+                        0
+                    );
+
                     return;
                 }
 
-                // Smooth but not too fast
-                const duration = 1000;
 
-                const startTime = performance.now();
+                /*
+                    Smooth but not too fast
+                */
+                const duration =
+                    1000;
 
-                const html = document.documentElement;
-                const previousBehavior = html.style.scrollBehavior;
 
-                // Prevent CSS smooth-scroll from interfering
-                html.style.scrollBehavior = "auto";
+                const startTime =
+                    performance.now();
+
+
+                const html =
+                    document.documentElement;
+
+
+                const previousBehavior =
+                    html.style.scrollBehavior;
+
+
+                /*
+                    Prevent CSS smooth-scroll
+                    from interfering.
+                */
+                html.style.scrollBehavior =
+                    "auto";
+
 
                 function easeOutQuart(t) {
-                    return 1 - Math.pow(1 - t, 4);
+
+                    return (
+                        1 -
+                        Math.pow(
+                            1 - t,
+                            4
+                        )
+                    );
                 }
 
-                function animateScroll(currentTime) {
+
+                function animateScroll(
+                    currentTime
+                ) {
 
                     const elapsed =
-                        currentTime - startTime;
+                        currentTime -
+                        startTime;
+
 
                     const progress =
                         Math.min(
-                            elapsed / duration,
+                            elapsed /
+                            duration,
                             1
                         );
 
+
                     const eased =
-                        easeOutQuart(progress);
+                        easeOutQuart(
+                            progress
+                        );
+
 
                     const position =
                         startPosition *
-                        (1 - eased);
+                        (
+                            1 -
+                            eased
+                        );
+
 
                     window.scrollTo(
                         0,
                         position
                     );
 
-                    if (progress < 1) {
+
+                    if (
+                        progress <
+                        1
+                    ) {
 
                         scrollAnimationId =
                             requestAnimationFrame(
@@ -1014,14 +1617,21 @@ document.addEventListener(
 
                     } else {
 
-                        window.scrollTo(0, 0);
+                        window.scrollTo(
+                            0,
+                            0
+                        );
 
-                        scrollAnimationId = null;
+
+                        scrollAnimationId =
+                            null;
+
 
                         html.style.scrollBehavior =
                             previousBehavior;
                     }
                 }
+
 
                 scrollAnimationId =
                     requestAnimationFrame(
@@ -1036,7 +1646,9 @@ document.addEventListener(
 
                     event.preventDefault();
 
+
                     scrollImmediatelySmoothToTop();
+
                 }
             );
 

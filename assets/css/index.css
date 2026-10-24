@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -3562,4 +3562,424 @@ body.site-search-open .nav-dropdown {
 ::-moz-selection {
     background: #8A9460;
     color: #ffffff;
+}
+
+/* =========================================================
+   HOMEPAGE SCROLL REVEAL — STRONG VERSION
+   Separate from the existing .is-visible scramble system.
+========================================================= */
+
+html.reveal-ready .scroll-reveal {
+    --reveal-delay: 0ms;
+    --reveal-duration: 1050ms;
+
+    opacity: 0;
+    filter: blur(8px);
+
+    transition:
+        opacity var(--reveal-duration) ease var(--reveal-delay),
+        transform var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
+        filter var(--reveal-duration) ease var(--reveal-delay);
+
+    will-change: opacity, transform, filter;
+}
+
+/* Rise upward */
+html.reveal-ready .scroll-reveal.reveal-up {
+    transform: translate3d(0, 95px, 0);
+}
+
+/* Enter from the left */
+html.reveal-ready .scroll-reveal.reveal-left {
+    transform: translate3d(-95px, 0, 0);
+}
+
+/* Enter from the right */
+html.reveal-ready .scroll-reveal.reveal-right {
+    transform: translate3d(95px, 0, 0);
+}
+
+/* Large media: subtle zoom + rise */
+html.reveal-ready .scroll-reveal.reveal-scale {
+    transform: translate3d(0, 65px, 0) scale(0.93);
+}
+
+/* Visible state */
+html.reveal-ready .scroll-reveal.reveal-active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Make the animation slightly tighter on mobile. */
+@media (max-width: 768px) {
+    html.reveal-ready .scroll-reveal {
+        --reveal-duration: 850ms;
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-up {
+        transform: translate3d(0, 60px, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-left {
+        transform: translate3d(-55px, 0, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-right {
+        transform: translate3d(55px, 0, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-scale {
+        transform: translate3d(0, 45px, 0) scale(0.95);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-active {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+/* =========================================================
+   HOMEPAGE HERO — HTML TEXT BRANDING
+   Added 2026-09-04
+
+   The hero background and the branding are now independent.
+   This keeps the existing hero sizing / object-fit / responsive
+   behavior while allowing the background image to be changed
+   without rebuilding the DELLA branding into the image.
+========================================================= */
+
+/* The existing hero already uses position: relative, but this
+   declaration is repeated here so the overlay remains anchored
+   correctly even if the earlier hero rules are edited later. */
+.hero-placeholder {
+    position: relative;
+}
+
+/* Keep the background below the HTML branding. */
+.hero-picture {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================================
+   BRANDING CONTAINER — DESKTOP DEFAULT
+========================================================= */
+.hero-branding {
+    position: absolute;
+    top: 25.5%;
+    left: 50%;
+
+    width: min(92%, 1500px);
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 5;
+
+    color: #ffffff;
+    text-align: center;
+
+    /* The branding is visual only for now, so it should not
+       block mouse/touch interaction with the hero. */
+    pointer-events: none;
+}
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
+.hero-main-title {
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.18em;
+
+    color: #ffffff;
+
+    font-family: "Geologica", sans-serif;
+    font-size: clamp(40px, 5.15vw, 96px);
+    font-weight: 700;
+
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.85),
+        0 4px 10px rgba(0, 0, 0, 0.45);
+}
+
+.hero-main-title span {
+    display: inline-block;
+}
+
+/* =========================================================
+   BUSINESS SECTOR ROW
+========================================================= */
+.hero-sector-line {
+    width: min(94%, 1400px);
+
+    margin-top: clamp(16px, 1.7vw, 28px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(13px, 1.45vw, 27px);
+}
+
+.hero-sector {
+    color: #ffffff;
+
+    font-family: "Geologica", sans-serif;
+    font-size: clamp(15px, 1.55vw, 28px);
+    font-weight: 400;
+
+    line-height: 1;
+    letter-spacing: -0.02em;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.95),
+        0 1px 2px rgba(0, 0, 0, 0.85);
+}
+
+/* Vertical divider bars between the sector names. */
+.hero-sector-divider {
+    width: 2px;
+    height: clamp(22px, 2vw, 34px);
+
+    flex: 0 0 2px;
+
+    background: rgba(255, 255, 255, 0.90);
+}
+
+/* =========================================================
+   CENTER DELLA MARK
+========================================================= */
+.hero-center-logo {
+    display: block;
+
+    width: clamp(68px, 6vw, 106px) !important;
+    height: auto !important;
+    max-width: none !important;
+
+    flex: 0 0 auto;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 2px 3px rgba(0, 0, 0, 0.75))
+        drop-shadow(0 4px 7px rgba(0, 0, 0, 0.35));
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   Keeps the branding proportional on very wide displays.
+========================================================= */
+@media (min-width: 1600px) {
+    .hero-branding {
+        top: 24.5%;
+        width: min(91%, 1620px);
+    }
+
+    .hero-main-title {
+        font-size: clamp(78px, 5vw, 104px);
+    }
+
+    .hero-sector-line {
+        width: min(92%, 1480px);
+    }
+}
+
+/* =========================================================
+   TABLET / COMPACT DESKTOP
+========================================================= */
+@media (max-width: 1100px) and (min-width: 769px) {
+    .hero-branding {
+        top: 26%;
+        width: 94%;
+    }
+
+    .hero-main-title {
+        font-size: clamp(37px, 5.2vw, 58px);
+        gap: 0.15em;
+    }
+
+    .hero-sector-line {
+        width: 96%;
+        gap: clamp(9px, 1.2vw, 17px);
+    }
+
+    .hero-sector {
+        font-size: clamp(13px, 1.55vw, 19px);
+    }
+
+    .hero-center-logo {
+        width: clamp(56px, 5.8vw, 74px) !important;
+    }
+
+    .hero-sector-divider {
+        width: 1px;
+        height: 24px;
+        flex-basis: 1px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+
+   Matches the current mobile composition:
+
+            DELLAGROUP
+            CORPORATION
+
+                [D]
+
+       INDUSTRIAL   HEALTHCARE
+    INFRASTRUCTURE   DEFENSE
+========================================================= */
+@media (max-width: 768px) {
+    .hero-branding {
+        top: 25.5%;
+        left: 50%;
+
+        width: 100%;
+
+        padding: 0 18px;
+
+        transform: translateX(-50%);
+    }
+
+    .hero-main-title {
+        width: 100%;
+
+        display: block;
+
+        font-size: clamp(30px, 9.7vw, 52px);
+        line-height: 0.94;
+        letter-spacing: -0.035em;
+
+        white-space: normal;
+    }
+
+    .hero-main-title span {
+        display: block;
+    }
+
+    .hero-sector-line {
+        width: min(94%, 460px);
+
+        margin-top: clamp(20px, 5.5vw, 32px);
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "logo logo"
+            "industrial healthcare"
+            "infrastructure defense";
+
+        column-gap: clamp(12px, 4.5vw, 30px);
+        row-gap: clamp(10px, 3vw, 17px);
+
+        align-items: center;
+        justify-items: center;
+    }
+
+    .hero-center-logo {
+        grid-area: logo;
+
+        width: clamp(70px, 21vw, 110px) !important;
+
+        margin: 0 auto clamp(4px, 1vw, 7px);
+    }
+
+    .hero-industrial {
+        grid-area: industrial;
+    }
+
+    .hero-healthcare {
+        grid-area: healthcare;
+    }
+
+    .hero-infrastructure {
+        grid-area: infrastructure;
+    }
+
+    .hero-defense {
+        grid-area: defense;
+    }
+
+    .hero-sector {
+        width: 100%;
+
+        font-size: clamp(12px, 3.75vw, 18px);
+
+        text-align: center;
+    }
+
+    /* Desktop separators are not used in the two-row mobile layout. */
+    .hero-sector-divider {
+        display: none;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+@media (max-width: 480px) {
+    .hero-branding {
+        top: 25.5%;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .hero-main-title {
+        font-size: clamp(29px, 9.4vw, 42px);
+    }
+
+    .hero-sector-line {
+        width: 100%;
+
+        margin-top: 19px;
+
+        column-gap: 12px;
+        row-gap: 10px;
+    }
+
+    .hero-center-logo {
+        width: clamp(68px, 21vw, 92px) !important;
+        margin-bottom: 4px;
+    }
+
+    .hero-sector {
+        font-size: clamp(11.5px, 3.7vw, 15.5px);
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+@media (max-width: 360px) {
+    .hero-main-title {
+        font-size: 28px;
+    }
+
+    .hero-sector {
+        font-size: 11px;
+    }
+
+    .hero-sector-line {
+        column-gap: 7px;
+    }
 }

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <link rel="icon" type="image/png" href="/assets/images/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/index.css?v=20260905-hero-video-fade1">
 
 </head>
 <body>
@@ -99,7 +99,7 @@
                             <li>
                                 <a href="/pages/Parking.html">
                                     <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
-                                    <span>DELLA Automated Parking System</span>
+                                    <span>Automated Parking System</span>
                                 </a>
                             </li>
                         </ul>
@@ -179,12 +179,6 @@
                                 <a href="/pages/Infrastructure.html#smart-mobility">
                                     <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
                                     <span>Traffic &amp; Parking Management Systems</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/pages/Infrastructure.html#professional-apparel">
-                                    <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
-                                    <span>Uniforms &amp; Professional Apparel</span>
                                 </a>
                             </li>
                             <li>
@@ -277,6 +271,12 @@
                                     <a href="/pages/ConsumerProducts.html">
                                         <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
                                         <span>Wellness Products</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/ConsumerProducts.html">
+                                        <span class="list-icon"><span class="icon-plus">+</span><span class="icon-minus">−</span></span>
+                                        <span>Professional Apparel</span>
                                     </a>
                                 </li>
                             </ul>
@@ -485,29 +485,77 @@
 
     <!-- FIRST PAGE -->
     <section id="FirstPage" class="first-page">
-        <div class="hero-placeholder">
+        <div class="hero-placeholder" oncontextmenu="return false;" ondragstart="return false;">
 
-            <picture class="hero-picture">
-
-                <!-- MOBILE -->
+            <!--
+                HERO BACKGROUND VIDEO
+                Acts like a background image:
+                - autoplay
+                - muted
+                - loop
+                - no native controls
+                - no pointer interaction
+            -->
+            <video
+                class="hero-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                disablepictureinpicture
+                controlslist="nodownload noplaybackrate nofullscreen"
+                tabindex="-1"
+                aria-hidden="true"
+            >
                 <source
-                    media="(max-width: 768px)"
-                    srcset="/assets/images/img/DELLAGROUP(night_mobile).png">
+                    src="/assets/video/DellaGroup_Corporation.mp4"
+                    type="video/mp4">
+            </video>
 
-                <!-- DESKTOP / TABLET -->
-                <img
-                    src="/assets/images/img/DELLAGROUP(night).png"
-                    alt="Della Group"
-                    class="hero-image">
+            <!--
+                HERO BRANDING
+                This replaces the branding that was previously part of the image.
+                It is now real HTML text and remains responsive.
+            -->
+            <div class="hero-branding" aria-label="Della Group Corporation business sectors">
 
-            </picture>
+                <h1 class="hero-main-title">
+                    <span class="hero-title-della">DELLAGROUP</span>
+                    <span class="hero-title-corporation">CORPORATION</span>
+                </h1>
+
+                <div class="hero-sector-line">
+
+                    <span class="hero-sector hero-industrial">INDUSTRIAL</span>
+                    <span class="hero-sector-divider divider-one" aria-hidden="true"></span>
+
+                    <span class="hero-sector hero-healthcare">HEALTHCARE</span>
+                    <span class="hero-sector-divider divider-two" aria-hidden="true"></span>
+
+                    <img
+                        src="/assets/images/img/favicon.png"
+                        alt=""
+                        class="hero-center-logo"
+                        aria-hidden="true">
+
+                    <span class="hero-sector-divider divider-three" aria-hidden="true"></span>
+
+                    <span class="hero-sector hero-infrastructure">INFRASTRUCTURE</span>
+                    <span class="hero-sector-divider divider-four" aria-hidden="true"></span>
+
+                    <span class="hero-sector hero-defense">DEFENSE</span>
+
+                </div>
+
+            </div>
 
         </div>
     </section>
 
         <section id="BusinessUnits" class="business-units">
 
-            <div class="unit-card unit-solutions">
+            <div class="unit-card unit-solutions scroll-reveal reveal-up" style="--reveal-delay: 0ms;">
                 <div class="unit-number">01</div>
 
                 <div class="unit-content">
@@ -520,7 +568,7 @@
                 </div>
             </div>
 
-            <a class="unit-card unit-defense">
+            <a class="unit-card unit-defense scroll-reveal reveal-up" style="--reveal-delay: 140ms;">
                 <div class="unit-number">02</div>
 
                 <div class="unit-content">
@@ -539,7 +587,7 @@
         <section class="sector-grid">
 
             <!-- INDUSTRIAL -->
-            <a href="/pages/Industrial.html" class="sector industrial">
+            <a href="/pages/Industrial.html" class="sector industrial scroll-reveal reveal-up" style="--reveal-delay: 0ms;">
                 <img
                     src="assets/images/img/industrial2.png"
                     alt="Industrial"
@@ -564,7 +612,7 @@
 
 
             <!-- HEALTHCARE -->
-            <a href="/pages/Healthcare.html" class="sector healthcare">
+            <a href="/pages/Healthcare.html" class="sector healthcare scroll-reveal reveal-up" style="--reveal-delay: 120ms;">
                 <img
                     src="assets/images/img/healthcare1.png"
                     alt="Healthcare"
@@ -589,7 +637,7 @@
 
 
             <!-- INFRASTRUCTURE -->
-            <a href="/pages/Infrastructure.html" class="sector infrastructure">
+            <a href="/pages/Infrastructure.html" class="sector infrastructure scroll-reveal reveal-up" style="--reveal-delay: 240ms;">
                 <img
                     src="assets/images/img/Infrastructure3.jpg"
                     alt="Infrastructure"
@@ -615,26 +663,26 @@
         </section>
 
         <section class="defense-section">
-            <div class="defense-header">
+            <div class="defense-header scroll-reveal reveal-up">
                 <h2>
                     DELLA <span>DEFENSE</span>
                 </h2>
             </div>
 
-            <a href="pages/Defense.html" class="defense-media">
+            <a href="pages/Defense.html" class="defense-media scroll-reveal reveal-scale" style="--reveal-delay: 100ms;">
                 <img src="/assets/images/img/DELLADEFENSE1.png" alt="Della Defense" class="defense-img">
             </a>
         </section>
 
         <section class="della-delivers">
 
-            <div class="delivers-title">
+            <div class="delivers-title scroll-reveal reveal-up">
                 <h2>What DELLA Delivers</h2>
             </div>
 
             <div class="delivers-content">
 
-                <div class="delivers-copy">
+                <div class="delivers-copy scroll-reveal reveal-left" style="--reveal-delay: 80ms;">
                     <h3>DELLA Group Follows a Complete Operational System</h3>
 
                     <p>
@@ -645,7 +693,7 @@
                     </p>
                 </div>
 
-                <div class="delivers-slider">
+                <div class="delivers-slider scroll-reveal reveal-right" style="--reveal-delay: 160ms;">
 
                     <div class="slide active">
                         <img src="assets/images/img/infrastructure9.png" alt="Infrastructure" class="slide-img">
@@ -706,7 +754,7 @@
 
         <footer class="footer">
 
-            <div class="footer-left">
+            <div class="footer-left scroll-reveal reveal-up">
 
                 <a href="index.html" class="footer-logo-link">
                     <img src="assets/images/logo/DellaGroupLight.png"
@@ -737,7 +785,7 @@
 
             </div>
 
-            <div class="footer-columns">
+            <div class="footer-columns scroll-reveal reveal-up" style="--reveal-delay: 120ms;">
 
                 <!-- COMPANY -->
                 <div class="footer-col">
@@ -802,7 +850,7 @@
 
     <script src="assets/js/common.js"></script>
     <script src="assets/js/search.js"></script>
-    <script src="assets/js/index.js"></script>
+    <script src="assets/js/index.js?v=20260827-reveal2"></script>
     <script src="assets/js/security.js"></script>
     <script src="assets/js/cache.js"></script>
     <script src="sw.js"></script>

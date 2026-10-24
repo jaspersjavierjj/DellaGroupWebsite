@@ -2320,3 +2320,86 @@ body.site-search-open .nav-dropdown {
     background: #8A9460;
     color: #ffffff;
 }
+
+/* =========================================================
+   AQUAPURE PAGE SCROLL REVEAL
+   Uses the shared reveal logic from assets/js/index.js.
+   Each element reveals once and remains visible.
+========================================================= */
+
+html.reveal-ready .scroll-reveal {
+    --reveal-delay: 0ms;
+    --reveal-duration: 1050ms;
+
+    opacity: 0;
+    filter: blur(8px);
+
+    transition:
+        opacity var(--reveal-duration) ease var(--reveal-delay),
+        transform var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
+        filter var(--reveal-duration) ease var(--reveal-delay);
+
+    will-change: opacity, transform, filter;
+}
+
+html.reveal-ready .scroll-reveal.reveal-up {
+    transform: translate3d(0, 95px, 0);
+}
+
+html.reveal-ready .scroll-reveal.reveal-left {
+    transform: translate3d(-95px, 0, 0);
+}
+
+html.reveal-ready .scroll-reveal.reveal-right {
+    transform: translate3d(95px, 0, 0);
+}
+
+html.reveal-ready .scroll-reveal.reveal-scale {
+    transform: translate3d(0, 65px, 0) scale(0.94);
+}
+
+html.reveal-ready .scroll-reveal.reveal-active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+html.reveal-ready .aquapure-key-feature.scroll-reveal,
+html.reveal-ready .aquapure-component.scroll-reveal,
+html.reveal-ready .aquapure-parameters__grid > .scroll-reveal,
+html.reveal-ready .aquapure-advantages__grid article.scroll-reveal {
+    --reveal-duration: 900ms;
+}
+
+@media (max-width: 768px) {
+    html.reveal-ready .scroll-reveal {
+        --reveal-duration: 850ms;
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-up {
+        transform: translate3d(0, 60px, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-left {
+        transform: translate3d(-55px, 0, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-right {
+        transform: translate3d(55px, 0, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-scale {
+        transform: translate3d(0, 45px, 0) scale(0.96);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-active {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    html.reveal-ready .aquapure-key-feature.scroll-reveal,
+    html.reveal-ready .aquapure-component.scroll-reveal,
+    html.reveal-ready .aquapure-parameters__grid > .scroll-reveal,
+    html.reveal-ready .aquapure-advantages__grid article.scroll-reveal {
+        --reveal-delay: 0ms !important;
+    }
+}

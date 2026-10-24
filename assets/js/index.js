@@ -219,3 +219,164 @@ footerToggles.forEach((toggle) => {
         }
     );
 });
+
+
+/* =========================================================
+   HOMEPAGE SCROLL REVEAL — FIXED
+   - Strong visible entrance animation
+   - Separate from common.js .is-visible
+   - Two animation frames are used so the browser paints
+     the hidden state BEFORE reveal-active is applied
+   - Reveal happens only once
+========================================================= */
+
+function initializeHomepageReveal() {
+
+    const revealItems =
+        document.querySelectorAll(".scroll-reveal");
+
+    if (!revealItems.length) return;
+
+    /*
+       Establish the hidden CSS state.
+
+       Your CSS uses:
+       html.reveal-ready .scroll-reveal
+    */
+    document.documentElement.classList.add(
+        "reveal-ready"
+    );
+
+    /*
+       Make sure every reveal element starts
+       without the visible class.
+    */
+    revealItems.forEach((item) => {
+        item.classList.remove("reveal-active");
+    });
+
+    /*
+       Wait two animation frames.
+
+       This gives the browser enough time to render
+       the hidden position first.
+
+       Without this, items already close to the viewport
+       can instantly become visible without showing
+       the actual entrance animation.
+    */
+    requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+            /*
+               Fallback for older browsers that do not
+               support IntersectionObserver.
+            */
+            if (!("IntersectionObserver" in window)) {
+
+                revealItems.forEach((item) => {
+                    item.classList.add(
+                        "reveal-active"
+                    );
+                });
+
+                return;
+            }
+
+
+            const revealObserver =
+                new IntersectionObserver(
+                    (entries, observer) => {
+
+                        entries.forEach((entry) => {
+
+                            /*
+                               Do nothing until the element
+                               enters the visible viewport.
+                            */
+                            if (!entry.isIntersecting) {
+                                return;
+                            }
+
+
+                            /*
+                               Start reveal animation.
+                            */
+                            entry.target.classList.add(
+                                "reveal-active"
+                            );
+
+
+                            /*
+                               IMPORTANT:
+
+                               Stop observing after the
+                               animation happens once.
+
+                               This means:
+                               - scroll down = reveal
+                               - scroll back up = remains visible
+                               - scroll down again = does NOT replay
+                            */
+                            observer.unobserve(
+                                entry.target
+                            );
+                        });
+                    },
+
+                    {
+                        /*
+                           The animation starts when roughly
+                           12% of the element enters the viewport.
+                        */
+                        threshold: 0.12,
+
+                        /*
+                           Prevent the animation from triggering
+                           too early near the bottom of the screen.
+                        */
+                        rootMargin:
+                            "0px 0px -10% 0px"
+                    }
+                );
+
+
+            /*
+               Observe every element containing
+               the .scroll-reveal class.
+            */
+            revealItems.forEach((item) => {
+
+                revealObserver.observe(
+                    item
+                );
+
+            });
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   INITIALIZE SCROLL REVEAL
+========================================================= */
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeHomepageReveal,
+        {
+            once: true
+        }
+    );
+
+} else {
+
+    initializeHomepageReveal();
+
+}
