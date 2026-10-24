@@ -2554,3 +2554,104 @@ body.site-search-open .nav-dropdown {
     background: #8A9460;
     color: #ffffff;
 }
+
+/* =========================================================
+   RDSS PAGE SCROLL REVEAL
+   Uses the shared reveal logic from /assets/js/index.js.
+   Each element reveals once and remains visible.
+========================================================= */
+
+html.reveal-ready .scroll-reveal {
+    --reveal-delay: 0ms;
+    --reveal-duration: 1050ms;
+
+    opacity: 0;
+    filter: blur(8px);
+
+    transition:
+        opacity var(--reveal-duration) ease var(--reveal-delay),
+        transform var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
+        filter var(--reveal-duration) ease var(--reveal-delay);
+
+    will-change: opacity, transform, filter;
+}
+
+/* Fade + rise */
+html.reveal-ready .scroll-reveal.reveal-up {
+    transform: translate3d(0, 95px, 0);
+}
+
+/* Enter from left */
+html.reveal-ready .scroll-reveal.reveal-left {
+    transform: translate3d(-95px, 0, 0);
+}
+
+/* Enter from right */
+html.reveal-ready .scroll-reveal.reveal-right {
+    transform: translate3d(95px, 0, 0);
+}
+
+/* Video / large media reveal */
+html.reveal-ready .scroll-reveal.reveal-scale {
+    transform: translate3d(0, 65px, 0) scale(0.94);
+}
+
+/* Final visible state */
+html.reveal-ready .scroll-reveal.reveal-active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Repeated RDSS content uses a slightly faster reveal */
+html.reveal-ready .rdss-material.scroll-reveal,
+html.reveal-ready .rdss-mission__grid article.scroll-reveal,
+html.reveal-ready .rdss-component.scroll-reveal,
+html.reveal-ready .rdss-generator-feature.scroll-reveal,
+html.reveal-ready .rdss-aircon-feature.scroll-reveal {
+    --reveal-duration: 900ms;
+}
+
+/* Keep existing image hover zooms after reveal */
+html.reveal-ready .rdss-component.scroll-reveal.reveal-active:hover .rdss-component__media img,
+html.reveal-ready .rdss-generator-feature.scroll-reveal.reveal-active:hover figure img,
+html.reveal-ready .rdss-aircon-feature.scroll-reveal.reveal-active:hover figure img {
+    transform: scale(1.035);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    html.reveal-ready .scroll-reveal {
+        --reveal-duration: 850ms;
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-up {
+        transform: translate3d(0, 60px, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-left {
+        transform: translate3d(-55px, 0, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-right {
+        transform: translate3d(55px, 0, 0);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-scale {
+        transform: translate3d(0, 45px, 0) scale(0.96);
+    }
+
+    html.reveal-ready .scroll-reveal.reveal-active {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* Remove long stagger delays on mobile */
+    html.reveal-ready .rdss-material.scroll-reveal,
+    html.reveal-ready .rdss-mission__grid article.scroll-reveal,
+    html.reveal-ready .rdss-component.scroll-reveal,
+    html.reveal-ready .rdss-generator-feature.scroll-reveal,
+    html.reveal-ready .rdss-aircon-feature.scroll-reveal {
+        --reveal-delay: 0ms !important;
+    }
+}
