@@ -682,12 +682,12 @@ body {
 /* Individual backgrounds */
 .unit-solutions {
     background-color: #b3b3b3;
-    background-image: url("/assets/images/img/DELLASOLUTION.png");
+    background-image: url("/assets/images/img/DELLASOLUTION.webp");
 }
 
 .unit-defense {
     background-color: #b3b3b3;
-    background-image: url("/assets/images/img/defense/DELLADEFENSE3.png");
+    background-image: url("/assets/images/img/defense/DELLADEFENSE3.webp");
 }
 
 .unit-card::before {
@@ -2734,11 +2734,11 @@ video {
     }
 
     .unit-solutions {
-        background-image: url("/assets/images/img/DELLASOLUTION.png") !important;
+        background-image: url("/assets/images/img/DELLASOLUTION.webp") !important;
     }
 
     .unit-defense {
-        background-image: url("/assets/images/img/defense/DELLADEFENSE3.png") !important;
+        background-image: url("/assets/images/img/defense/DELLADEFENSE3.webp") !important;
     }
 
     .sector-grid {

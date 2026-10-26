@@ -205,7 +205,7 @@
 
                         jpegFirst,
 
-                        "/assets/images/img/engagement/Big_One.png"
+                        "/assets/images/img/engagement/Big_One.webp"
 
                     ),
 
@@ -220,7 +220,7 @@
 
                         jpegFirst,
 
-                        "/assets/images/img/engagement/Big_One.png"
+                        "/assets/images/img/engagement/Big_One.webp"
 
                     ),
 
@@ -235,7 +235,7 @@
 
                         jpegFirst,
 
-                        "/assets/images/img/engagement/Big_One.png"
+                        "/assets/images/img/engagement/Big_One.webp"
 
                     ),
 
@@ -250,7 +250,7 @@
 
                         jpegFirst,
 
-                        "/assets/images/img/engagement/Big_One.png"
+                        "/assets/images/img/engagement/Big_One.webp"
 
                     ),
 
@@ -265,7 +265,7 @@
 
                         pngFirst,
 
-                        "/assets/images/img/engagement/Big_One.png"
+                        "/assets/images/img/engagement/Big_One.webp"
 
                     ),
 
@@ -280,7 +280,7 @@
 
                         pngFirst,
 
-                        "/assets/images/img/engagement/Big_One.png"
+                        "/assets/images/img/engagement/Big_One.webp"
 
                     )
 
@@ -365,47 +365,47 @@
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Portable_AC_Generator_Equipment_Demonstration_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Portable_AC_Generator_Equipment_Demonstration_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Defense_Capability_Showcase_Event_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Defense_Capability_Showcase_Event_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Capability_Briefing_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Capability_Briefing_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Rapid_Deployment_Shelter_Inspection_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Rapid_Deployment_Shelter_Inspection_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Industrial_System_Demonstration_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Industrial_System_Demonstration_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Hydraulic_Rescue_Tool_Demonstration_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Hydraulic_Rescue_Tool_Demonstration_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Shower_System_Demonstration_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Shower_System_Demonstration_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Shelter_System_Demonstration_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Shelter_System_Demonstration_HD.webp"
                 ],
 
 
                 [
-                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Gear_Inspection_and_Evaluation_HD.png"
+                    "/assets/images/img/engagement/Office-of-the-Army/DELLAGROUP_Field_Gear_Inspection_and_Evaluation_HD.webp"
                 ]
 
             ],
@@ -841,7 +841,7 @@
 
 
                             resolve(
-                                "/assets/images/img/engagement/Big_One.png"
+                                "/assets/images/img/engagement/Big_One.webp"
                             );
 
 
@@ -942,7 +942,7 @@
 
             resolvedGallery.push(
 
-                "/assets/images/img/engagement/Big_One.png"
+                "/assets/images/img/engagement/Big_One.webp"
 
             );
 

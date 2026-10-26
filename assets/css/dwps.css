@@ -1764,7 +1764,7 @@ body.mobile-menu-open .scroll-to-top {
 }
 
 /* =========================================================
-   DWPS — WATER.PNG & MODEL.PNG FULL FIT
+   DWPS — WATER.WEBP & MODEL.WEBP FULL FIT
 ========================================================= */
 
 .dwps-process__media,
@@ -1772,8 +1772,8 @@ body.mobile-menu-open .scroll-to-top {
     position: relative;
 }
 
-.dwps-process__media img[src$="water.png"],
-.dwps-structure__media img[src$="model.png"] {
+.dwps-process__media img[src$="water.webp"],
+.dwps-structure__media img[src$="model.webp"] {
     position: absolute;
     inset: 0;
     width: 100%;

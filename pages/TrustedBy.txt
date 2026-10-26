@@ -22,7 +22,7 @@
     <header class="navbar">
 
         <a href="\index.html" class="nav-logo">
-            <img src="\assets/images/logo/DellaGroupDark.png" alt="Della Group Logo">
+            <img src="\assets/images/logo/DellaGroupDark.webp" alt="Della Group Logo">
         </a>
 
         <nav class="nav-menu">
@@ -339,7 +339,7 @@
         <footer class="footer">
 
             <div class="footer-left">
-                <img src="\assets/images/logo/DellaGroupLight.png" alt="Della Group Logo" class="footer-logo">
+                <img src="\assets/images/logo/DellaGroupLight.webp" alt="Della Group Logo" class="footer-logo">
 
                 <div class="footer-addresses">
                     <div class="footer-address">
