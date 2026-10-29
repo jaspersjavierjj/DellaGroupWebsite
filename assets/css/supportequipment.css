@@ -667,21 +667,6 @@ body {
     margin-top: 380px;
 }
 
-/* Row 1 (4 items automatically go here) */
-
-/* Row 2: force only 3 items, last column empty */
-.hero-options button:nth-child(5) {
-    grid-column: 1;
-}
-
-.hero-options button:nth-child(6) {
-    grid-column: 2;
-}
-
-.hero-options button:nth-child(7) {
-    grid-column: 3;
-}
-
 .hero-options button {
     width: calc(50% - 9px);
     text-align: left;
@@ -1050,11 +1035,22 @@ margin-left:288px;
 }
 
 .hero-options{
+position:relative;
+width:456px;
 grid-template-columns:repeat(2,208px);
 gap:18px 40px;
 margin-top:304px;
 margin-right:320px;
 }
+
+.hero-options button:nth-child(n+5){
+position:absolute;
+width:132px;
+}
+
+.hero-options button:nth-child(5){left:472px;top:0;}
+.hero-options button:nth-child(6){left:620px;top:0;}
+.hero-options button:nth-child(7){left:472px;top:47px;}
 
 .hero-options button{
 width:208px;
@@ -1111,6 +1107,47 @@ margin-bottom:124px;
 .footer-columns{gap:72px;}
 
 .footer-col a{font-size:12px;}
+}
+
+@media (min-width:1101px) and (max-width:1409px) {
+    .industrial-hero {
+        height: auto;
+        min-height: 0;
+        padding: 80px 32px 60px;
+        display: block;
+    }
+
+    .hero-tag {
+        padding-top: 0;
+    }
+
+    .hero-description {
+        max-width: 420px;
+        margin-left: 0;
+    }
+
+    .hero-options {
+        position: static;
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 24px;
+        margin: 50px 0 0;
+    }
+
+    .hero-options button {
+        width: 100%;
+    }
+
+    .hero-options button:nth-child(n+5) {
+        position: static;
+    }
+
+    .hero-options button:nth-child(5),
+    .hero-options button:nth-child(6),
+    .hero-options button:nth-child(7) {
+        left: auto;
+        top: auto;
+    }
 }
 
 @media(max-width:1100px){

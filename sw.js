@@ -1,4 +1,5 @@
-const VERSION = "della-v2";
+// Bump this when deploying asset changes so cache-first files are refreshed.
+const VERSION = "della-v3";
 
 const STATIC_CACHE = `della-static-${VERSION}`;
 const PAGE_CACHE = `della-pages-${VERSION}`;
@@ -242,20 +243,13 @@ self.addEventListener("fetch", event => {
     /*
     =================================================
     STATIC FILES
-    STALE-WHILE-REVALIDATE
+    CACHE FIRST
     =================================================
 
-    Applies to:
-
-    CSS
-    JavaScript
-    Images
-    Fonts
-
-    1. Give cached file immediately.
-    2. Check Bluehost in background.
-    3. Replace cache with server version.
-    4. Next request gets newest version.
+    CSS, JavaScript, images, and fonts are cached as
+    they are requested, rather than downloading the
+    entire asset library up front. Cache hits do not
+    make another network request.
     =================================================
     */
 
@@ -273,114 +267,34 @@ self.addEventListener("fetch", event => {
         )
     ) {
 
-        /*
-        -------------------------------------------------
-        START SERVER CHECK IMMEDIATELY
-        -------------------------------------------------
-        */
+        event.respondWith(
+            (async () => {
+                const cachedResponse =
+                    await caches.match(request);
 
-        const refreshPromise =
-
-            fetch(request, {
-                cache: "no-cache"
-            })
-
-            .then(async networkResponse => {
-
-                /*
-                Only cache successful responses.
-                */
-
-                if (
-                    networkResponse &&
-                    networkResponse.ok
-                ) {
-
-                    const cache =
-                        await caches.open(STATIC_CACHE);
-
-                    await cache.put(
-                        request,
-                        networkResponse.clone()
-                    );
-
+                if (cachedResponse) {
+                    return cachedResponse;
                 }
 
+                const networkResponse = await fetch(request);
+
+                if (networkResponse.ok) {
+                    const cache = await caches.open(STATIC_CACHE);
+
+                    event.waitUntil(
+                        cache.put(request, networkResponse.clone())
+                            .catch(error => {
+                                console.warn(
+                                    "Static file could not be cached:",
+                                    request.url,
+                                    error
+                                );
+                            })
+                    );
+                }
 
                 return networkResponse;
-
-            })
-
-            .catch(error => {
-
-                /*
-                Network failure is okay because
-                cached copy may still exist.
-                */
-
-                return null;
-
-            });
-
-
-        /*
-        -------------------------------------------------
-        IMPORTANT
-        -------------------------------------------------
-
-        Keep the Service Worker alive until
-        the background cache update finishes.
-        */
-
-        event.waitUntil(
-            refreshPromise.then(() => undefined)
-        );
-
-
-        /*
-        -------------------------------------------------
-        RESPONSE
-        -------------------------------------------------
-        */
-
-        event.respondWith(
-
-            caches.match(request)
-
-                .then(cachedResponse => {
-
-                    /*
-                    Cached version exists:
-                    show it immediately.
-
-                    Background request above is already
-                    checking for a new version.
-                    */
-
-                    if (cachedResponse) {
-                        return cachedResponse;
-                    }
-
-
-                    /*
-                    Nothing cached:
-                    wait for network.
-                    */
-
-                    return refreshPromise.then(
-                        networkResponse => {
-
-                            if (networkResponse) {
-                                return networkResponse;
-                            }
-
-                            return Response.error();
-
-                        }
-                    );
-
-                })
-
+            })()
         );
 
     }

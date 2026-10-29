@@ -62,7 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const labelText = normalize(label.innerText);
 
-                if (buttonText === labelText) {
+                if (
+                    buttonText === labelText ||
+                    labelText.endsWith(buttonText)
+                ) {
                     targetSection = section;
                 }
 
