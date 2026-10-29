@@ -1,4 +1,3 @@
-// Bump this when deploying asset changes so cache-first files are refreshed.
 const VERSION = "della-v3";
 
 const STATIC_CACHE = `della-static-${VERSION}`;
@@ -243,13 +242,12 @@ self.addEventListener("fetch", event => {
     /*
     =================================================
     STATIC FILES
-    CACHE FIRST
+    NETWORK FIRST
     =================================================
 
-    CSS, JavaScript, images, and fonts are cached as
-    they are requested, rather than downloading the
-    entire asset library up front. Cache hits do not
-    make another network request.
+    Check with the server on each request so updated
+    files appear immediately. Keep successful responses
+    in Cache Storage for offline fallback.
     =================================================
     */
 
@@ -269,31 +267,43 @@ self.addEventListener("fetch", event => {
 
         event.respondWith(
             (async () => {
-                const cachedResponse =
-                    await caches.match(request);
+                try {
+                    const networkResponse = await fetch(request, {
+                        cache: "no-cache"
+                    });
 
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
+                    if (networkResponse.ok) {
+                        const cache = await caches.open(STATIC_CACHE);
 
-                const networkResponse = await fetch(request);
+                        event.waitUntil(
+                            cache.put(request, networkResponse.clone())
+                                .catch(error => {
+                                    console.warn(
+                                        "Static file could not be cached:",
+                                        request.url,
+                                        error
+                                    );
+                                })
+                        );
+                    }
 
-                if (networkResponse.ok) {
-                    const cache = await caches.open(STATIC_CACHE);
+                    return networkResponse;
+                } catch (error) {
+                    const cachedResponse =
+                        await caches.match(request);
 
-                    event.waitUntil(
-                        cache.put(request, networkResponse.clone())
-                            .catch(error => {
-                                console.warn(
-                                    "Static file could not be cached:",
-                                    request.url,
-                                    error
-                                );
-                            })
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    }
+
+                    console.warn(
+                        "Static file is unavailable online and in cache:",
+                        request.url,
+                        error
                     );
-                }
 
-                return networkResponse;
+                    return Response.error();
+                }
             })()
         );
 

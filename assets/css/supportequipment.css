@@ -823,6 +823,12 @@ body {
     
 }
 
+.construction-box picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .construction-box img {
     width: 100%;
     height: 100%;
@@ -1281,8 +1287,6 @@ grid-template-columns:repeat(2,1fr);
 .footer-columns{grid-template-columns:1fr;}
 .hero-content h1{font-size:36px;}
 }
-
-
 
 /* =========================================================
    SUPPORT EQUIPMENT RESPONSIVE SYSTEM
