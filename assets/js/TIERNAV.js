@@ -54,7 +54,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let targetSection = null;
 
+            const targetId = this.dataset.target;
+
+            if (targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        targetSection = section;
+                    }
+                });
+            }
+
             sections.forEach(section => {
+
+                if (targetSection) return;
 
                 const label = section.querySelector(".construction-label");
 
